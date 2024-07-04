@@ -1,4 +1,4 @@
-import VerifyEmailForm from '@/app/components/VerifyEmailForm';
+import VerifyEmailForm from '@/app/components/forms/VerifyEmailForm';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {

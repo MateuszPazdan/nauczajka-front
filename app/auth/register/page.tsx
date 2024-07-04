@@ -1,6 +1,7 @@
-import RegisterForm from '@/app/components/RegisterForm';
+import RegisterForm from '@/app/components/forms/RegisterForm';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
 	title: 'Rejestracja',
 };
 
