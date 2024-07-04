@@ -14,7 +14,7 @@ interface User {
 const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		retrieveUser: builder.query<User, void>({
-			query: () => '/user/profile/',
+			query: () => ({ url: '/user/profile/', method: 'GET' }),
 		}),
 		login: builder.mutation({
 			query: ({ email, password }) => ({

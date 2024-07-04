@@ -8,12 +8,13 @@ const spinnerSize = {
 
 interface SpinnerProps {
 	size: 'small' | 'medium' | 'large';
+	color?: string;
 }
 
-function Spinner({ size }: SpinnerProps) {
+function Spinner({ size, color }: SpinnerProps) {
 	return (
 		<ClipLoader
-			color={'#7c67ff'}
+			color={color || '#7c67ff'}
 			loading={true}
 			size={spinnerSize[size]}
 			aria-label='Loading Spinner'

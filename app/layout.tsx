@@ -4,6 +4,7 @@ import '@/app/_styles/globals.css';
 import Navigation from './components/navigation/Navigation';
 import CustomProvider from '@/redux/Provider';
 import { ToastProvider } from './components/utils';
+import Footer from './components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,8 +26,11 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<CustomProvider>
 					<ToastProvider />
-					<Navigation />
-					<main>{children}</main>
+					<div className='grid grid-rows-[auto_1fr_auto] min-h-screen'>
+						<Navigation />
+						<main className='flex justify-center items-center'>{children}</main>
+						<Footer />
+					</div>
 				</CustomProvider>
 			</body>
 		</html>
