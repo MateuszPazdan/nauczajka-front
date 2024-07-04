@@ -1,39 +1,13 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
+import usePasswordReset from '@/app/hooks/usePasswordReset';
+import Spinner from '../Spinner';
 import TextInput from '../TextInput';
 import { validateEmail } from '@/app/utils/isInputCorrect';
-import { useResetPasswordMutation } from '@/redux/features/authApiSlice';
-import { GiConfirmed } from 'react-icons/gi';
-import Spinner from '../Spinner';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
-
-interface FormData {
-	email: string;
-}
 
 function PasswordResetForm() {
-	const route = useRouter();
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		getValues,
-	} = useForm<FormData>();
-	const [resetPassword, { isLoading, isSuccess }] = useResetPasswordMutation();
-
-	const onSubmit = (data: FormData) => {
-		resetPassword({ email: data.email })
-			.unwrap()
-			.then(() => {
-				toast.success('E-mail do resetowania hasła został wysłany');
-				route.push('/auth/login');
-			})
-			.catch(() => {
-				toast.error('Wystąpił błąd przy resetowaniu hasła. Spróbuj ponownie.');
-			});
-	};
+	const { errors, getValues, handleSubmit, isLoading, onSubmit, register } =
+		usePasswordReset();
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
@@ -48,7 +22,7 @@ function PasswordResetForm() {
 
 				<TextInput
 					register={register}
-					// error={errors?.email?.message}
+					error={errors?.email?.message}
 					label={'E-mail'}
 					field={'email'}
 					type={'email'}
