@@ -1,4 +1,4 @@
-export default function Page() {
+export default async function Page() {
 	return (
 		<main className=''>
 			<p className=''>Tu narazie jest ściernisko, ale bedzie San Francisco</p>
