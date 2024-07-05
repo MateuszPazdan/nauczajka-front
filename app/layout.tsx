@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Roboto_Mono } from 'next/font/google';
 import '@/app/_styles/globals.css';
 import Navigation from './components/navigation/Navigation';
 import CustomProvider from '@/redux/Provider';
@@ -7,6 +7,9 @@ import { ToastProvider } from './components/utils';
 import Footer from './components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
+const robotoMono = Roboto_Mono({
+	subsets: ['latin'],
+});
 
 export const metadata: Metadata = {
 	title: {
@@ -23,7 +26,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='pl'>
-			<body className={inter.className}>
+			<body className={robotoMono.className}>
 				<CustomProvider>
 					<ToastProvider />
 					<div className='grid grid-rows-[auto_1fr_auto] min-h-screen'>

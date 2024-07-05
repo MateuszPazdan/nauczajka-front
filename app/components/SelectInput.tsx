@@ -20,7 +20,7 @@ function SelectInput({
 }: SelectInputProps) {
 	return (
 		<div>
-			<label className='flex gap-2 items-center'>
+			<label className='flex gap-2 items-center text-base'>
 				<input
 					type='radio'
 					value={value}

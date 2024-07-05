@@ -39,7 +39,7 @@ function TextInput({
 							<span className='text-md hover:text-gray hover:cursor-help'>
 								<IoMdInformationCircleOutline />
 							</span>
-							<p className='text-center hidden group-hover:block absolute left-4 top-4 w-40 sm400:w-60 z-10 shadow-myShadow rounded-md p-4 text-[12px] bg-white'>
+							<p className='text-center hidden group-hover:block absolute left-4 top-4 w-40 sm400:w-60 z-10 shadow-myShadow rounded-sm p-4 text-[12px] bg-white'>
 								{info}
 							</p>
 						</div>
@@ -55,7 +55,7 @@ function TextInput({
 				type={type}
 				className={`w- full p-2 border-2 focus:outline-none focus:ring-0 rounded-xl ${
 					isFocused
-						? ' border-mainPurple '
+						? ' border-main'
 						: error
 						? ' border-mainSalmon '
 						: ' border-shadowBlack '

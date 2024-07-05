@@ -12,6 +12,7 @@ import SelectInput from '@/app/components/SelectInput';
 import Spinner from '@/app/components/Spinner';
 import useRegister from '@/app/hooks/useRegister';
 import { useUserWidth } from '@/app/hooks/useUserWidth';
+import Button from '../Button';
 
 function RegisterForm() {
 	const width = useUserWidth();
@@ -34,10 +35,10 @@ function RegisterForm() {
 			>
 				<div className='sm:w-[400px] md:w-[500px] px-0 w-5/6 sm400:w-2/3 sm:px-10 pb-10 pt-5 bg-white sm:shadow-myShadow shadow-shadowBlack rounded-xl gap-8 flex flex-col items-center'>
 					<div className='relative'>
-						<p className='pb-5 text-2xl mt-4'>Rejestracja</p>
-						<div className='absolute bottom-[21.5px] left-0 w-[28px] h-[2px] bg-mainPurple rounded-full'></div>
-						<div className='absolute bottom-[21.5px] left-11 w-[85px] h-[2px] bg-mainPurple rounded-full'></div>
-						<div className='absolute bottom-[21.5px] left-36 w-[16px] h-[2px] bg-mainPurple rounded-full'></div>
+						<p className='pb-5 text-3xl mt-4'>Rejestracja</p>
+						<div className='absolute bottom-[21.5px] left-0 w-[36px] h-[2.5px] bg-main rounded-full'></div>
+						<div className='absolute bottom-[21.5px] left-14 w-[105px] h-[2.5px] bg-main rounded-full'></div>
+						<div className='absolute bottom-[21.5px] left-[180px] w-[19px] h-[2.5px] bg-main rounded-full'></div>
 					</div>
 
 					<div className='flex  flex-row mx-auto gap-5 sm400:gap-10'>
@@ -113,9 +114,9 @@ function RegisterForm() {
 					/>
 
 					<div className='mt-5'>
-						<button disabled={isLoading} type='submit'>
-							{isLoading ? <Spinner size='small' /> : 'Zarejestruj się'}
-						</button>
+						<Button type={'button'} isLoading={isLoading}>
+							<span>Zarejestruj się</span>
+						</Button>
 					</div>
 				</div>
 			</form>

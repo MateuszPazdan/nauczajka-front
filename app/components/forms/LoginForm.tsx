@@ -7,6 +7,7 @@ import useLogin from '@/app/hooks/useLogin';
 import { useUserWidth } from '@/app/hooks/useUserWidth';
 import { validateEmail } from '@/app/utils/isInputCorrect';
 import Link from 'next/link';
+import Button from '../Button';
 
 function LoginForm() {
 	const width = useUserWidth();
@@ -22,9 +23,9 @@ function LoginForm() {
 			>
 				<div className='sm:w-[400px] md:w-[500px] w-5/6 sm400:w-2/3 sm:px-10 pb-6 pt-5 bg-white sm:shadow-myShadow shadow-shadowBlack rounded-xl gap-8 flex flex-col items-center'>
 					<div className='relative'>
-						<p className='pb-5 text-2xl mt-4'>Logowanie</p>
-						<div className='absolute bottom-[21px] left-0 w-[28px] h-[2px] bg-mainPurple rounded-full'></div>
-						<div className='absolute bottom-[21px] left-11 w-[86px] h-[2px] bg-mainPurple rounded-full'></div>
+						<p className='pb-5 text-3xl mt-4'>Logowanie</p>
+						<div className='absolute bottom-[21px] left-0 w-[36px] h-[2px] bg-main rounded-full'></div>
+						<div className='absolute bottom-[21px] left-14 w-[108px] h-[2px] bg-main rounded-full'></div>
 					</div>
 
 					<TextInput
@@ -45,7 +46,7 @@ function LoginForm() {
 							type={'password'}
 						/>
 						<Link
-							className={`flex hover:text-mainPurple hover:cursor-pointer absolute text-[12px] text-center  ${
+							className={`flex hover:text-main hover:cursor-pointer absolute text-[12px] text-center  ${
 								!errors.password && ' right-2 -bottom-6 '
 							} ${
 								errors.password &&
@@ -58,12 +59,20 @@ function LoginForm() {
 					</div>
 
 					<div className='mt-6'>
-						<button type='submit' disabled={isLoading}>
-							{isLoading ? <Spinner size='small' /> : 'Zaloguj się'}
-						</button>
+						<Button type={'button'} isLoading={isLoading}>
+							<span>Zaloguj się</span>
+						</Button>
 					</div>
 
-					<Link href={'/auth/register'}>Zarejestruj się</Link>
+					<p className='text-sm'>
+						Nie masz konta?{' '}
+						<Link
+							className='text-mainSalmon hover:text-mainSalmonHover'
+							href={'/auth/register'}
+						>
+							Zarejestruj się
+						</Link>
+					</p>
 				</div>
 			</form>
 		</>
