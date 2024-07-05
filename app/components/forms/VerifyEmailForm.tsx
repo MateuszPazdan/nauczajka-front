@@ -3,6 +3,7 @@
 import Spinner from '@/app/components/Spinner';
 import useVerifyEmail from '@/app/hooks/useVerifyEmail';
 import { CiAt } from 'react-icons/ci';
+import Button from '../Button';
 
 function VerifyEmailForm() {
 	const { isLoading, handleButton } = useVerifyEmail();
@@ -19,19 +20,10 @@ function VerifyEmailForm() {
 						Został tylko jeden krok, aby dokończyć rejestrację. Kliknij przycisk
 						i znajdź odpowiedniego dla Ciebie korepetytora!
 					</p>
-					<button
-						disabled={isLoading}
-						onClick={handleButton}
-						className='bg-main hover:bg-mainHover text-white px-6 py-2 rounded-md transition-colors duration-300 '
-					>
-						{isLoading ? (
-							<span className='flex items-center justify-center'>
-								<Spinner size='small' color='#ffffff' />
-							</span>
-						) : (
-							'Potwierdź'
-						)}
-					</button>
+
+					<Button type='button' isLoading={isLoading} onClick={handleButton}>
+						Potwierdź
+					</Button>
 				</div>
 			</div>
 		</div>
