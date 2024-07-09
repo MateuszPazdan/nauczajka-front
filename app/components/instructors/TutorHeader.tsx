@@ -1,6 +1,7 @@
 import { API_KEY } from '@/app/api/apiAuth';
 import { CiLocationOn } from 'react-icons/ci';
 import { Tutor } from './InstructorsList';
+import Image from 'next/image';
 
 interface TutorHeaderProps {
 	tutorInfo: Tutor;
@@ -10,11 +11,14 @@ interface TutorHeaderProps {
 function TutorHeader({ tutorInfo, showLocation }: TutorHeaderProps) {
 	return (
 		<div className='flex flex-col md:flex-row justify-center items-center gap-2 md:gap-5'>
-			<img
+			<Image
 				src={`${API_KEY}${tutorInfo?.profile_image}`}
-				alt='dsa'
-				className='h-24 w-24 rounded-full border-whiteHover group-hover/tutorEl:border-mainPurpleHover shadow-md shadow-shadowBlack border-2 transition-colors duration-300'
+				alt='awatar użytkownika'
+				width={96}
+				height={96}
+				className='rounded-full border-whiteHover group-hover/tutorEl:border-mainHover shadow-md shadow-shadowBlack border-2 transition-colors duration-300'
 			/>
+
 			<div className='flex flex-col items-center md:items-baseline'>
 				{showLocation && tutorInfo?.tutoring_location && (
 					<p className='text-sm gap-2 flex justify-center items-center text-gray text-center w-fit'>
