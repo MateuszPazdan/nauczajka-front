@@ -4,7 +4,13 @@ export const metadata = {
 	title: 'Korepetytorzy',
 };
 
-function page({ searchParams }) {
+interface SearchParams {
+	query?: string;
+	page?: string;
+	[key: string]: string | undefined;
+}
+
+function page({ searchParams }: SearchParams) {
 	return <InstructorsList searchParams={searchParams} />;
 }
 
