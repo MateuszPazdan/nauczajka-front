@@ -16,22 +16,22 @@ export async function getAllInstructorsAction(searchParams: any) {
 		if (key !== 'skills' && value !== '') {
 			additionalFilters += additionalFilters.concat(`&${key}=`, String(value));
 		}
-		console.log(`${additionalFilters}${skillsList}`);
-		const response = await fetch(
-			`${API_KEY}/api/user/tutor/search/?${additionalFilters}${skillsList}`,
-			{
-				method: 'GET',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			}
-		);
-
-		if (!response.ok) {
-			throw new Error('Błąd przy pobieraniu listy korepetytorów');
-		}
-		const data = await response.json();
-
-		return data;
 	}
+	console.log(additionalFilters, skillsList, 'dsadsadsa');
+	const response = await fetch(
+		`${API_KEY}/api/user/tutor/search/?${additionalFilters}${skillsList}`,
+		{
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		}
+	);
+
+	if (!response.ok) {
+		throw new Error('Błąd przy pobieraniu listy korepetytorów');
+	}
+	const data = await response.json();
+
+	return data;
 }
