@@ -1,4 +1,6 @@
+import Spinner from '../components/Spinner';
 import InstructorsList from '../components/instructors/InstructorsList';
+import { Suspense } from 'react';
 
 export const metadata = {
 	title: 'Korepetytorzy',
@@ -11,7 +13,14 @@ interface SearchParams {
 }
 
 function page({ searchParams }: SearchParams) {
-	return <InstructorsList searchParams={searchParams} />;
+	return (
+		<div className='flex flex-col h-full w-full max-w-7xl py-10 '>
+			<p className='text-center'>pdsadsadas</p>
+			<Suspense fallback={<Spinner size='large' />} key={searchParams}>
+				<InstructorsList searchParams={searchParams} />;
+			</Suspense>
+		</div>
+	);
 }
 
 export default page;

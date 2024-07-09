@@ -3,8 +3,13 @@ import { FaStar } from 'react-icons/fa6';
 import { CiBag1 } from 'react-icons/ci';
 import Link from 'next/link';
 import TutorHeader from './TutorHeader';
+import { Tutor } from './InstructorsList';
 
-function TutorElement({ tutorInfo }) {
+interface TutorElementProps {
+	tutorInfo: Tutor;
+}
+
+function TutorElement({ tutorInfo }: TutorElementProps) {
 	return (
 		<Link
 			href={`/instructors/${tutorInfo.id}`}

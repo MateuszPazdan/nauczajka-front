@@ -1,7 +1,13 @@
 import { API_KEY } from '@/app/api/apiAuth';
 import { CiLocationOn } from 'react-icons/ci';
+import { Tutor } from './InstructorsList';
 
-function TutorHeader({ tutorInfo, showLocation }) {
+interface TutorHeaderProps {
+	tutorInfo: Tutor;
+	showLocation: boolean;
+}
+
+function TutorHeader({ tutorInfo, showLocation }: TutorHeaderProps) {
 	return (
 		<div className='flex flex-col md:flex-row justify-center items-center gap-2 md:gap-5'>
 			<img
@@ -10,7 +16,7 @@ function TutorHeader({ tutorInfo, showLocation }) {
 				className='h-24 w-24 rounded-full border-whiteHover group-hover/tutorEl:border-mainPurpleHover shadow-md shadow-shadowBlack border-2 transition-colors duration-300'
 			/>
 			<div className='flex flex-col items-center md:items-baseline'>
-				{showLocation && (
+				{showLocation && tutorInfo?.tutoring_location && (
 					<p className='text-sm gap-2 flex justify-center items-center text-gray text-center w-fit'>
 						<span className='text-lg text-black'>
 							<CiLocationOn />
@@ -23,7 +29,7 @@ function TutorHeader({ tutorInfo, showLocation }) {
 					<p className='text-2xl'>{tutorInfo?.last_name}</p>
 				</div>
 				<div className='flex flex-row flex-wrap justify-center md:justify-start gap-1 text-gray'>
-					{tutorInfo?.skills.map((skill, index) => (
+					{tutorInfo?.skills.map((skill: string, index: number) => (
 						<p key={skill} className='text-[0.75rem]'>
 							{skill}
 							{index != tutorInfo.skills.length - 1 && ','}

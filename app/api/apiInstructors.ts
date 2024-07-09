@@ -27,7 +27,7 @@ export async function getAllInstructorsAction(searchParams: any) {
 			},
 		}
 	);
-
+	// await new Promise((res) => setTimeout(res, 2000));
 	if (!response.ok) {
 		throw new Error('Błąd przy pobieraniu listy korepetytorów');
 	}
