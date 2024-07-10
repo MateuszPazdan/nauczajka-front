@@ -1,4 +1,6 @@
+import Pagination from '../components/Pagination';
 import Spinner from '../components/Spinner';
+import Filters from '../components/instructors/Filters';
 import InstructorsList from '../components/instructors/InstructorsList';
 import { Suspense } from 'react';
 
@@ -14,8 +16,8 @@ interface SearchParams {
 
 function page({ searchParams }: SearchParams) {
 	return (
-		<div className='flex flex-col h-full w-full max-w-7xl py-10 '>
-			<p className='text-center'>pdsadsadas</p>
+		<div className='flex flex-col w-full h-full max-w-7xl pt-8 '>
+			<Filters />
 			<Suspense fallback={<Spinner size='large' />} key={searchParams}>
 				<InstructorsList searchParams={searchParams} />;
 			</Suspense>

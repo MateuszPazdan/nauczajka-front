@@ -2,6 +2,7 @@ import { getAllInstructorsAction } from '@/app/api/apiInstructors';
 import { CiFileOff } from 'react-icons/ci';
 import TutorElement from './TutorElement';
 import { unstable_noStore as noStore } from 'next/cache';
+import Pagination from '../Pagination';
 
 interface SearchParams {
 	query?: string;
@@ -28,10 +29,10 @@ export interface Tutor {
 async function InstructorsList({ searchParams }: SearchParams) {
 	noStore();
 	const data = await getAllInstructorsAction(searchParams);
-	console.log(data.results);
+
 	return (
-		<div className='w-full h-full mx-auto py-5 flex flex-col gap-2 '>
-			<div className='flex gap-2 h-full flex-col'>
+		<div className='w-full h-full mx-auto py-2 flex flex-col '>
+			<div className='flex h-full gap-2 flex-col pb-5'>
 				{data?.results?.length > 0 ? (
 					data.results?.map((tutor: Tutor) => (
 						<TutorElement tutorInfo={tutor} key={tutor.id} />
@@ -47,6 +48,7 @@ async function InstructorsList({ searchParams }: SearchParams) {
 					</div>
 				)}
 			</div>
+			<Pagination searchParams={searchParams} data={data} />
 		</div>
 	);
 }

@@ -1,5 +1,7 @@
 import { API_KEY } from '../api/apiAuth';
 
+export const INSTRUCTORS_PAGE_SIZE: number = 15;
+
 export async function getAllInstructorsAction(searchParams: any) {
 	let skillsList = '';
 
@@ -13,13 +15,13 @@ export async function getAllInstructorsAction(searchParams: any) {
 
 	let additionalFilters = '';
 	for (const [key, value] of Object.entries(searchParams)) {
-		if (key !== 'skills' && value !== '') {
+		if (key !== 'skills' && value !== '' && key !== 'page_size') {
 			additionalFilters += additionalFilters.concat(`&${key}=`, String(value));
 		}
 	}
-	console.log(additionalFilters, skillsList, 'dsadsadsa');
+
 	const response = await fetch(
-		`${API_KEY}/api/user/tutor/search/?${additionalFilters}${skillsList}`,
+		`${API_KEY}/api/user/tutor/search/?${additionalFilters}${skillsList}&page_size=${INSTRUCTORS_PAGE_SIZE}`,
 		{
 			method: 'GET',
 			headers: {
