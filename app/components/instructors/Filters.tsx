@@ -51,7 +51,10 @@ function Filters() {
 					Opinia/Cena
 				</SearchButton>
 				<ListComponent icon={<CiFilter />} title={'Miasto'}>
-					<LocationComponent setFilters={setFilters} />
+					<LocationComponent
+						setFilters={setFilters}
+						location={filters.tutoring_location}
+					/>
 				</ListComponent>
 				<ListComponent title={'Sortuj'} icon={<BsSortAlphaDown />}>
 					<SortList filters={filters} setFilters={setFilters} />
