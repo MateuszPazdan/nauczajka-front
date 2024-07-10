@@ -5,16 +5,16 @@ import { INSTRUCTORS_PAGE_SIZE } from '../api/apiInstructors';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import React from 'react';
 
-function Pagination({ searchParams, data }: { searchParams: any; data: any }) {
-	const pagesCount = Math.ceil(data.count / INSTRUCTORS_PAGE_SIZE);
-	const currentPage = searchParams.p ?? 1;
-
+function Pagination({ data }: { data: any }) {
+	const searchParams = useSearchParams();
 	const pathname = usePathname();
 	const router = useRouter();
+	const pagesCount = Math.ceil(data.count / INSTRUCTORS_PAGE_SIZE);
+	const currentPage = searchParams.get('p') ?? 1;
 
 	function handleChangePage(pageNumber: number) {
 		const params = new URLSearchParams(searchParams);
-		if (searchParams?.p !== '') params.set('p', String(pageNumber));
+		params.set('p', String(pageNumber));
 		router.replace(`${pathname}?${params.toString()}`, { scroll: false });
 	}
 

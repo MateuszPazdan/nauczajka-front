@@ -16,7 +16,7 @@ function SearchInput({
 	onKeyDown,
 }: SearchInputProps) {
 	return (
-		<div className='relative flex w-1/2 mx-auto'>
+		<div className='relative flex'>
 			<input
 				type='text'
 				placeholder={placeholder}

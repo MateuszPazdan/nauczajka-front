@@ -1,6 +1,6 @@
 import { API_KEY } from '../api/apiAuth';
 
-export const INSTRUCTORS_PAGE_SIZE: number = 15;
+export const INSTRUCTORS_PAGE_SIZE: number = 3;
 
 export async function getAllInstructorsAction(searchParams: any) {
 	let skillsList = '';
