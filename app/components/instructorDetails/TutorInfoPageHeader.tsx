@@ -1,3 +1,5 @@
+'use client';
+
 import { CiMail } from 'react-icons/ci';
 import TutorHeader from '../instructors/TutorHeader';
 import Button from '../Button';
