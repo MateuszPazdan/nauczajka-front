@@ -18,6 +18,8 @@ function Pagination({ data }: { data: any }) {
 		router.replace(`${pathname}?${params.toString()}`, { scroll: false });
 	}
 
+	if (pagesCount < 1) return null;
+
 	return (
 		<div>
 			<div className='flex justify-center gap-2'>

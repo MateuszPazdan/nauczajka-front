@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 interface TutorHeaderProps {
 	tutorInfo: Tutor;
-	showLocation: boolean;
+	showLocation?: boolean;
 }
 
 function TutorHeader({ tutorInfo, showLocation }: TutorHeaderProps) {

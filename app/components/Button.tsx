@@ -4,6 +4,7 @@ import Spinner from './Spinner';
 
 interface BaseProps {
 	children: ReactNode;
+	className?: string;
 }
 
 interface ButtonProps extends BaseProps {
@@ -24,12 +25,20 @@ interface LinkProps extends BaseProps {
 
 type Props = ButtonProps | LinkProps;
 
-function Button({ children, type, href, disabled, onClick, isLoading }: Props) {
+function Button({
+	children,
+	type,
+	href,
+	disabled,
+	onClick,
+	isLoading,
+	className,
+}: Props) {
 	return (
 		<>
 			{type === 'button' && (
 				<button
-					className={`px-6 py-2 rounded-xl text-white bg-main hover:bg-mainHover transition-colors duration-300 hover:cursor-pointer`}
+					className={`px-6 py-2 rounded-xl text-white bg-main hover:bg-mainHover transition-colors duration-300 hover:cursor-pointer ${className}`}
 					disabled={disabled || isLoading}
 					onClick={onClick}
 				>

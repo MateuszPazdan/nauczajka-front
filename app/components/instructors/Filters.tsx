@@ -13,8 +13,11 @@ import PriceReview from './PriceReview';
 import AddFilterContainer from './addFilterContainer';
 import SessionMethods from './SessionMethods';
 import useInstructorsFilters from '@/app/hooks/useInstructorsFilters';
+interface Skill {
+	skill: string;
+}
 
-function Filters() {
+function Filters({ availableSkils }: { availableSkils: Skill[] }) {
 	const { search, handleKeyDown, handleSearchFilter, setSearch } =
 		useSearchByName();
 	const { filters, isFilterActive, modalVisible, setFilters, setModalVisible } =
@@ -67,6 +70,7 @@ function Filters() {
 							setModalVisible={setModalVisible}
 							filters={filters}
 							setFilters={setFilters}
+							availableSkils={availableSkils}
 						/>
 					)}
 					{modalVisible === 'sessionMethods' && (

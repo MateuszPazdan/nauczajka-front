@@ -1,4 +1,4 @@
-import Pagination from '../components/Pagination';
+import { getAllSkillsAction } from '../api/apiInstructors';
 import Spinner from '../components/Spinner';
 import Filters from '../components/instructors/Filters';
 import InstructorsList from '../components/instructors/InstructorsList';
@@ -14,10 +14,12 @@ interface SearchParams {
 	[key: string]: string | undefined;
 }
 
-function page({ searchParams }: SearchParams) {
+async function page({ searchParams }: SearchParams) {
+	const availableSkils = await getAllSkillsAction();
+
 	return (
 		<div className='flex flex-col w-full h-full max-w-7xl pt-8 '>
-			<Filters />
+			<Filters availableSkils={availableSkils} />
 			<Suspense fallback={<Spinner size='large' />} key={searchParams}>
 				<InstructorsList searchParams={searchParams} />;
 			</Suspense>

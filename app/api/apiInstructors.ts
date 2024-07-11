@@ -20,20 +20,60 @@ export async function getAllInstructorsAction(searchParams: any) {
 		}
 	}
 
-	const response = await fetch(
-		`${API_KEY}/api/user/tutor/search/?${additionalFilters}${skillsList}&page_size=${INSTRUCTORS_PAGE_SIZE}`,
-		{
+	try {
+		const response = await fetch(
+			`${API_KEY}/api/user/tutor/search/?${additionalFilters}${skillsList}&page_size=${INSTRUCTORS_PAGE_SIZE}`,
+			{
+				method: 'GET',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			}
+		);
+		// await new Promise((res) => setTimeout(res, 2000));
+		if (!response.ok) {
+			throw new Error(`Błąd serwera: ${response.status}`);
+		}
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		throw new Error('Nie udało się pobrać listy korepetytorów');
+	}
+}
+
+export async function getAllSkillsAction() {
+	try {
+		const response = await fetch(`${API_KEY}/api/user/tutor/skills/`, {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
 			},
+		});
+		if (!response.ok) {
+			throw new Error(`Błąd serwera: ${response.status}`);
 		}
-	);
-	// await new Promise((res) => setTimeout(res, 2000));
-	if (!response.ok) {
-		throw new Error('Błąd przy pobieraniu listy korepetytorów');
+		await new Promise((res) => setTimeout(res, 2000));
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		throw new Error('Nie udało się pobrać listy umiejętności');
 	}
-	const data = await response.json();
+}
 
-	return data;
+export async function getInstructorDetailsAction(instructorId: number) {
+	try {
+		const response = await fetch(`${API_KEY}/api/user/tutor/details/${instructorId}/`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		if (!response.ok) {
+			throw new Error(`Błąd serwera: ${response.status}`);
+		}
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		throw new Error('Nie udało się pobrać danych korepetytora');
+	}
 }

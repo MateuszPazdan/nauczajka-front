@@ -1,6 +1,5 @@
 'use client';
 
-import Spinner from '@/app/components/Spinner';
 import useVerifyEmail from '@/app/hooks/useVerifyEmail';
 import { CiAt } from 'react-icons/ci';
 import Button from '../Button';
