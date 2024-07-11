@@ -9,7 +9,6 @@ export async function getAllInstructorsWithoutFiltersAction() {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-			
 		});
 		if (!response.ok) {
 			throw new Error(`Błąd serwera: ${response.status}`);
@@ -94,7 +93,7 @@ export async function getInstructorDetailsAction(instructorId: number) {
 			throw new Error(`Błąd serwera: ${response.status}`);
 		}
 		const data = await response.json();
-		await new Promise((res) => setTimeout(res, 2000));
+		//await new Promise((res) => setTimeout(res, 2000));
 		return data;
 	} catch (error) {
 		throw new Error('Nie udało się pobrać danych korepetytora');

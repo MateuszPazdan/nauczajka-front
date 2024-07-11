@@ -10,7 +10,13 @@ type FormData = {
 	review: string;
 };
 
-function MakeTutorOpionion({ tutorId }: { tutorId: number }) {
+function MakeTutorOpionion({
+	instructorId,
+	refetchOpinions,
+}: {
+	instructorId: number;
+	refetchOpinions: any;
+}) {
 	const [makeOpinion, { isLoading }] = useMakeOpinionMutation();
 	const [rating, setRating] = useState<null | number>(null);
 	const [review, setReview] = useState<'' | string>('');
@@ -20,11 +26,12 @@ function MakeTutorOpionion({ tutorId }: { tutorId: number }) {
 		makeOpinion({
 			review: data.review,
 			rating: rating,
-			tutor_id: tutorId,
+			tutor_id: instructorId,
 		}).then(() => {
 			setRating(null);
 			setReview('');
-			window.location.reload();
+			refetchOpinions();
+			// window.location.reload();
 		});
 	}
 

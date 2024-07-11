@@ -9,7 +9,14 @@ const authApiSlice = apiSlice.injectEndpoints({
 				body: { review, rating },
 			}),
 		}),
+		retrieveOpinions: builder.query({
+			query: ({ tutor_id, page, page_size }) => ({
+				url: `/user/tutor/reviews/${tutor_id}/?p=${page}&page_size=${page_size}`,
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
-export const { useMakeOpinionMutation } = authApiSlice;
+export const { useMakeOpinionMutation, useRetrieveOpinionsQuery } =
+	authApiSlice;

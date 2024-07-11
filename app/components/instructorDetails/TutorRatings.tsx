@@ -1,7 +1,9 @@
-import StarRating from "../StarRating";
+'use client';
 
-function TutorRatings({ tutorInfo }: any) {
-	const tutorRatings = tutorInfo?.tutor_ratings.slice().reverse();
+import StarRating from '../StarRating';
+
+function TutorRatings({ opinions }: { opinions: any }) {
+	const tutorRatings = opinions?.results?.slice().reverse();
 
 	return (
 		<div className='divide-y-[1px] divide-mainPurple'>

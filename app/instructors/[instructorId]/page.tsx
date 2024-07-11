@@ -2,15 +2,13 @@ import {
 	getAllInstructorsWithoutFiltersAction,
 	getInstructorDetailsAction,
 } from '@/app/api/apiInstructors';
-import StarRating from '@/app/components/StarRating';
-import MakeTutorOpionion from '@/app/components/instructorDetails/MakeTutorOpionion';
+import InstructorOpinionsComponent from '@/app/components/instructorDetails/InstructorOpinionsComponent';
 import TutorInfoAboutSession from '@/app/components/instructorDetails/TutorInfoAboutSession';
 import TutorInfoHeader from '@/app/components/instructorDetails/TutorInfoHeader';
 import TutorInfoPageHeader from '@/app/components/instructorDetails/TutorInfoPageHeader';
-import TutorRatings from '@/app/components/instructorDetails/TutorRatings';
 import SettingsElement from '@/app/components/settings/SettingsElement';
 import { unstable_noStore } from 'next/cache';
-import { CiBullhorn, CiCalendar, CiCircleInfo, CiStar } from 'react-icons/ci';
+import { CiBullhorn, CiCalendar, CiCircleInfo } from 'react-icons/ci';
 
 interface Params {
 	params: { instructorId: number };
@@ -64,21 +62,8 @@ async function Page({ params }: Params) {
 						tutorShedule={intructorDetails?.tutor_schedule_items}
 					/> */}
 				</div>
-				<div>
-					<div className='flex flex-wrap gap-4 items-center justify-between'>
-						<TutorInfoHeader icon={<CiStar />} label={'Opinie'} />
-						<div className='flex flex-row items-center gap-2 text-lg'>
-							<p>{intructorDetails?.avg_rating}</p>
-							<StarRating
-								size='xl'
-								currRating={intructorDetails?.avg_rating}
-								readOnly={true}
-							/>
-						</div>
-					</div>
-					<MakeTutorOpionion tutorId={params.instructorId} />
-					<TutorRatings tutorInfo={intructorDetails} />
-				</div>
+
+				<InstructorOpinionsComponent instructorId={params.instructorId} intructorDetails={intructorDetails} />
 			</div>
 		</div>
 	);
