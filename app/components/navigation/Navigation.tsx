@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 function Navigation() {
 	const { data: user } = useRetrieveUserQuery();
-	console.log();
+
 	return (
 		<nav className='max-w-7xl mx-auto w-full px-10 h-24 flex flex-row items-center justify-between'>
 			<Link href={'/'} className='flex items-center gap-5'>

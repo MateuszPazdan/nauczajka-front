@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { MouseEvent, ReactNode } from 'react';
 import Spinner from './Spinner';
 
 interface BaseProps {
@@ -11,7 +11,7 @@ interface ButtonProps extends BaseProps {
 	type: 'button';
 	href?: never;
 	disabled?: boolean;
-	onClick?: () => void;
+	onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 	isLoading?: boolean;
 }
 
