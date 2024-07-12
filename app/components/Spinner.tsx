@@ -1,9 +1,9 @@
-import { ClipLoader } from 'react-spinners';
+import { ImSpinner2 } from 'react-icons/im';
 
 const spinnerSize = {
-	small: 25,
-	medium: 50,
-	large: 75,
+	small: 'text-2xl',
+	medium: 'text-3xl',
+	large: 'text-5xl',
 };
 
 interface SpinnerProps {
@@ -13,13 +13,9 @@ interface SpinnerProps {
 
 function Spinner({ size, color }: SpinnerProps) {
 	return (
-		<ClipLoader
-			color={color || '#7c67ff'}
-			loading={true}
-			size={spinnerSize[size]}
-			aria-label='Loading Spinner'
-			data-testid='loader'
-		/>
+		<span className='flex justify-center items-center h-full w-full '>
+			<ImSpinner2 className={`animate-spin ${spinnerSize[size]} ${color}`} />
+		</span>
 	);
 }
 

@@ -29,6 +29,6 @@
 		"src/types/**/*.ts",
 		".next/types/**/*.ts",
 		"src/app/feedback"
-	],
+, "app/components/LocationComponent.jsx"	],
 	"exclude": ["node_modules"]
 }

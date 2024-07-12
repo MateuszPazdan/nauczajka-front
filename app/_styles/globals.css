@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer components {
+	.remove-arrow::-webkit-inner-spin-button,
+	.remove-arrow::-webkit-outer-spin-button {
+		-webkit-appearance: brak;
+		margin: 0;
+	}
+	.remove-arrow {
+		-moz-wygląd: pole tekstowe;
+	}
+
 	::-webkit-scrollbar {
 		background-color: transparent;
 		width: 5px;

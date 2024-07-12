@@ -2,10 +2,27 @@ import { apiSlice } from '../services/apiSlice';
 
 const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		retrieveAllInstructors: builder.query({
-			query: () => ({ url: '/user/tutor/all/', method: 'GET' }),
+		makeOpinion: builder.mutation({
+			query: ({ review, rating, tutor_id }) => ({
+				url: `/user/rate_tutor/${tutor_id}/`,
+				method: 'POST',
+				body: { review, rating },
+			}),
+		}),
+		retrieveOpinions: builder.query({
+			query: ({ tutor_id, page, page_size }) => ({
+				url: `/user/tutor/reviews/${tutor_id}/?p=${page}&page_size=${page_size}`,
+				method: 'GET',
+			}),
+		}),
+		retrieveShedule: builder.query({
+			query: ({ tutor_id }) => ({
+				url: `/user/tutor/schedule/${tutor_id}/`,
+				method: 'GET',
+			}),
 		}),
 	}),
 });
 
-export const { useRetrieveAllInstructorsQuery } = authApiSlice;
+export const { useMakeOpinionMutation, useRetrieveOpinionsQuery, useRetrieveSheduleQuery} =
+	authApiSlice;
