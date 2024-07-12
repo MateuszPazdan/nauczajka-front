@@ -13,9 +13,11 @@ type FormData = {
 function MakeTutorOpionion({
 	instructorId,
 	refetchOpinions,
+	setPage,
 }: {
 	instructorId: number;
-	refetchOpinions: any;
+	refetchOpinions: () => void;
+	setPage: () => void;
 }) {
 	const [makeOpinion, { isLoading }] = useMakeOpinionMutation();
 	const [rating, setRating] = useState<null | number>(null);
@@ -28,6 +30,7 @@ function MakeTutorOpionion({
 			rating: rating,
 			tutor_id: instructorId,
 		}).then(() => {
+			setPage();
 			setRating(null);
 			setReview('');
 			refetchOpinions();

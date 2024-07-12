@@ -3,7 +3,7 @@
 import StarRating from '../StarRating';
 
 function TutorRatings({ opinions }: { opinions: any }) {
-	const tutorRatings = opinions?.results?.slice().reverse();
+	const tutorRatings = opinions?.results
 
 	return (
 		<div className='divide-y-[1px] divide-mainPurple'>

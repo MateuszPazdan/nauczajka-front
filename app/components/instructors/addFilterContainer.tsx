@@ -3,10 +3,6 @@ import { CiFileOff } from 'react-icons/ci';
 import EditFormBtn from './EditFormBtn';
 import Checkbox from '../Checkbox';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import {
-	getAllInstructorsAction,
-	getAllSkillsAction,
-} from '@/app/api/apiInstructors';
 
 interface AddFilterContainerProps {
 	setModalVisible: React.Dispatch<React.SetStateAction<any>>;

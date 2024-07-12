@@ -2,7 +2,7 @@ import BackgroundElement from './BackgroundElement';
 
 function BackgroundContainer() {
 	document.addEventListener('mousemove', parallax);
-	function parallax(e) {
+	function parallax(e: MouseEvent) {
 		document.querySelectorAll('.moveObject').forEach(function (move) {
 			let moving_value = move.getAttribute('data-value');
 			let x = e.clientX * moving_value;

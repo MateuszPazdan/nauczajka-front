@@ -12,14 +12,12 @@ const OPINIONS_PAGE_SIZE = 15;
 
 interface InstructorOpinionsComponentProps {
 	instructorId: number;
-	intructorDetails: any;
 }
 
-function InstructorOpinionsComponent({
+function InstructorOpinionsContainer({
 	instructorId,
-	intructorDetails,
 }: InstructorOpinionsComponentProps) {
-	const [page, setPage] = useState(1);
+	const [page, setPage] = useState<number>(1);
 	const { data: opinions, refetch: refetchOpinions } = useRetrieveOpinionsQuery(
 		{
 			tutor_id: instructorId,
@@ -36,11 +34,10 @@ function InstructorOpinionsComponent({
 					label={`Opinie (${opinions?.count || 0})`}
 				/>
 				<div className='flex flex-row items-center gap-2 text-lg'>
-					<p>{intructorDetails?.avg_rating} </p>
+					<p>{opinions?.avg_rating} </p>
 					<StarRating
 						size='xl'
-						// currRating={1}
-						currRating={intructorDetails?.avg_rating}
+						currRating={opinions?.avg_rating}
 						readOnly={true}
 					/>
 				</div>
@@ -48,6 +45,7 @@ function InstructorOpinionsComponent({
 			<MakeTutorOpionion
 				instructorId={instructorId}
 				refetchOpinions={refetchOpinions}
+				setPage={() => setPage(1)}
 			/>
 			<TutorRatings opinions={opinions} />
 			<OpinionsPagination
@@ -60,4 +58,4 @@ function InstructorOpinionsComponent({
 	);
 }
 
-export default InstructorOpinionsComponent;
+export default InstructorOpinionsContainer;
