@@ -15,8 +15,14 @@ const authApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		retrieveShedule: builder.query({
+			query: ({ tutor_id }) => ({
+				url: `/user/tutor/schedule/${tutor_id}/`,
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
-export const { useMakeOpinionMutation, useRetrieveOpinionsQuery } =
+export const { useMakeOpinionMutation, useRetrieveOpinionsQuery, useRetrieveSheduleQuery} =
 	authApiSlice;

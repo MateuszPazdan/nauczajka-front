@@ -41,7 +41,7 @@ async function Page({ params }: Params) {
 			</div>
 			<div className='max-w-4xl mx-auto px-2 flex flex-col gap-16'>
 				<TutorInfoContainer intructorDetails={intructorDetails} />
-				<InstructorCalendarContainer />
+				<InstructorCalendarContainer instructorId={params.instructorId} />
 				<InstructorOpinionsContainer instructorId={params.instructorId} />
 			</div>
 		</div>

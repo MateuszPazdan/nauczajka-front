@@ -9,7 +9,7 @@ function Navigation() {
 	const { data: user } = useRetrieveUserQuery();
 
 	return (
-		<nav className='max-w-7xl mx-auto w-full px-10 h-24 flex flex-row items-center justify-between'>
+		<nav className='max-w-7xl mx-auto w-full px-10 h-24 flex flex-row flex-wrap items-center justify-between'>
 			<Link href={'/'} className='flex items-center gap-5'>
 				<div className='w-10 aspect-square relative'>
 					<Image src={'/book.svg'} fill alt='Nauczajka logo' />
