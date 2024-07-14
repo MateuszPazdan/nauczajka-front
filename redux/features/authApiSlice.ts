@@ -1,4 +1,5 @@
 import { apiSlice } from '../services/apiSlice';
+import { logout } from './authSlice';
 
 interface User {
 	id: string;
@@ -14,6 +15,18 @@ const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		retrieveUser: builder.query<User, void>({
 			query: () => ({ url: '/user/profile/', method: 'GET' }),
+		}),
+		socialAuthenticate: builder.mutation({
+			query: ({ provider, state, code }) => ({
+				url: `/api/o/${provider}/?state=${encodeURIComponent(
+					state
+				)}&code=${encodeURIComponent(code)}`,
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+			}),
 		}),
 		login: builder.mutation({
 			query: ({ email, password }) => ({
@@ -50,14 +63,19 @@ const authApiSlice = apiSlice.injectEndpoints({
 				body: { token, password },
 			}),
 		}),
+		logout: builder.mutation({
+			query: () => ({ url: '/token/logout/', method: 'POST' }),
+		}),
 	}),
 });
 
 export const {
 	useRetrieveUserQuery,
+	useSocialAuthenticateMutation,
 	useLoginMutation,
 	useRegisterMutation,
 	useVerifyEmailMutation,
 	useResetPasswordMutation,
 	useConfirmPasswordMutation,
+	useLogoutMutation,
 } = authApiSlice;
