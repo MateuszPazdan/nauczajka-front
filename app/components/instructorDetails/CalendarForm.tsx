@@ -17,6 +17,7 @@ function CalendarForm({ shedule }: { shedule: SheduleObject[] }) {
 			selected?.toDateString()
 		);
 	});
+	console.log(currentDay);
 
 	return (
 		<div className='flex flex-row flex-wrap justify-between items-center'>
@@ -42,7 +43,8 @@ function CalendarForm({ shedule }: { shedule: SheduleObject[] }) {
 										{String(
 											new Date(sheduleObject?.start_time).getMinutes()
 										).padStart(2, '0')}
-										{' - '}{new Date(sheduleObject?.end_time).getHours()}:
+										{' - '}
+										{new Date(sheduleObject?.end_time).getHours()}:
 										{String(
 											new Date(sheduleObject?.end_time).getMinutes()
 										).padStart(2, '0')}{' '}
