@@ -10,6 +10,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { logout as setLogout } from '@/redux/features/authSlice';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 function Navigation() {
 	const { data: user } = useRetrieveUserQuery();
@@ -25,6 +26,7 @@ function Navigation() {
 				dispatch(setLogout());
 			})
 			.finally(() => {
+				toast.success('Wylogowano pomyślnie');
 				router.push('/');
 			});
 	}

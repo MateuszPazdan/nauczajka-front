@@ -16,5 +16,5 @@ export default function useVerify() {
 			.finally(() => {
 				dispatch(finishInitialLoad());
 			});
-	}, []);
+	}, [dispatch, verifyToken]);
 }
