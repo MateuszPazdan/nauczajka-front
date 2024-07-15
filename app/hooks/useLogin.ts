@@ -16,7 +16,7 @@ interface FormData {
 export default function useLogin() {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
-
+	const { refetch } = useRetrieveUserQuery();
 	const {
 		register: formRegister,
 		handleSubmit,
@@ -31,6 +31,7 @@ export default function useLogin() {
 			.then(() => {
 				dispatch(setAuth());
 				toast.success('Zalogowano pomyślnie');
+				refetch();
 				router.push('/');
 			})
 			.catch(() => {

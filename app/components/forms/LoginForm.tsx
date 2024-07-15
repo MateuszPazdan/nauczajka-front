@@ -9,6 +9,7 @@ import { validateEmail } from '@/app/utils/isInputCorrect';
 import Link from 'next/link';
 import Button from '../Button';
 import { FcGoogle } from 'react-icons/fc';
+import { continueWithGoogle } from '@/app/utils';
 
 function LoginForm() {
 	const width = useUserWidth();
@@ -72,12 +73,12 @@ function LoginForm() {
 							</span>
 						</div>
 
-						<div>
+						<button onClick={continueWithGoogle} type='button'>
 							<span className='flex gap-4 items-center text-sm hover:bg-whiteHover transition-colors p-2 rounded-md hover:cursor-pointer'>
 								<FcGoogle className='text-3xl' />
 								{/* <span>Użyj konta Google</span> */}
 							</span>
-						</div>
+						</button>
 					</div>
 
 					<p className='text-sm'>
