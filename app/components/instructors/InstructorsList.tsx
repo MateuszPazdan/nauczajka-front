@@ -48,7 +48,7 @@ async function InstructorsList({ searchParams }: SearchParams) {
 					</div>
 				)}
 			</div>
-			<Pagination  data={data} />
+			<Pagination data={data} />
 		</div>
 	);
 }

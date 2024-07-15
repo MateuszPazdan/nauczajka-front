@@ -2,6 +2,8 @@ import {
 	useLoginMutation,
 	useRetrieveUserQuery,
 } from '@/redux/features/authApiSlice';
+import { setAuth } from '@/redux/features/authSlice';
+import { useAppDispatch } from '@/redux/hooks';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -12,8 +14,9 @@ interface FormData {
 }
 
 export default function useLogin() {
+	const dispatch = useAppDispatch();
 	const router = useRouter();
-	const { refetch } = useRetrieveUserQuery();
+
 	const {
 		register: formRegister,
 		handleSubmit,
@@ -26,8 +29,8 @@ export default function useLogin() {
 		login({ email: data.email, password: data.password })
 			.unwrap()
 			.then(() => {
+				dispatch(setAuth());
 				toast.success('Zalogowano pomyślnie');
-				refetch();
 				router.push('/');
 			})
 			.catch(() => {

@@ -42,6 +42,12 @@ const authApiSlice = apiSlice.injectEndpoints({
 				body: { email, first_name, last_name, password, is_tutor },
 			}),
 		}),
+		verifyToken: builder.mutation({
+			query: () => ({
+				url: '/token/verify/',
+				method: 'POST',
+			}),
+		}),
 		verifyEmail: builder.mutation({
 			query: ({ token }) => ({
 				url: '/user/confirm_user/',
@@ -74,6 +80,7 @@ export const {
 	useSocialAuthenticateMutation,
 	useLoginMutation,
 	useRegisterMutation,
+	useVerifyTokenMutation,
 	useVerifyEmailMutation,
 	useResetPasswordMutation,
 	useConfirmPasswordMutation,
