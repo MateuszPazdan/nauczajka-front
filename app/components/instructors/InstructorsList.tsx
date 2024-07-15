@@ -5,9 +5,7 @@ import { unstable_noStore as noStore } from 'next/cache';
 import Pagination from '../Pagination';
 
 interface SearchParams {
-	query?: string;
-	page?: string;
-	[key: string]: string | undefined;
+	searchParams: { query?: string; page?: string; [key: string]: any };
 }
 
 export interface Tutor {
@@ -48,7 +46,7 @@ async function InstructorsList({ searchParams }: SearchParams) {
 					</div>
 				)}
 			</div>
-			<Pagination  data={data} />
+			<Pagination data={data} />
 		</div>
 	);
 }

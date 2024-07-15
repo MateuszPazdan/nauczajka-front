@@ -8,6 +8,8 @@ import { useUserWidth } from '@/app/hooks/useUserWidth';
 import { validateEmail } from '@/app/utils/isInputCorrect';
 import Link from 'next/link';
 import Button from '../Button';
+import { FcGoogle } from 'react-icons/fc';
+import { continueWithGoogle } from '@/app/utils';
 
 function LoginForm() {
 	const width = useUserWidth();
@@ -21,7 +23,7 @@ function LoginForm() {
 				onSubmit={handleSubmit(onSubmit)}
 				className='relative flex justify-center items-center md:py-10 '
 			>
-				<div className='sm:w-[400px] md:w-[500px] w-5/6 sm400:w-2/3 sm:px-10 pb-6 pt-5 bg-white sm:shadow-myShadow shadow-shadowBlack rounded-xl gap-8 flex flex-col items-center'>
+				<div className='sm:w-[400px] md:w-[500px] w-full  sm:px-10 pb-6 pt-5 bg-white sm:shadow-myShadow shadow-shadowBlack rounded-xl gap-8 flex flex-col items-center'>
 					<div className='relative'>
 						<p className='pb-5 text-3xl mt-4'>Logowanie</p>
 						<div className='absolute bottom-[21px] left-0 w-[36px] h-[2px] bg-main rounded-full'></div>
@@ -62,6 +64,21 @@ function LoginForm() {
 						<Button type={'button'} isLoading={isLoading}>
 							<span>Zaloguj się</span>
 						</Button>
+					</div>
+
+					<div className='flex flex-col w-full items-center gap-3'>
+						<div className='relative w-full h-[2px] bg-whiteHover rounded-full my-5'>
+							<span className='absolute -top-3 px-5 left-1/2 -translate-x-1/2 bg-white'>
+								{/* lub */}
+							</span>
+						</div>
+
+						<button onClick={continueWithGoogle} type='button'>
+							<span className='flex gap-4 items-center text-sm hover:bg-whiteHover transition-colors p-2 rounded-md hover:cursor-pointer'>
+								<FcGoogle className='text-3xl' />
+								{/* <span>Użyj konta Google</span> */}
+							</span>
+						</button>
 					</div>
 
 					<p className='text-sm'>
