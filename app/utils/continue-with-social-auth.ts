@@ -14,7 +14,7 @@ export default async function continueWithSocialAuth(
 		const response = await fetch(url, {
 			method: 'GET',
 			headers: {
-				Aceept: 'application/json',
+				Accept: 'application/json',
 			},
 			credentials: 'include',
 		});
