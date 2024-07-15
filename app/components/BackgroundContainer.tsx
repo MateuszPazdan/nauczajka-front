@@ -4,10 +4,10 @@ function BackgroundContainer() {
 	document.addEventListener('mousemove', parallax);
 	function parallax(e: MouseEvent) {
 		document.querySelectorAll('.moveObject').forEach(function (move) {
-			let moving_value = move.getAttribute('data-value');
+			let moving_value = parseFloat(move.getAttribute('data-value') || '0');
 			let x = e.clientX * moving_value;
 			let y = e.clientY * moving_value;
-			move.style.transform = 'translateX(' + x + 'px) translateY(' + y + 'px)';
+			(move as HTMLElement).style.transform = 'translateX(' + x + 'px) translateY(' + y + 'px)';
 		});
 	}
 

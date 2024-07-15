@@ -6,9 +6,8 @@ import InstructorCalendarContainer from '@/app/components/instructorDetails/Inst
 import InstructorOpinionsContainer from '@/app/components/instructorDetails/InstructorOpinionsContainer';
 import TutorInfoContainer from '@/app/components/instructorDetails/TutorInfoContainer';
 import TutorInfoPageHeader from '@/app/components/instructorDetails/TutorInfoPageHeader';
-import { unstable_noStore } from 'next/cache';
 
-// export const revalidate = 60;
+export const revalidate = 0;
 interface Params {
 	params: { instructorId: string };
 }
@@ -29,8 +28,6 @@ export async function generateStaticParams() {
 }
 
 async function Page({ params }: Params) {
-	console.log(typeof params.instructorId);
-	unstable_noStore();
 	const intructorDetails = await getInstructorDetailsAction(
 		Number(params.instructorId)
 	);

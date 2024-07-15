@@ -1,4 +1,4 @@
-function BackgroundElement({ pos, img, size }) {
+function BackgroundElement({ pos, img, size }: any) {
 	const windowHeight = window.innerHeight;
 	const windowWidth = window.innerWidth;
 
