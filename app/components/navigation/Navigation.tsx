@@ -11,6 +11,8 @@ import Link from 'next/link';
 import { logout as setLogout } from '@/redux/features/authSlice';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import Logo from './Logo';
+import NavMobile from './NavMobile';
 
 function Navigation() {
 	const { data: user } = useRetrieveUserQuery();
@@ -32,14 +34,10 @@ function Navigation() {
 	}
 
 	return (
-		<nav className='max-w-7xl mx-auto w-full px-10 h-24 flex flex-row flex-wrap items-center justify-between'>
-			<Link href={'/'} className='flex items-center gap-5'>
-				<div className='w-10 aspect-square relative'>
-					<Image src={'/book.svg'} fill alt='Nauczajka logo' />
-				</div>
-				<span className='text-3xl text-main'>Nauczajka</span>
-			</Link>
-			<div>
+		<header className='z-40 shadow-sm shadow-whiteHover max-w-7xl mx-auto w-full px-5 h-24 flex flex-row flex-wrap items-center justify-between'>
+			<Logo />
+			<NavMobile />
+			{/* <div>
 				{isAuthenticated ? (
 					<Link href={'/'} onClick={handleLogout}>
 						<div className='flex items-center gap-5'>
@@ -48,10 +46,7 @@ function Navigation() {
 									loader={({ src }) => src}
 									placeholder='blur'
 									blurDataURL={`${API_KEY}/static/media/uploads/user/default.jpg`}
-									src={`${API_KEY}${
-										user?.profile_image ??
-										'/static/media/uploads/user/default.jpg'
-									}`}
+									src={`${API_KEY}${'/static/media/uploads/user/default.jpg'}`}
 									fill
 									alt='User profile image'
 									className='rounded-full'
@@ -65,8 +60,8 @@ function Navigation() {
 						<span>Logowanie</span>
 					</Link>
 				)}
-			</div>
-		</nav>
+			</div> */}
+		</header>
 	);
 }
 

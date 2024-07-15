@@ -31,6 +31,7 @@ const config: Config = {
 			},
 
 			screens: {
+				sm300: '300px',
 				sm400: '400px',
 				sm500: '500px',
 				sm600: '600px',
