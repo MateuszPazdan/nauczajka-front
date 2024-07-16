@@ -8,7 +8,7 @@ interface NavAvatarProps {
 	href?: string;
 	onClick?: () => void;
 }
-
+// NAPRAWIĆ
 function NavAvatar({ user, size = 'large', href, onClick }: NavAvatarProps) {
 	const content = (
 		<div
@@ -25,7 +25,7 @@ function NavAvatar({ user, size = 'large', href, onClick }: NavAvatarProps) {
 					loader={({ src }) => src}
 					placeholder='blur'
 					blurDataURL={`${API_KEY}/static/media/uploads/user/default.jpg`}
-					src={`${API_KEY}${'/static/media/uploads/user/default.jpg'}`}
+					src={`${user?.profile_image}`}
 					fill
 					alt='User profile image'
 					className='rounded-full shadow-md group-[.logo]:group-hover:border-main border-2 transition-colors duration-300'

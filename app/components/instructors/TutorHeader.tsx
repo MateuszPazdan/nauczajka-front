@@ -1,4 +1,4 @@
-import { API_KEY } from '@/app/api/apiAuth';
+
 import { CiLocationOn } from 'react-icons/ci';
 import { Tutor } from './InstructorsList';
 import Image from 'next/image';
@@ -12,7 +12,7 @@ function TutorHeader({ tutorInfo, showLocation }: TutorHeaderProps) {
 	return (
 		<div className='flex flex-col md:flex-row justify-center items-center gap-2 md:gap-5'>
 			<Image
-				src={`${API_KEY}${tutorInfo?.profile_image}`}
+				src={`${tutorInfo?.profile_image}`}
 				alt='awatar użytkownika'
 				width={96}
 				height={96}
