@@ -7,7 +7,7 @@ interface MobileListElementProps {
 	href?: string;
 }
 
-function MobileListElement({
+function 	MobileListElement({
 	icon,
 	children,
 	onClick,
