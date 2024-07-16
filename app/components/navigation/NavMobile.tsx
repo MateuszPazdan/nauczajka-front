@@ -18,7 +18,7 @@ function NavMobile() {
 
 	return (
 		<nav className='flex items-center md:hidden h-full'>
-			<BurgerBtn onClick={() => setIsMenuOpen(!isMenuOpen)} />
+			<BurgerBtn onClick={() => setIsMenuOpen(!isMenuOpen)} isMenuOpen={isMenuOpen} />
 			<div
 				className={`-z-50 fixed top-24 right-0 bg-white w-full h-full transition-all max-w-[300px] sm300:w-[280px] border-l-2 border-whiteHover duration-300 ${
 					!isMenuOpen ? 'translate-x-[100%]' : 'translate-x-0'
