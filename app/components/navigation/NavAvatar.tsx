@@ -2,15 +2,24 @@ import { API_KEY } from '@/app/api/apiAuth';
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface NavLogoProps {
+interface NavAvatarProps {
 	user: any;
+	size?: 'small' | 'large';
 }
 
-function NavLogo({ user }: NavLogoProps) {
+function NavAvatar({ user, size = 'large' }: NavAvatarProps) {
 	return (
 		<Link href='/account/settings' className='logo group '>
-			<div className={`flex flex-col items-center gap-2 py-8`}>
-				<div className='w-24 aspect-square relative'>
+			<div
+				className={`flex flex-col items-center gap-2 ${
+					size === 'large' && 'py-8'
+				} ${size === 'small' && 'py-2'}`}
+			>
+				<div
+					className={`aspect-square relative ${size === 'small' && 'w-12'} ${
+						size === 'large' && 'w-24'
+					}`}
+				>
 					<Image
 						loader={({ src }) => src}
 						placeholder='blur'
@@ -22,12 +31,16 @@ function NavLogo({ user }: NavLogoProps) {
 					/>
 				</div>
 
-				<span className='text-xl text-gray'>
-					{user?.first_name} {user?.last_name}
+				<span
+					className={`${size === 'small' && ''} ${
+						size === 'large' && 'text-xl'
+					}  text-gray`}
+				>
+					{user?.first_name}
 				</span>
 			</div>
 		</Link>
 	);
 }
 
-export default NavLogo;
+export default NavAvatar;

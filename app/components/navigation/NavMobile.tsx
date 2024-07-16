@@ -4,7 +4,7 @@ import { useState } from 'react';
 import BurgerBtn from './BurgerBtn';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { useAppSelector } from '@/redux/hooks';
-import NavLogo from './NavLogo';
+import NavAvatar from './NavAvatar';
 import NavLink from './NavLink';
 import MobileList from './MobileList';
 
@@ -30,7 +30,7 @@ function NavMobile() {
 			>
 				{isAuthenticated ? (
 					<button onClick={handleCloseMenu} className='w-full bg-whiteHover'>
-						<NavLogo user={user} />
+						<NavAvatar user={user} />
 					</button>
 				) : (
 					<div className='flex flex-col gap-2 w-2/3 mx-auto py-8'>
