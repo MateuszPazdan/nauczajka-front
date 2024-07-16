@@ -47,8 +47,6 @@ function AddFilterContainer({
 			...prevFilters,
 			skills: choosenSkills,
 		}));
-
-		console.log('Ustawiono filtr przedmiotów');
 		setModalVisible(null);
 	}
 

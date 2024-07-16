@@ -17,7 +17,7 @@ function CalendarForm({ shedule }: { shedule: SheduleObject[] }) {
 			selected?.toDateString()
 		);
 	});
-	console.log(currentDay);
+
 
 	return (
 		<div className='flex flex-row flex-wrap justify-between items-center'>
