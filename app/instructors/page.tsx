@@ -14,7 +14,6 @@ interface SearchParams {
 
 async function page({ searchParams }: SearchParams) {
 	const availableSkils = await getAllSkillsAction();
-	console.log(searchParams);
 	return (
 		<div className='flex flex-col w-full h-full max-w-7xl pt-8 '>
 			<Filters availableSkils={availableSkils} />

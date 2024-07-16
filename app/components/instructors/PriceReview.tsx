@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import EditFormBtn from './EditFormBtn';
 import useSetIntructorsFilters from '@/app/hooks/useSetIntructorsFilters';
+import { toast } from 'react-toastify';
 
 interface PriceReviewProps {
 	setModalVisible: React.Dispatch<React.SetStateAction<any>>;
@@ -19,12 +20,12 @@ function PriceReview({
 	function onSubmit(data: any) {
 		if (data.avg_rating__gte !== '' && data.avg_rating__lte !== '')
 			if (data.avg_rating__lte < data.avg_rating__gte) {
-				console.log('Minimalna ocena musi być większa od maksymalnej.');
+				toast.error('Minimalna ocena musi być większa od maksymalnej.');
 				return null;
 			}
 		if (data.price__lte !== '' && data.price__gte !== '')
 			if (data.price__lte < data.price__gte) {
-				console.log('Minimalna cena musi być większa od maksymalnej.');
+				toast.error('Minimalna cena musi być większa od maksymalnej.');
 				return null;
 			}
 
@@ -37,7 +38,6 @@ function PriceReview({
 			price__gte: data.price__gte !== '' ? data.price__gte : '',
 			price__lte: data.price__lte !== '' ? data.price__lte : '',
 		}));
-		console.log('Ustawiono filtr.');
 		setModalVisible(null);
 	}
 

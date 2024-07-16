@@ -51,8 +51,6 @@ function SessionMethods({
 			in_person_sessions_available: data.Stacjonarnie === true ? true : '',
 			online_sessions_available: data.Online === true ? true : '',
 		}));
-
-		console.log('Ustawiono filtr metodyki nauczania.');
 		setModalVisible(null);
 	}
 
