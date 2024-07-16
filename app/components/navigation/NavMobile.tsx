@@ -1,32 +1,20 @@
 'use client';
 import { useState } from 'react';
 import BurgerBtn from './BurgerBtn';
-import Link from 'next/link';
-import Image from 'next/image';
-import { API_KEY } from '@/app/api/apiAuth';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { useAppSelector } from '@/redux/hooks';
-import {
-	CiBoxList,
-	CiGlobe,
-	CiHashtag,
-	CiLogout,
-	CiUser,
-	CiWarning,
-} from 'react-icons/ci';
+import NavLogo from './NavLogo';
+import NavLink from './NavLink';
+import MobileList from './MobileList';
 
 function NavMobile() {
-	const [isMenuOpen, setIsMenuOpen] = useState(true);
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const { isAuthenticated } = useAppSelector((state) => state.auth);
 	const { data: user } = useRetrieveUserQuery();
 
-	function handleBodyScroll() {
-		if (isMenuOpen) document.body.style.overflow = 'hidden';
-		else document.body.style.overflow = 'auto';
-	}
-	handleBodyScroll();
-
-	console.log(user);
+	const handleCloseMenu = () => {
+		setIsMenuOpen(false);
+	};
 
 	return (
 		<nav className='flex items-center md:hidden h-full'>
@@ -36,77 +24,28 @@ function NavMobile() {
 					!isMenuOpen ? 'translate-x-[100%]' : 'translate-x-0'
 				}`}
 			>
-				<div className='py-8 bg-whiteHover'>
-					{isAuthenticated && (
-						<Link href='/account/settings'>
-							<div className={`flex flex-col items-center gap-2`}>
-								<div className='w-24 aspect-square relative'>
-									<Image
-										loader={({ src }) => src}
-										placeholder='blur'
-										blurDataURL={`${API_KEY}/static/media/uploads/user/default.jpg`}
-										src={`${API_KEY}${'/static/media/uploads/user/default.jpg'}`}
-										fill
-										alt='User profile image'
-										className='rounded-full shadow-md hover:border-main border-2 transition-colors duration-300'
-									/>
-								</div>
-
-								<span className='text-xl text-gray'>
-									{user?.first_name} {user?.last_name}
-								</span>
-							</div>
-						</Link>
-					)}
-				</div>
-				<div className='mx-auto flex justify-center h-full'>
-					<ul className='flex flex-col gap-6 pt-10 h-full w-4/5'>
-						<li>
-							<Link
-								className='flex items-center gap-5 hover:bg-whiteHover p-2 rounded-md'
-								href='#'
-							>
-								<span className='text-2xl'>
-									<CiUser />
-								</span>
-								Korepetytorzy
-							</Link>
-						</li>
-						<li>
-							<Link
-								className='flex items-center gap-5 hover:bg-whiteHover p-2 rounded-md'
-								href='#'
-							>
-								<span className='text-2xl'>
-									<CiGlobe />
-								</span>
-								O nas
-							</Link>
-						</li>
-						<li>
-							<Link
-								className='flex items-center gap-5 hover:bg-whiteHover p-2 rounded-md'
-								href='#'
-							>
-								<span className='text-2xl'>
-									<CiBoxList />
-								</span>
-								Regulamin
-							</Link>
-						</li>
-						<li>
-							<Link
-								className='flex items-center gap-5 hover:bg-whiteHover p-2 rounded-md'
-								href='#'
-							>
-								<span className='text-2xl'>
-									<CiLogout />
-								</span>
-								Wyloguj się
-							</Link>
-						</li>
-					</ul>
-				</div>
+				{isAuthenticated ? (
+					<button onClick={handleCloseMenu} className='w-full bg-whiteHover'>
+						<NavLogo user={user} />
+					</button>
+				) : (
+					<div className='flex flex-col gap-2 w-2/3 mx-auto py-8'>
+						<NavLink href='/auth/login' onClick={handleCloseMenu}>
+							Logowanie
+						</NavLink>
+						<NavLink
+							href='/auth/register'
+							type='white'
+							onClick={handleCloseMenu}
+						>
+							Rejestracja
+						</NavLink>
+					</div>
+				)}
+				<MobileList
+					isAuthenticated={isAuthenticated}
+					handleCloseMenu={() => handleCloseMenu()}
+				/>
 			</div>
 		</nav>
 	);
