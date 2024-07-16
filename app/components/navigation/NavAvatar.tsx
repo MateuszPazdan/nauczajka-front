@@ -1,9 +1,10 @@
 import { API_KEY } from '@/app/api/apiAuth';
+import { User } from '@/redux/features/authApiSlice';
 import Image from 'next/image';
 import Link from 'next/link';
 
 interface NavAvatarProps {
-	user: any;
+	user: User | undefined;
 	size?: 'small' | 'large';
 	href?: string;
 	onClick?: () => void;

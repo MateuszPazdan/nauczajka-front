@@ -1,13 +1,12 @@
 import { apiSlice } from '../services/apiSlice';
-import { logout } from './authSlice';
 
-interface User {
+export interface User {
 	id: string;
 	email: string;
 	first_name: string;
 	last_name: string;
 	profile_image: string;
-	is_tutor: string;
+	is_tutor: boolean;
 	created_at: string;
 }
 
@@ -15,6 +14,20 @@ const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		retrieveUser: builder.query<User, void>({
 			query: () => ({ url: '/user/profile/', method: 'GET' }),
+		}),
+		checkPassword: builder.mutation({
+			query: (password) => ({
+				url: '/user/check_password/',
+				method: 'POST',
+				body: { password },
+			}),
+		}),
+		updateUser: builder.mutation({
+			query: ({ fieldToUpdate, valueToUpdate }) => ({
+				url: '/user/profile/',
+				method: 'PATCH',
+				body: { [fieldToUpdate]: valueToUpdate },
+			}),
 		}),
 		socialAuthenticate: builder.mutation({
 			query: ({ provider, state, code }) => ({
@@ -77,6 +90,8 @@ const authApiSlice = apiSlice.injectEndpoints({
 
 export const {
 	useRetrieveUserQuery,
+	useCheckPasswordMutation,
+	useUpdateUserMutation,
 	useSocialAuthenticateMutation,
 	useLoginMutation,
 	useRegisterMutation,

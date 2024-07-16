@@ -8,7 +8,7 @@ interface TextInputProps {
 	register: UseFormRegister<any>;
 	label: string;
 	field: string;
-	error?: string;
+	error?: any;
 	type?: HTMLInputTypeAttribute;
 	validateFunction?: () => string | boolean;
 	info?: string | boolean;

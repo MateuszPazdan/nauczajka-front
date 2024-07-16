@@ -34,10 +34,11 @@ export default function useRegister() {
 	}
 
 	const onSubmit: SubmitHandler<FormData> = (data) => {
+		console.log(data);
 		register({
 			email: data.email,
 			first_name: data.firstName,
-			is_tutor: data.isTutor,
+			is_tutor: data.isTutor === 'true',
 			last_name: data.lastName,
 			password: data.password,
 		})
