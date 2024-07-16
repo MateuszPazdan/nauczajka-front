@@ -20,7 +20,7 @@ function NavLink({
 			{type === 'purple' && (
 				<Link
 					href={href}
-					className={`px-5 py-2 bg-main rounded-md text-white text-center ${classname}`}
+					className={`px-5 py-2 bg-main rounded-md text-white text-center ${classname} hover:bg-mainHover transition-colors duration-300`}
 					onClick={onClick}
 				>
 					{children}
@@ -29,7 +29,7 @@ function NavLink({
 			{type === 'white' && (
 				<Link
 					href={href}
-					className={`px-5 py-2 bg-white rounded-md text-main border-2 border-main text-center ${classname}`}
+					className={`px-5 py-2 bg-white rounded-md text-main border-2 border-main text-center ${classname} hover:bg-mainHover hover:border-mainHover hover:text-white transition-colors duration-300`}
 					onClick={onClick}
 				>
 					{children}
