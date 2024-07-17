@@ -29,6 +29,17 @@ const authApiSlice = apiSlice.injectEndpoints({
 				body: { [fieldToUpdate]: valueToUpdate },
 			}),
 		}),
+		updateAvatar: builder.mutation({
+			query: (file) => {
+				const formData = new FormData();
+				formData.append('profile_image', file);
+				return {
+					url: '/user/profile_image/',
+					method: 'PATCH',
+					body: formData,
+				};
+			},
+		}),
 		socialAuthenticate: builder.mutation({
 			query: ({ provider, state, code }) => ({
 				url: `/o/${provider}/?state=${encodeURIComponent(
@@ -85,6 +96,9 @@ const authApiSlice = apiSlice.injectEndpoints({
 		logout: builder.mutation({
 			query: () => ({ url: '/token/logout/', method: 'POST' }),
 		}),
+		deleteAccount: builder.mutation({
+			query: () => ({ url: '/user/delete/', method: 'DELETE' }),
+		}),
 	}),
 });
 
@@ -93,6 +107,7 @@ export const {
 	useCheckPasswordMutation,
 	useUpdateUserMutation,
 	useSocialAuthenticateMutation,
+	useUpdateAvatarMutation,
 	useLoginMutation,
 	useRegisterMutation,
 	useVerifyTokenMutation,
@@ -100,4 +115,5 @@ export const {
 	useResetPasswordMutation,
 	useConfirmPasswordMutation,
 	useLogoutMutation,
+	useDeleteAccountMutation,
 } = authApiSlice;

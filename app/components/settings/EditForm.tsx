@@ -13,8 +13,12 @@ import EditFormBtn from '../instructors/EditFormBtn';
 import FileUploader from './FileUploader';
 import {
 	useCheckPasswordMutation,
+	useDeleteAccountMutation,
+	useRetrieveUserQuery,
+	useUpdateAvatarMutation,
 	useUpdateUserMutation,
 } from '@/redux/features/authApiSlice';
+import useLogout from '@/app/hooks/useLogout';
 
 interface EditFormProps {
 	setShowModal: React.Dispatch<React.SetStateAction<string | null>>;
@@ -31,12 +35,13 @@ interface FormValues {
 function EditForm({ setShowModal, showModal }: EditFormProps) {
 	const [updateUser, { isLoading: isUpdatePending }] = useUpdateUserMutation();
 	const [checkPassword] = useCheckPasswordMutation();
-	// const { deleteAccount, isAccountDeleting } = useDeleteUser();
-	// const {
-	// 	updateAvatar,
-	// 	isUpdatePending: isUpdateAvatarPending,
-	// 	isAvatarUpdated,
-	// } = useUpdateAvatar();
+	const [updateAvatar, { isLoading: isUpdateAvatarPending }] =
+		useUpdateAvatarMutation();
+	const { refetch } = useRetrieveUserQuery();
+	const [deleteAccount, { isLoading: isAccountDeleting }] =
+		useDeleteAccountMutation();
+	const { handleLogout } = useLogout();
+
 	const [file, setFile] = useState<File | null>(null);
 	const {
 		register,
@@ -49,17 +54,27 @@ function EditForm({ setShowModal, showModal }: EditFormProps) {
 	};
 
 	const onSubmit: SubmitHandler<FormValues> = (data) => {
+		if (showModal === 'image') {
+			if (file !== null) {
+				updateAvatar(file)
+					.unwrap()
+					.then(() => {
+						toast.success('Zdjęcie zostało zmienione.');
+						setShowModal(null);
+						refetch();
+					})
+					.catch(() => {
+						toast.error('Nieprawidłowe zdjęcie.');
+					});
+				return;
+			} else {
+				toast.error('Wybierz zdjęcie.');
+			}
+		}
 		checkPassword(data.password)
 			.unwrap()
 			.then((password) => {
 				if (password.password_matches === true) {
-					if (showModal === 'image') {
-						if (file !== null) {
-							// updateAvatar(file);
-						} else {
-							toast.error('Wybierz zdjęcie.');
-						}
-					}
 					if (showModal === 'password') {
 						updateUser({
 							fieldToUpdate: 'password',
@@ -67,31 +82,30 @@ function EditForm({ setShowModal, showModal }: EditFormProps) {
 						})
 							.unwrap()
 							.then(() => {
-								toast.success('Hasło zostało zmienione.');
+								toast.success('Hasło zostało zmienione');
 								setShowModal(null);
 							})
 							.catch(() => {
-								toast.error('Nieprawidłowe hasło.');
+								toast.error('Wystąpił błąd przy zmianie hasła');
 							});
 					}
 					if (showModal === 'deleteAccount') {
-						// deleteAccount(data.password);
+						deleteAccount(data.password)
+							.unwrap()
+							.then(() => {
+								toast.success('Konto zostało usunięte');
+								handleLogout();
+								setShowModal(null);
+							})
+							.catch(() => {
+								toast.error('Wystąpił bład przy usuwaniu konta');
+							});
 					}
 				} else {
-					toast.error('Nieprawidłowe hasło.');
-					
+					toast.error('Nieprawidłowe hasło');
 				}
 			});
 	};
-
-	// useEffect(() => {
-	// 	if (isUserUpdated === true || isAvatarUpdated === true) {
-	// 		setShowModal(null);
-	// 	}
-	// }, [isUserUpdated, setShowModal, isAvatarUpdated]);
-
-	const isUpdateAvatarPending = false;
-	const isAccountDeleting = false;
 
 	return (
 		<>

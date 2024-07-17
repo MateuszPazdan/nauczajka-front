@@ -5,7 +5,7 @@ import { IoTrashBinOutline } from 'react-icons/io5';
 import { User } from '@/redux/features/authApiSlice';
 import Modal from '../Modal';
 import UserInfoBtn from './UserInfoBtn';
-import EditForm from '../navigation/EditForm';
+import EditForm from './EditForm';
 import Image from 'next/image';
 import { API_KEY } from '@/app/api/apiAuth';
 

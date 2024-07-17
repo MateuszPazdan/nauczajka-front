@@ -6,7 +6,7 @@ function TutorRatings({ opinions }: { opinions: any }) {
 	const tutorRatings = opinions?.results
 
 	return (
-		<div className='divide-y-[1px] divide-mainPurple'>
+		<div className='divide-y-[1px] divide-main'>
 			{tutorRatings?.map((rate: any, id: number) => {
 				const ratingDate = new Date(rate.created_at);
 

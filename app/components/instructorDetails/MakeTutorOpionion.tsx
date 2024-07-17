@@ -55,7 +55,7 @@ function MakeTutorOpionion({
 				value={review}
 				onChange={(e) => setReview(e.target.value)}
 				placeholder='Napisz opinię'
-				className='w-full p-2 border-b-2 border-gray/20 max-h-48 focus:border-mainPurple active::border-mainPurple outline-none'
+				className='w-full p-2 border-b-2 border-gray/20 max-h-48 focus:border-main active::border-main outline-none'
 			/>
 
 			<div className='flex justify-end'>
