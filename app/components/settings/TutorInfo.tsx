@@ -8,6 +8,7 @@ import SkillsContainer from './SkillsContainer';
 import EditFormTutor from './EditFormTutor';
 import Spinner from '../Spinner';
 import InfoContainer from './InfoContainer';
+import CalendarContainer from './CalendarContainer';
 
 function TutorInfo() {
 	// const { tutorShedule, refetchShedule } = useShowShedule();
@@ -57,6 +58,7 @@ function TutorInfo() {
 					tutorShedule={tutorShedule}
 					refetchShedule={refetchShedule}
 				/> */}
+				<CalendarContainer />
 			</div>
 
 			{showModal && (
