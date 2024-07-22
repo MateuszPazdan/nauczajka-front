@@ -1,45 +1,54 @@
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
 import { CiFileOff } from 'react-icons/ci';
 import { toast } from 'react-toastify';
 import EditFormBtn from '../instructors/EditFormBtn';
 import Spinner from '../Spinner';
 import AvailableSkillElement from './AvailableSkillElement';
+import {
+	TutorSkill,
+	TutorSkills,
+	useRetrieveAllTutorSkillsQuery,
+	useSetTutorSkillsMutation,
+} from '@/redux/features/instructorsApiSlice';
+
+interface AddSkillsContainerProps {
+	tutorSkills: string[] | undefined;
+	setModalVisible: (value: boolean) => void;
+	refetchTutorSkills: () => void;
+}
 
 function AddSkillsContainer({
-	tutorSkills,
+	tutorSkills = [],
 	setModalVisible,
 	refetchTutorSkills,
-}) {
-	// const { availableSkills } = useAllAvailableSkills();
+}: AddSkillsContainerProps) {
+	const { data: availableSkills } = useRetrieveAllTutorSkillsQuery();
+	const [setTutorSkills, { isLoading }] = useSetTutorSkillsMutation();
 
-	// const { addSkills, addingSkillsSuccess, isAddingSkillsPending } =
-	// 	useAddTutorSkills();
-	const skillsToAdd = availableSkills?.filter(
-		(newSkill) => !tutorSkills?.includes(newSkill.skill)
-	);
+	const addedSkills =
+		availableSkills?.filter((newSkill) =>
+			tutorSkills?.includes(newSkill.skill)
+		) ?? [];
 
 	const { register, handleSubmit } = useForm();
 
-	function onSubmit(data) {
+	function onSubmit(data: any) {
 		const choosenSkills = [];
 		for (const [key, value] of Object.entries(data)) {
 			if (value === true) choosenSkills.push(key);
 		}
-		if (choosenSkills.length === 0) {
-			toast.error('Wybierz przynajmniej jeden przedmiot');
-			return;
-		}
-		// addSkills(choosenSkills.concat(tutorSkills));
-	}
 
-	// useEffect(() => {
-	// 	if (addingSkillsSuccess === true) {
-	// 		toast.success('Dodano przedmiot.');
-	// 		setModalVisible(false);
-	// 		refetchTutorSkills();
-	// 	}
-	// }, [addingSkillsSuccess, setModalVisible, refetchTutorSkills]);
+		setTutorSkills(choosenSkills)
+			.unwrap()
+			.then(() => {
+				toast.success('Dodano przedmiot.');
+				setModalVisible(false);
+				refetchTutorSkills();
+			})
+			.catch(() => {
+				toast.error('Nie udało się dodać przedmiotu.');
+			});
+	}
 
 	const isAddingSkillsPending = false;
 
@@ -50,13 +59,13 @@ function AddSkillsContainer({
 		>
 			<p className='text-2xl text-center'>Dodaj swoje przedmioty</p>
 			<div className='flex flex-wrap gap-2 md:mx-10'>
-				{skillsToAdd?.length > 0 ? (
-					skillsToAdd?.map((skill) => (
+				{availableSkills && availableSkills?.length > 0 ? (
+					availableSkills?.map((skill) => (
 						<AvailableSkillElement
 							register={register}
 							key={skill.skill}
 							label={skill.skill}
-							// tutorSkills={tutorSkills}
+							defaultChecked={addedSkills.includes(skill)}
 						/>
 					))
 				) : (

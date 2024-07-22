@@ -10,12 +10,12 @@ interface TutorInfo {
 	group_sessions_available: boolean;
 }
 
-interface TutorSkill {
+export interface TutorSkill {
 	skill: string;
 }
 
-interface TutorSkills{
-	skills: string[];
+export interface TutorSkills {
+	skills: string[] ;
 }
 
 const authApiSlice = apiSlice.injectEndpoints({

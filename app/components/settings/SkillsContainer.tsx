@@ -6,6 +6,7 @@ import {
 	useRetrieveAllTutorSkillsQuery,
 	useRetrieveTutorSkillsQuery,
 } from '@/redux/features/instructorsApiSlice';
+import AddSkillsContainer from './AddSkillsContainer';
 
 function SkillsContainer() {
 	const [modalVisible, setModalVisible] = useState(false);
@@ -22,15 +23,15 @@ function SkillsContainer() {
 					refetchTutorSkills={refetchTutorSkills}
 				/>
 			))}
-			{/* {modalVisible && (
+			{modalVisible && (
 				<Modal>
 					<AddSkillsContainer
 						tutorSkills={tutorSkills?.skills}
 						setModalVisible={setModalVisible}
-						// refetchTutorSkills={refetchTutorSkills}
+						refetchTutorSkills={refetchTutorSkills}
 					/>
 				</Modal>
-			)} */}
+			)}
 			<button
 				onClick={() => setModalVisible(true)}
 				className='bg-white p-2 shadow-sm shadow-black/25 rounded-md flex justify-center items-center hover:bg-whiteHover hover:cursor-pointer'

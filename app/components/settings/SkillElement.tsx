@@ -1,11 +1,10 @@
-import { useSetTutorSkillsMutation } from '@/redux/features/instructorsApiSlice';
+import {
+	TutorSkills,
+	useSetTutorSkillsMutation,
+} from '@/redux/features/instructorsApiSlice';
 import { IoTrashBinOutline } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 import Spinner from '../Spinner';
-
-interface TutorSkills {
-	skills: string[];
-}
 
 function SkillElement({
 	skill,
