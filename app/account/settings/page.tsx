@@ -19,7 +19,9 @@ function Page() {
 							<div className='min-w-64 sm400:w-4/5 md:w-2/5 md:px-2 w-full mx-auto'>
 								<UserInfo user={user} />
 							</div>
-							<div className='w-full  md:w-3/5 '><TutorInfo /></div>
+							<div className='w-full  md:w-3/5 '>
+								<TutorInfo />
+							</div>
 						</div>
 					) : (
 						<div className='w-full mx-auto sm400:w-2/3 md:w-96'>

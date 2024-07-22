@@ -2,10 +2,7 @@ import { GoPlus } from 'react-icons/go';
 import { useState } from 'react';
 import SkillElement from './SkillElement';
 import Modal from '../Modal';
-import {
-	useRetrieveAllTutorSkillsQuery,
-	useRetrieveTutorSkillsQuery,
-} from '@/redux/features/instructorsApiSlice';
+import { useRetrieveTutorSkillsQuery } from '@/redux/features/instructorsApiSlice';
 import AddSkillsContainer from './AddSkillsContainer';
 
 function SkillsContainer() {

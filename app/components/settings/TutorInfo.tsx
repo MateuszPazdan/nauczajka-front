@@ -5,11 +5,18 @@ import TutorInfoHeader from '../instructorDetails/TutorInfoHeader';
 import Modal from '../Modal';
 import { useRetrieveTutorInfoQuery } from '@/redux/features/instructorsApiSlice';
 import SkillsContainer from './SkillsContainer';
+import EditFormTutor from './EditFormTutor';
+import Spinner from '../Spinner';
 
 function TutorInfo() {
 	// const { tutorShedule, refetchShedule } = useShowShedule();
 	// const { data } = useGetDescription();
-	const { data: tutorInfo } = useRetrieveTutorInfoQuery();
+	const {
+		data: tutorInfo,
+		refetch: refetchTutorInfo,
+		isLoading: isTutorInfoLoading,
+		isFetching: isTutorInfoFetching,
+	} = useRetrieveTutorInfoQuery();
 	const [showModal, setShowModal] = useState<string | null>(null);
 	function handleModal(type: string | null) {
 		setShowModal(type);
@@ -19,7 +26,13 @@ function TutorInfo() {
 			<div className='mb-10'>
 				<TutorInfoHeader icon={<CiCircleInfo />} label={'Opis'} />
 				<SettingsElement onClick={() => handleModal('description')}>
-					{tutorInfo?.description ? tutorInfo?.description : 'Brak'}
+					{isTutorInfoLoading || isTutorInfoFetching ? (
+						<Spinner size='small' />
+					) : tutorInfo?.description ? (
+						tutorInfo?.description
+					) : (
+						'Brak'
+					)}
 				</SettingsElement>
 			</div>
 			<div className='mb-10'>
@@ -38,15 +51,16 @@ function TutorInfo() {
 				/> */}
 			</div>
 
-			{/* {showModal && (
+			{showModal && (
 				<Modal>
 					<EditFormTutor
 						showModal={showModal}
 						setShowModal={setShowModal}
-						description={data?.description}
+						description={tutorInfo?.description}
+						refetchTutorInfo={refetchTutorInfo}
 					/>
 				</Modal>
-			)} */}
+			)}
 		</div>
 	);
 }

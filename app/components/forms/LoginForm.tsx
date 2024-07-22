@@ -1,7 +1,6 @@
 'use client';
 
 import BackgroundContainer from '@/app/components/BackgroundContainer';
-import Spinner from '@/app/components/Spinner';
 import TextInput from '@/app/components/TextInput';
 import useLogin from '@/app/hooks/useLogin';
 import { useUserWidth } from '@/app/hooks/useUserWidth';

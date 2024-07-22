@@ -15,7 +15,7 @@ export interface TutorSkill {
 }
 
 export interface TutorSkills {
-	skills: string[] ;
+	skills: string[];
 }
 
 const authApiSlice = apiSlice.injectEndpoints({
@@ -45,6 +45,13 @@ const authApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		setTutorInfo: builder.mutation({
+			query: ({ field, value }) => ({
+				url: `/user/tutor/me/`,
+				method: 'PATCH',
+				body: { [field]: value },
+			}),
+		}),
 		retrieveAllTutorSkills: builder.query<TutorSkill[], void>({
 			query: () => ({
 				url: `/user/tutor/skills/`,
@@ -72,6 +79,7 @@ export const {
 	useRetrieveOpinionsQuery,
 	useRetrieveSheduleQuery,
 	useRetrieveTutorInfoQuery,
+	useSetTutorInfoMutation,
 	useRetrieveAllTutorSkillsQuery,
 	useRetrieveTutorSkillsQuery,
 	useSetTutorSkillsMutation,

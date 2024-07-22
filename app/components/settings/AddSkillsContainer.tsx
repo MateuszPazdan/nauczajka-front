@@ -22,8 +22,13 @@ function AddSkillsContainer({
 	setModalVisible,
 	refetchTutorSkills,
 }: AddSkillsContainerProps) {
-	const { data: availableSkills } = useRetrieveAllTutorSkillsQuery();
-	const [setTutorSkills, { isLoading }] = useSetTutorSkillsMutation();
+	const {
+		data: availableSkills,
+		isLoading: isAvailableSkillsLoading,
+		isFetching: isAvailableSkillsFetching,
+	} = useRetrieveAllTutorSkillsQuery();
+	const [setTutorSkills, { isLoading: isAddingSkillsPending }] =
+		useSetTutorSkillsMutation();
 
 	const addedSkills =
 		availableSkills?.filter((newSkill) =>
@@ -50,9 +55,9 @@ function AddSkillsContainer({
 			});
 	}
 
-	const isAddingSkillsPending = false;
-
-	return !isAddingSkillsPending ? (
+	return !isAddingSkillsPending &&
+		!isAvailableSkillsLoading &&
+		!isAvailableSkillsFetching ? (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
 			className='flex justify-center flex-col gap-10'
