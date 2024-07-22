@@ -7,6 +7,7 @@ import { useRetrieveTutorInfoQuery } from '@/redux/features/instructorsApiSlice'
 import SkillsContainer from './SkillsContainer';
 import EditFormTutor from './EditFormTutor';
 import Spinner from '../Spinner';
+import InfoContainer from './InfoContainer';
 
 function TutorInfo() {
 	// const { tutorShedule, refetchShedule } = useShowShedule();
@@ -21,6 +22,9 @@ function TutorInfo() {
 	function handleModal(type: string | null) {
 		setShowModal(type);
 	}
+
+	const isTutorInfoLoadingOrFetching =
+		isTutorInfoLoading || isTutorInfoFetching;
 	return (
 		<div className='px-2 md:py-0 sm400:w-4/5 md:w-full md:px-5 mx-auto py-4'>
 			<div className='mb-10'>
@@ -41,7 +45,11 @@ function TutorInfo() {
 			</div>
 			<div className='mb-10'>
 				<TutorInfoHeader icon={<CiBullhorn />} label={'Informacje'} />
-				{/* <InfoContainer /> */}
+				<InfoContainer
+					tutorInfo={tutorInfo}
+					refetchTutorInfo={refetchTutorInfo}
+					isTutorInfoLoadingOrFetching={isTutorInfoLoadingOrFetching}
+				/>
 			</div>
 			<div>
 				<TutorInfoHeader icon={<CiCalendar />} label={'Wolne terminy'} />

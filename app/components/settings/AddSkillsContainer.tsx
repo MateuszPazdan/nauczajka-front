@@ -5,8 +5,6 @@ import EditFormBtn from '../instructors/EditFormBtn';
 import Spinner from '../Spinner';
 import AvailableSkillElement from './AvailableSkillElement';
 import {
-	TutorSkill,
-	TutorSkills,
 	useRetrieveAllTutorSkillsQuery,
 	useSetTutorSkillsMutation,
 } from '@/redux/features/instructorsApiSlice';

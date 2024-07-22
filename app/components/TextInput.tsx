@@ -12,7 +12,7 @@ interface TextInputProps {
 	type?: HTMLInputTypeAttribute;
 	validateFunction?: () => string | boolean;
 	info?: string | boolean;
-	initialValue?: string;
+	initialValue?: string | number;
 	placeholder?: string;
 }
 
