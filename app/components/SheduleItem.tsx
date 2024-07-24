@@ -1,3 +1,4 @@
+import { IoTrashBinOutline } from 'react-icons/io5';
 import Spinner from './Spinner';
 
 interface SheduleObject {
@@ -19,7 +20,7 @@ function SheduleItem({
 		<button
 			onClick={onClick ?? (() => {})}
 			disabled={disabled}
-			className='px-5 py-2 bg-white shadow-md shadow-whiteHover rounded-sm hover:cursor-pointer hover:bg-main hover:text-white transition-colors duration-300'
+			className='relative px-5 py-2 bg-white shadow-md shadow-whiteHover rounded-sm  overflow-hidden'
 		>
 			{disabled ? (
 				<Spinner size='small' />
@@ -38,6 +39,11 @@ function SheduleItem({
 					)}{' '}
 				</>
 			)}
+			<div className='absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center hover:bg-mainBlue/90 opacity-0 hover:opacity-100 transition-all hover: cursor-pointer'>
+				<span className='text-2xl text-white'>
+					<IoTrashBinOutline />
+				</span>
+			</div>
 		</button>
 	);
 }
