@@ -4,25 +4,20 @@ import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 
 const renderDay = (date, highlightedDates) => {
-	const dateString = format(date, 'yyyy-MM-dd');
+	console.log(date.date);
 	const isHighlighted = highlightedDates.some(
-		(d) => format(d, 'yyyy-MM-dd') === dateString
+		(highlightedDate) =>
+			format(highlightedDate, 'MM-dd') === format(date.date, 'MM-dd')
 	);
+
 	return (
-		<div
-			style={{
-				position: 'relative',
-				display: 'inline-block',
-				width: '100%',
-				height: '100%',
-			}}
-		>
-			{isHighlighted ? (
-				<span role='img' aria-label='highlighted'>
-					🎉
-				</span>
-			) : null}
-			<div>{date.getDate()}</div>
+		<div className='relative'>
+			<p className='relative rounded-full aspect-square flex justify-center items-center hover:bg-main hover:cursor-pointer z-0'>
+				{date.date.getDate()}
+				{isHighlighted ? (
+					<p className='absolute right-0 top-0 -z-10 opacity-70'>🎯</p>
+				) : null}
+			</p>
 		</div>
 	);
 };
