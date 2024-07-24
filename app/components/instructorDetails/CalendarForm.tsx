@@ -32,7 +32,7 @@ function CalendarForm({ shedule }: { shedule: SheduleObject[] }) {
 			/>
 			{selected ? (
 				<div className='w-full'>
-					<div className='flex flex-wrap gap-2 justify-center overflow-auto'>
+					<div className='flex flex-wrap gap-2 justify-center overflow-auto py-2'>
 						{currentDay?.length > 0 ? (
 							currentDay?.map((sheduleObject: SheduleObject) => {
 								return (
