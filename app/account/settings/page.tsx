@@ -3,13 +3,14 @@
 import Spinner from '@/app/components/Spinner';
 import TutorInfo from '@/app/components/settings/TutorInfo';
 import UserInfo from '@/app/components/settings/UserInfo';
+import RequireAuth from '@/app/components/utils/RequireAuth';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 
 function Page() {
 	const { data: user, isLoading } = useRetrieveUserQuery();
 
 	return (
-		<>
+		<RequireAuth>
 			{isLoading ? (
 				<Spinner size='large' />
 			) : (
@@ -30,7 +31,7 @@ function Page() {
 					)}
 				</div>
 			)}
-		</>
+		</RequireAuth>
 	);
 }
 

@@ -134,7 +134,7 @@ function InfoContainer({
 				</div>
 			) : (
 				<div className='h-20 flex justify-center items-center'>
-					<Spinner size='large' />
+					<Spinner size='small' />
 				</div>
 			)}
 			{modal && (

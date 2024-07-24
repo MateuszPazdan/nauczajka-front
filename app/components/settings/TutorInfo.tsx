@@ -8,12 +8,9 @@ import SkillsContainer from './SkillsContainer';
 import EditFormTutor from './EditFormTutor';
 import Spinner from '../Spinner';
 import InfoContainer from './InfoContainer';
-import CalendarContainer from '../CalendarContainer';
 import TutorShedule from './TutorShedule';
 
 function TutorInfo() {
-	// const { tutorShedule, refetchShedule } = useShowShedule();
-	// const { data } = useGetDescription();
 	const {
 		data: tutorInfo,
 		refetch: refetchTutorInfo,
@@ -53,7 +50,7 @@ function TutorInfo() {
 					isTutorInfoLoadingOrFetching={isTutorInfoLoadingOrFetching}
 				/>
 			</div>
-			<div>
+			<div className='mb-10'>
 				<TutorInfoHeader icon={<CiCalendar />} label={'Wolne terminy'} />
 				<TutorShedule />
 			</div>

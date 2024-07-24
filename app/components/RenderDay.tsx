@@ -15,7 +15,7 @@ export default function renderDay({
 	setSelected,
 	disabled,
 }: RenderDayProps) {
-	const isHighlighted = highlightedDates.some((highlightedDate) =>
+	const isHighlighted = highlightedDates?.some((highlightedDate) =>
 		isSameDay(date.date, highlightedDate)
 	);
 	const isSelected = selected && isSameDay(date.date, selected);

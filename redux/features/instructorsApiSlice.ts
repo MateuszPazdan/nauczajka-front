@@ -39,6 +39,12 @@ const authApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		retrieveSheduleMe: builder.query<any, void>({
+			query: () => ({
+				url: `/user/tutor/schedule/me/`,
+				method: 'GET',
+			}),
+		}),
 		retrieveTutorInfo: builder.query<TutorInfo, void>({
 			query: () => ({
 				url: `/user/tutor/me/`,
@@ -78,6 +84,7 @@ export const {
 	useMakeOpinionMutation,
 	useRetrieveOpinionsQuery,
 	useRetrieveSheduleQuery,
+	useRetrieveSheduleMeQuery,
 	useRetrieveTutorInfoQuery,
 	useSetTutorInfoMutation,
 	useRetrieveAllTutorSkillsQuery,
