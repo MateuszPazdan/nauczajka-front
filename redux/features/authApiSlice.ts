@@ -1,13 +1,12 @@
 import { apiSlice } from '../services/apiSlice';
-import { logout } from './authSlice';
 
-interface User {
+export interface User {
 	id: string;
 	email: string;
 	first_name: string;
 	last_name: string;
 	profile_image: string;
-	is_tutor: string;
+	is_tutor: boolean;
 	created_at: string;
 }
 
@@ -15,6 +14,31 @@ const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		retrieveUser: builder.query<User, void>({
 			query: () => ({ url: '/user/profile/', method: 'GET' }),
+		}),
+		checkPassword: builder.mutation({
+			query: (password) => ({
+				url: '/user/check_password/',
+				method: 'POST',
+				body: { password },
+			}),
+		}),
+		updateUser: builder.mutation({
+			query: ({ fieldToUpdate, valueToUpdate }) => ({
+				url: '/user/profile/',
+				method: 'PATCH',
+				body: { [fieldToUpdate]: valueToUpdate },
+			}),
+		}),
+		updateAvatar: builder.mutation({
+			query: (file) => {
+				const formData = new FormData();
+				formData.append('profile_image', file);
+				return {
+					url: '/user/profile_image/',
+					method: 'PATCH',
+					body: formData,
+				};
+			},
 		}),
 		socialAuthenticate: builder.mutation({
 			query: ({ provider, state, code }) => ({
@@ -72,12 +96,18 @@ const authApiSlice = apiSlice.injectEndpoints({
 		logout: builder.mutation({
 			query: () => ({ url: '/token/logout/', method: 'POST' }),
 		}),
+		deleteAccount: builder.mutation({
+			query: () => ({ url: '/user/delete/', method: 'DELETE' }),
+		}),
 	}),
 });
 
 export const {
 	useRetrieveUserQuery,
+	useCheckPasswordMutation,
+	useUpdateUserMutation,
 	useSocialAuthenticateMutation,
+	useUpdateAvatarMutation,
 	useLoginMutation,
 	useRegisterMutation,
 	useVerifyTokenMutation,
@@ -85,4 +115,5 @@ export const {
 	useResetPasswordMutation,
 	useConfirmPasswordMutation,
 	useLogoutMutation,
+	useDeleteAccountMutation,
 } = authApiSlice;

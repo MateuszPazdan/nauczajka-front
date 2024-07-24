@@ -5,17 +5,10 @@ import { useAppSelector } from '@/redux/hooks';
 import NavLink from './NavLink';
 import DesktopList from './DesktopList';
 import NavAvatar from './NavAvatar';
-import Link from 'next/link';
 import useLogout from '@/app/hooks/useLogout';
 import MobileList from './MobileList';
 import MobileListElement from './MobileListElement';
-import {
-	CiBoxList,
-	CiGlobe,
-	CiLogout,
-	CiSliderVertical,
-	CiUser,
-} from 'react-icons/ci';
+import { CiLogout, CiSliderVertical } from 'react-icons/ci';
 import { useState } from 'react';
 
 function NavDesktop() {

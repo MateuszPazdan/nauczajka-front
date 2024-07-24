@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import Calendar from './Calendar';
+import CalendarContainer from '../CalendarContainer';
 
 interface SheduleObject {
 	id: number;
@@ -17,21 +17,22 @@ function CalendarForm({ shedule }: { shedule: SheduleObject[] }) {
 			selected?.toDateString()
 		);
 	});
-
+	const highlightedDates: Date[] = shedule.map(
+		(sheduleObject: SheduleObject) => {
+			return new Date(sheduleObject?.start_time);
+		}
+	);
 
 	return (
-		<div className='flex flex-row flex-wrap justify-between items-center'>
-			<Calendar selected={selected} setSelected={setSelected} />
+		<div className='flex flex-col items-center justify-between md:flex-row gap-5'>
+			<CalendarContainer
+				selected={selected}
+				setSelected={setSelected}
+				highlightedDates={highlightedDates}
+			/>
 			{selected ? (
-				<div className='flex flex-col w-1/2 h-full py-5'>
-					{/* <p className='text-center text-lg '>
-						{selected?.toLocaleDateString('pl-PL', {
-							day: '2-digit',
-							month: 'long',
-							year: 'numeric',
-						})}
-					</p> */}
-					<div className='flex flex-wrap gap-2 p-5'>
+				<div className='w-full'>
+					<div className='flex flex-wrap gap-2 justify-center overflow-auto py-2'>
 						{currentDay?.length > 0 ? (
 							currentDay?.map((sheduleObject: SheduleObject) => {
 								return (

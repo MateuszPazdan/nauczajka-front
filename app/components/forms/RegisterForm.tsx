@@ -9,7 +9,6 @@ import {
 } from '@/app/utils/isInputCorrect';
 
 import SelectInput from '@/app/components/SelectInput';
-import Spinner from '@/app/components/Spinner';
 import useRegister from '@/app/hooks/useRegister';
 import { useUserWidth } from '@/app/hooks/useUserWidth';
 import Button from '../Button';
