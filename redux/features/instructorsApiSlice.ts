@@ -45,6 +45,19 @@ const authApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		deleteSheduleById: builder.mutation({
+			query: ({ sheduleId }) => ({
+				url: `/user/tutor/schedule/me/${sheduleId}/`,
+				method: 'DELETE',
+			}),
+		}),
+		createShedule: builder.mutation({
+			query: ({ start_time, end_time }) => ({
+				url: `/user/tutor/schedule/me/`,
+				method: 'POST',
+				body: { start_time, end_time },
+			}),
+		}),
 		retrieveTutorInfo: builder.query<TutorInfo, void>({
 			query: () => ({
 				url: `/user/tutor/me/`,
@@ -85,6 +98,8 @@ export const {
 	useRetrieveOpinionsQuery,
 	useRetrieveSheduleQuery,
 	useRetrieveSheduleMeQuery,
+	useDeleteSheduleByIdMutation,
+	useCreateSheduleMutation,
 	useRetrieveTutorInfoQuery,
 	useSetTutorInfoMutation,
 	useRetrieveAllTutorSkillsQuery,
