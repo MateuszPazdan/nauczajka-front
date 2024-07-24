@@ -24,15 +24,19 @@ function AddSheduleForm({
 			.unwrap()
 			.then(() => {
 				setIsAdding(false);
+				toast.success('Dodano termin');
 				refetchShedule();
 			})
-			.catch(() => {
-				toast.error('Nie udało się dodać terminu');
+			.catch((e) => {
+				toast.error(e.data.Error);
 			});
 	}
 
 	return (
-		<form onSubmit={(e) => handleAddShedule(e)} className='flex flex-col gap-5 items-center'>
+		<form
+			onSubmit={(e) => handleAddShedule(e)}
+			className='flex flex-col gap-5 items-center'
+		>
 			<div className='flex flex-col gap-5'>
 				<label htmlFor='start_time'>Godzina rozpoczęcia</label>
 				<input type='time' id='start_time' name='start_time' required />
