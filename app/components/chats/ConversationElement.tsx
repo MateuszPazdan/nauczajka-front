@@ -1,0 +1,49 @@
+import { Chat } from '@/redux/features/chatsApiSlice';
+import Image from 'next/image';
+
+interface ConversationElementProps {
+	choosenChat: Chat | null;
+	onClick: () => void;
+	chat: Chat;
+}
+
+function ConversationElement({
+	choosenChat,
+	onClick,
+	chat,
+}: ConversationElementProps) {
+	const isChoosen = chat?.id === choosenChat?.id;
+	const lastMessage = chat?.last_message;
+	console.log(chat);
+	return (
+		<button
+			onClick={onClick}
+			className={`flex w-full items-center rounded-md p-2 hover:bg-whiteHover ${
+				isChoosen ? 'bg-whiteHover' : ''
+			} transition-colors duration-300`}
+		>
+			<span className='relative h-16 w-16 resize-none'>
+				<Image
+					src={chat?.users[1].profile_image}
+					fill
+					className='rounded-full border-whiteHover border-2 '
+					alt='profile image'
+				/>
+			</span>
+			<span className='flex flex-col ml-3 text-left'>
+				<span className='text-lg line-clamp-1'>
+					{chat?.users[1].first_name} {chat?.users[1].last_name}
+				</span>
+				<span className=' text-gray text-sm line-clamp-1'>
+					{lastMessage
+						? lastMessage?.created_by?.id === choosenChat?.users[0]?.id
+							? `Ty: ${lastMessage?.body}`
+							: `${lastMessage?.created_by?.first_name}: ${lastMessage?.body}`
+						: 'Napisz wiadomość'}
+				</span>
+			</span>
+		</button>
+	);
+}
+
+export default ConversationElement;
