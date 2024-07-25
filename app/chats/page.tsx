@@ -28,36 +28,38 @@ function Page({ searchParams }: any) {
 	}, [searchParams?.conversation_id]);
 
 	return (
-		<div className='bg-whiteHover w-full h-full flex flex-row flex-wrap md:p-5 gap-5'>
-			<div
-				className={`${
-					choosenChat ? 'hidden md:block' : 'block'
-				} flex-1 sm:min-w-[300px] max-w-[500px] bg-white md:rounded-md  overflow-hidden md:shadow-md shadow-whiteHover`}
-			>
-				<ConversationsList
-					setChoosenChat={setChoosenChat}
-					choosenChat={choosenChat}
-				/>
-			</div>
-
-			<div
-				className={`${
-					choosenChat ? 'block' : 'hidden md:block'
-				} flex-[2] sm:min-w-[300px] bg-white md:rounded-md  overflow-hidden md:shadow-md shadow-whiteHover`}
-			>
-				{choosenChat ? (
-					<Conversation
+		<div className='bg-whiteHover w-full mx-auto flex h-full justify-center items-center'>
+			<div className='max-w-7xl w-full h-full md:max-h-[600px] flex flex-row flex-wrap md:p-5 gap-5 '>
+				<div
+					className={`${
+						choosenChat ? 'hidden md:block' : 'block'
+					} sm:min-w-[300px] max-w-[500px] bg-white md:rounded-md md:shadow-md shadow-whiteHover h-full`}
+				>
+					<ConversationsList
 						setChoosenChat={setChoosenChat}
 						choosenChat={choosenChat}
 					/>
-				) : (
-					<div className='flex flex-col justify-center items-center gap-5 w-full h-full'>
-						<span className='text-5xl'>
-							<CiChat1 />
-						</span>
-						<span>Wybierz konwersację, aby ją przeczytać</span>
-					</div>
-				)}
+				</div>
+
+				<div
+					className={`${
+						choosenChat ? 'block' : 'hidden md:block'
+					} flex-[2] sm:min-w-[300px] bg-white md:rounded-md  overflow-hidden md:shadow-md shadow-whiteHover`}
+				>
+					{choosenChat ? (
+						<Conversation
+							setChoosenChat={setChoosenChat}
+							choosenChat={choosenChat}
+						/>
+					) : (
+						<div className='flex flex-col justify-center items-center gap-5 w-full h-full'>
+							<span className='text-5xl'>
+								<CiChat1 />
+							</span>
+							<span>Wybierz konwersację, aby ją przeczytać</span>
+						</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

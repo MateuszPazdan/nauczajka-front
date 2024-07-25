@@ -63,8 +63,8 @@ function ConversationsList({
 		return <Spinner size='large' color='text-main' />;
 
 	return (
-		<div className='flex flex-col justify-center items-center'>
-			<div className='flex flex-col gap-2 overflow-y-scroll h-full w-full p-2'>
+		<div className='flex flex-col justify-center items-center h-full'>
+			<div className='flex flex-col gap-2 w-full h-full p-2 overflow-y-scroll'>
 				{allChats?.map((chat) => (
 					<ConversationElement
 						choosenChat={choosenChat}
@@ -72,8 +72,6 @@ function ConversationsList({
 						key={chat.id}
 						onClick={() => {
 							setChoosenChat(chat);
-
-							
 						}}
 					/>
 				))}
