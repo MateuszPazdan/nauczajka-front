@@ -19,10 +19,10 @@ function TutorInfoPageHeader({ tutorInfo }: any) {
 				router.push(`/chats?conversation_id=${data.id}`);
 			})
 			.catch((err) => {
-				console.log(err);
+				
 				toast.error('Nie udało się otworzyć czatu');
 			});
-		console.log('open chat');
+		
 	}
 
 	return (

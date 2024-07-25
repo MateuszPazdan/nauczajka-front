@@ -9,6 +9,15 @@ export interface Chat {
 	created_by: any;
 }
 
+export interface Message {
+	id: string;
+	body: string;
+	created_at: string;
+	created_by: any;
+	file: any;
+	conversation: string;
+}
+
 const chatsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		getChats: builder.query({
@@ -30,8 +39,18 @@ const chatsApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		getConversationDetails: builder.query({
+			query: ({ id, p, page_size }) => ({
+				url: `/chat/conversation_details/${id}/?p=${p}&page_size=${page_size}`,
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
-export const { useGetChatsQuery, useCreateChatMutation, useGetChatQuery } =
-	chatsApiSlice;
+export const {
+	useGetChatsQuery,
+	useCreateChatMutation,
+	useGetChatQuery,
+	useGetConversationDetailsQuery,
+} = chatsApiSlice;

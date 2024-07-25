@@ -33,7 +33,7 @@ function Page({ searchParams }: any) {
 				<div
 					className={`${
 						choosenChat ? 'hidden md:block' : 'block'
-					} sm:min-w-[300px] max-w-[500px] bg-white md:rounded-md md:shadow-md shadow-whiteHover h-full`}
+					} sm:min-w-[300px] max-w-[500px] flex-[2] bg-white md:rounded-md md:shadow-md shadow-whiteHover h-full`}
 				>
 					<ConversationsList
 						setChoosenChat={setChoosenChat}
@@ -44,7 +44,7 @@ function Page({ searchParams }: any) {
 				<div
 					className={`${
 						choosenChat ? 'block' : 'hidden md:block'
-					} flex-[2] sm:min-w-[300px] bg-white md:rounded-md  overflow-hidden md:shadow-md shadow-whiteHover`}
+					} flex-[3] sm:min-w-[300px] bg-white md:rounded-md  overflow-hidden md:shadow-md shadow-whiteHover`}
 				>
 					{choosenChat ? (
 						<Conversation
