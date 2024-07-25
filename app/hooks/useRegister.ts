@@ -34,7 +34,7 @@ export default function useRegister() {
 	}
 
 	const onSubmit: SubmitHandler<FormData> = (data) => {
-		console.log(data);
+		
 		register({
 			email: data.email,
 			first_name: data.firstName,

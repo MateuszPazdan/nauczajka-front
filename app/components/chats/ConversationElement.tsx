@@ -14,7 +14,7 @@ function ConversationElement({
 }: ConversationElementProps) {
 	const isChoosen = chat?.id === choosenChat?.id;
 	const lastMessage = chat?.last_message;
-	console.log(chat);
+	
 	return (
 		<button
 			onClick={onClick}
@@ -22,7 +22,7 @@ function ConversationElement({
 				isChoosen ? 'bg-whiteHover' : ''
 			} transition-colors duration-300`}
 		>
-			<span className='relative h-16 w-16 resize-none'>
+			<span className='relative h-16 w-16 min-w-16'>
 				<Image
 					src={chat?.users[1].profile_image}
 					fill

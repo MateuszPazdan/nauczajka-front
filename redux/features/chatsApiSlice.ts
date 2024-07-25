@@ -17,7 +17,21 @@ const chatsApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		createChat: builder.mutation({
+			query: ({ user_id }) => ({
+				url: `/chat/conversation/`,
+				method: 'POST',
+				body: { users: [{ id: user_id }] },
+			}),
+		}),
+		getChat: builder.query({
+			query: ({ id }) => ({
+				url: `/chat/conversation/user/${id}/`,
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
-export const { useGetChatsQuery } = chatsApiSlice;
+export const { useGetChatsQuery, useCreateChatMutation, useGetChatQuery } =
+	chatsApiSlice;

@@ -70,7 +70,11 @@ function ConversationsList({
 						choosenChat={choosenChat}
 						chat={chat}
 						key={chat.id}
-						onClick={() => setChoosenChat(chat)}
+						onClick={() => {
+							setChoosenChat(chat);
+
+							
+						}}
 					/>
 				))}
 				{isLoading && <Spinner size='small' color='text-main' />}

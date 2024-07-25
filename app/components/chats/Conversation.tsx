@@ -9,7 +9,7 @@ interface ConversationProps {
 }
 
 function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
-	console.log(choosenChat);
+	
 	return (
 		<div className='flex flex-col w-full h-full'>
 			<div className='flex items-center gap-2 border-b-2 p-2 border-whiteHover'>

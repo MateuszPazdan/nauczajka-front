@@ -4,10 +4,24 @@ import { CiMail } from 'react-icons/ci';
 import TutorHeader from '../instructors/TutorHeader';
 import Button from '../Button';
 import { MouseEvent } from 'react';
+import { useCreateChatMutation } from '@/redux/features/chatsApiSlice';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 function TutorInfoPageHeader({ tutorInfo }: any) {
+	const [createChat, { isLoading }] = useCreateChatMutation();
+	const router = useRouter();
 	function openChatHandler(event: MouseEvent<HTMLButtonElement>) {
 		event.preventDefault();
+		createChat({ user_id: tutorInfo.user_id })
+			.unwrap()
+			.then((data) => {
+				router.push(`/chats?conversation_id=${data.id}`);
+			})
+			.catch((err) => {
+				console.log(err);
+				toast.error('Nie udało się otworzyć czatu');
+			});
 		console.log('open chat');
 	}
 
