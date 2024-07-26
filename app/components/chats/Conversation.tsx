@@ -128,12 +128,17 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 				choosenChat={choosenChat}
 				setChoosenChat={setChoosenChat}
 			/>
-			{isLoading && <Spinner size='small' color='text-main' />}
+
 			<div
 				ref={messagesContainer}
 				onScroll={handleScroll}
 				className='flex flex-col py-2 overflow-y-scroll h-full'
 			>
+				{isLoading && (
+					<span className='py-5'>
+						<Spinner size='small' color='text-main' />
+					</span>
+				)}
 				{allMessages?.length === 0 && (
 					<p className='text-center py-5 text-gray'>
 						Teraz możecie ze sobą pisać
