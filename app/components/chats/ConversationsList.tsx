@@ -1,7 +1,7 @@
 'use client';
 
 import { Chat, useGetChatsQuery } from '@/redux/features/chatsApiSlice';
-import { useEffect, useState, Dispatch, SetStateAction } from 'react';
+import { useEffect, useState, Dispatch, SetStateAction, useRef } from 'react';
 import useWebSocket from 'react-use-websocket';
 import Spinner from '../Spinner';
 import ConversationElement from './ConversationElement';
@@ -22,11 +22,12 @@ function ConversationsList({
 		isFetching: isChatsFetching,
 	} = useGetChatsQuery({
 		p: 1,
-		page_size: 10,
+		page_size: 8,
 	});
 	const [allChats, setAllChats] = useState<Chat[]>([]);
 	const [nextLink, setNextLink] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState(false);
+	const conversationsContaner = useRef<HTMLDivElement>(null);
 
 	const { lastJsonMessage }: { lastJsonMessage: Chat | null; readyState: any } =
 		useWebSocket('ws://localhost:8000/ws/chat/list/');
@@ -59,12 +60,31 @@ function ConversationsList({
 		setAllChats((prevChats) => [...prevChats, ...data.results]);
 	}
 
+	function handleScroll() {
+		if (conversationsContaner.current) {
+			const { scrollTop, scrollHeight, clientHeight } =
+				conversationsContaner.current;
+			const scrollFromBottom = scrollHeight - scrollTop - clientHeight;
+
+			if (scrollFromBottom < 5 && !isLoading) {
+				handleLoadMoreChats();
+				conversationsContaner.current.scrollTop =
+					scrollHeight - clientHeight - 10;
+			}
+		}
+	}
+
+
 	if (isChatsLoading || isChatsFetching)
 		return <Spinner size='large' color='text-main' />;
 
 	return (
 		<div className='flex flex-col justify-center items-center h-full'>
-			<div className='flex flex-col gap-2 w-full h-full p-2 overflow-y-scroll'>
+			<div
+				ref={conversationsContaner}
+				onScroll={handleScroll}
+				className='flex flex-col gap-2 w-full h-full p-2 overflow-y-scroll'
+			>
 				{allChats?.map((chat) => (
 					<ConversationElement
 						choosenChat={choosenChat}

@@ -112,10 +112,7 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 			if (isScrolledToBottom) {
 				scrollToBottom();
 			}
-			if (scrollTop < 11 && !isLoading) {
-				messagesContainer.current.scrollTop =
-					scrollHeight - clientHeight - scrolledFromBottom;
-			}
+		
 		}
 	}, [allMessages, isLoading]);
 
