@@ -39,9 +39,9 @@ function ConversationElement({
 				</span>
 				<span className=' text-gray text-sm line-clamp-1'>
 					{lastMessage
-						? lastMessage?.created_by?.id === choosenChat?.users[0]?.id
+						? lastMessage?.created_by?.id === userData?.id
 							? `Ty: ${lastMessage?.body}`
-							: `${lastMessage?.created_by?.first_name}: ${lastMessage?.body}`
+							: `${lastMessage?.body}`
 						: 'Napisz wiadomość'}
 				</span>
 			</span>
