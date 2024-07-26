@@ -5,6 +5,7 @@ import { useEffect, useState, Dispatch, SetStateAction, useRef } from 'react';
 import useWebSocket from 'react-use-websocket';
 import Spinner from '../Spinner';
 import ConversationElement from './ConversationElement';
+import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 
 interface ConversationsListProps {
 	setChoosenChat: Dispatch<SetStateAction<Chat | null>>;
@@ -15,6 +16,7 @@ function ConversationsList({
 	setChoosenChat,
 	choosenChat,
 }: ConversationsListProps) {
+	const { data: userData } = useRetrieveUserQuery();
 	const {
 		data: chats,
 		isSuccess,
@@ -93,6 +95,7 @@ function ConversationsList({
 						onClick={() => {
 							setChoosenChat(chat);
 						}}
+						userData={userData}
 					/>
 				))}
 				{isLoading && <Spinner size='small' color='text-main' />}

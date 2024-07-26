@@ -5,16 +5,19 @@ interface ConversationElementProps {
 	choosenChat: Chat | null;
 	onClick: () => void;
 	chat: Chat;
+	userData: any;
 }
 
 function ConversationElement({
 	choosenChat,
 	onClick,
 	chat,
+	userData,
 }: ConversationElementProps) {
 	const isChoosen = chat?.id === choosenChat?.id;
 	const lastMessage = chat?.last_message;
-	
+	const users = chat?.users.slice().filter((user) => user.id !== userData?.id);
+
 	return (
 		<button
 			onClick={onClick}
@@ -24,7 +27,7 @@ function ConversationElement({
 		>
 			<span className='relative h-16 w-16 min-w-16'>
 				<Image
-					src={chat?.users[1].profile_image}
+					src={users[0].profile_image}
 					fill
 					className='rounded-full border-whiteHover border-2 '
 					alt='profile image'
@@ -32,7 +35,7 @@ function ConversationElement({
 			</span>
 			<span className='flex flex-col ml-3 text-left'>
 				<span className='text-lg line-clamp-1'>
-					{chat?.users[1].first_name} {chat?.users[1].last_name}
+					{users[0].first_name} {users[0].last_name}
 				</span>
 				<span className=' text-gray text-sm line-clamp-1'>
 					{lastMessage
