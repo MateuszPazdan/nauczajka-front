@@ -6,10 +6,8 @@ import ConversationsList from '../components/chats/ConversationsList';
 import { Chat } from '@/redux/features/chatsApiSlice';
 import { CiChat1 } from 'react-icons/ci';
 import { API_KEY } from '../api/apiAuth';
-import { unstable_noStore as noStore } from 'next/cache';
 
 function Page({ searchParams }: any) {
-	noStore();
 	const [choosenChat, setChoosenChat] = useState<Chat | null>(null);
 
 	useEffect(() => {
