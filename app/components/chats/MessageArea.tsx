@@ -1,5 +1,5 @@
 import { FormEvent, KeyboardEvent, useState } from 'react';
-import { CiPaperplane } from 'react-icons/ci';
+import { CiFileOn, CiPaperplane } from 'react-icons/ci';
 import Spinner from '../Spinner';
 
 interface MessageAreaProps {
@@ -10,6 +10,15 @@ interface MessageAreaProps {
 
 function MessageArea({ sendJsonMessage, userId, isLoading }: MessageAreaProps) {
 	const [message, setMessage] = useState('');
+	const [files, setFiles] = useState<File[]>([]);
+
+	function handleFileChange(e: FormEvent<HTMLInputElement>) {
+		const inputFiles = e.currentTarget.files;
+		if (inputFiles) {
+			setFiles((prevFiles) => [...prevFiles, ...Array.from(inputFiles)]);
+		}
+	}
+	console.log(files);
 
 	const sendMessage = () => {
 		sendJsonMessage({
@@ -47,16 +56,32 @@ function MessageArea({ sendJsonMessage, userId, isLoading }: MessageAreaProps) {
 				value={message}
 				onChange={(e) => setMessage(e.target.value)}
 				onKeyDown={(e) => handleSendMessage(e)}
-				className='resize-none bg-whiteHover rounded-md w-full min-h-full max-h-full p-2 focus:outline-none focus:ring-0 border-2 border-transparent focus:border-mainPurple '
+				className='resize-none bg-whiteHover rounded-md w-full min-h-full max-h-full p-2 focus:outline-none focus:ring-0 border-2 border-transparent focus:border-main '
 			></textarea>
+
+			<label
+				htmlFor='filePicker'
+				className='flex items-center justify-center p-2 '
+			>
+				<input
+					id='filePicker'
+					type='file'
+					className='sr-only'
+					onChange={handleFileChange}
+					multiple
+				/>
+				<span className='text-2xl hover:text-main hover:cursor-pointer transition-colors duration-300 '>
+					<CiFileOn />
+				</span>
+			</label>
 			<button
 				type='button'
 				onClick={handleBtnSendMessage}
 				disabled={isLoading}
-				className='flex items-center p-2 focus:outline-none focus:ring-0 border-2 border-transparent rounded-md focus:text-mainPurple'
+				className='flex items-center p-2 focus:outline-none focus:ring-0 border-2 border-transparent rounded-md focus:text-main'
 			>
 				{!isLoading ? (
-					<span className='text-2xl hover:text-mainPurple hover:cursor-pointer'>
+					<span className='text-2xl hover:text-main hover:cursor-pointer transition-colors duration-300'>
 						<CiPaperplane />
 					</span>
 				) : (
