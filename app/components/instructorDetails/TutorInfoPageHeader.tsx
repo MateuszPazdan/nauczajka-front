@@ -7,6 +7,7 @@ import { MouseEvent } from 'react';
 import { useCreateChatMutation } from '@/redux/features/chatsApiSlice';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import Spinner from '../Spinner';
 
 function TutorInfoPageHeader({ tutorInfo }: any) {
 	const [createChat, { isLoading }] = useCreateChatMutation();
@@ -19,10 +20,8 @@ function TutorInfoPageHeader({ tutorInfo }: any) {
 				router.push(`/chats?conversation_id=${data.id}`);
 			})
 			.catch((err) => {
-				
 				toast.error('Nie udało się otworzyć czatu');
 			});
-		
 	}
 
 	return (
@@ -32,11 +31,18 @@ function TutorInfoPageHeader({ tutorInfo }: any) {
 				onClick={(e: MouseEvent<HTMLButtonElement>) => openChatHandler(e)}
 				type='button'
 				className={'flex items-center gap-2'}
+				disabled={isLoading}
 			>
-				<span className='text-2xl'>
-					<CiMail />
-				</span>
-				Napisz wiadomość
+				{!isLoading ? (
+					<>
+						<span className='text-2xl'>
+							<CiMail />
+						</span>
+						Napisz wiadomość{' '}
+					</>
+				) : (
+					<Spinner size='small' />
+				)}
 			</Button>
 		</form>
 	);

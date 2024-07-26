@@ -6,8 +6,10 @@ import ConversationsList from '../components/chats/ConversationsList';
 import { Chat } from '@/redux/features/chatsApiSlice';
 import { CiChat1 } from 'react-icons/ci';
 import { API_KEY } from '../api/apiAuth';
+import { unstable_noStore as noStore } from 'next/cache';
 
 function Page({ searchParams }: any) {
+	noStore();
 	const [choosenChat, setChoosenChat] = useState<Chat | null>(null);
 
 	useEffect(() => {
@@ -29,11 +31,11 @@ function Page({ searchParams }: any) {
 
 	return (
 		<div className='bg-whiteHover w-full mx-auto flex h-full justify-center items-center'>
-			<div className='max-w-7xl w-full h-full md:max-h-[600px] flex flex-row flex-wrap md:p-5 gap-5 '>
+			<div className='max-w-7xl w-full h-full justify-center items-center flex flex-row flex-wrap md:p-5 gap-5 '>
 				<div
 					className={`${
 						choosenChat ? 'hidden md:block' : 'block'
-					} sm:min-w-[300px] max-w-[500px] flex-[2] bg-white md:rounded-md md:shadow-md shadow-whiteHover h-full`}
+					} sm:min-w-[300px] max-w-[500px] flex-[2] bg-white md:rounded-md md:max-h-[600px] md:shadow-md shadow-whiteHover h-full`}
 				>
 					<ConversationsList
 						setChoosenChat={setChoosenChat}
@@ -44,7 +46,7 @@ function Page({ searchParams }: any) {
 				<div
 					className={`${
 						choosenChat ? 'block' : 'hidden md:block'
-					} flex-[3] sm:min-w-[300px] bg-white md:rounded-md  overflow-hidden md:shadow-md shadow-whiteHover`}
+					} flex-[3] sm:min-w-[300px] bg-white md:rounded-md md:max-h-[600px] h-full  overflow-hidden md:shadow-md shadow-whiteHover`}
 				>
 					{choosenChat ? (
 						<Conversation

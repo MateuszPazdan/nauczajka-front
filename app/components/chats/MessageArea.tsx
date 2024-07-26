@@ -1,7 +1,14 @@
-import { useState } from 'react';
+import { FormEvent, KeyboardEvent, useState } from 'react';
 import { CiPaperplane } from 'react-icons/ci';
+import Spinner from '../Spinner';
 
-function MessageArea({ sendJsonMessage, userId }) {
+interface MessageAreaProps {
+	sendJsonMessage: (message: any) => void;
+	userId: string;
+	isLoading: boolean;
+}
+
+function MessageArea({ sendJsonMessage, userId, isLoading }: MessageAreaProps) {
 	const [message, setMessage] = useState('');
 
 	const sendMessage = () => {
@@ -15,8 +22,8 @@ function MessageArea({ sendJsonMessage, userId }) {
 		setMessage('');
 	};
 
-	function handleSendMessage(e) {
-		if (e.which === 13 && !e.shiftKey && message !== '') {
+	function handleSendMessage(e: KeyboardEvent<HTMLTextAreaElement>) {
+		if (e.key === 'Enter' && !e.shiftKey && message.trim() !== '') {
 			e.preventDefault();
 			sendMessage();
 			setMessage('');
@@ -24,13 +31,14 @@ function MessageArea({ sendJsonMessage, userId }) {
 	}
 
 	function handleBtnSendMessage() {
-		sendMessage();
-		setMessage('');
+		if (message.trim() !== '') {
+			sendMessage();
+		}
 	}
 
 	return (
 		<form
-			onSubmit={handleSendMessage}
+			onSubmit={handleBtnSendMessage}
 			className='flex flex-row h-[10%] p-2 shadow-whiteHover shadow-md '
 		>
 			<textarea
@@ -44,11 +52,16 @@ function MessageArea({ sendJsonMessage, userId }) {
 			<button
 				type='button'
 				onClick={handleBtnSendMessage}
+				disabled={isLoading}
 				className='flex items-center p-2 focus:outline-none focus:ring-0 border-2 border-transparent rounded-md focus:text-mainPurple'
 			>
-				<span className='text-2xl hover:text-mainPurple hover:cursor-pointer'>
-					<CiPaperplane />
-				</span>
+				{!isLoading ? (
+					<span className='text-2xl hover:text-mainPurple hover:cursor-pointer'>
+						<CiPaperplane />
+					</span>
+				) : (
+					<Spinner size='small' />
+				)}
 			</button>
 		</form>
 	);
