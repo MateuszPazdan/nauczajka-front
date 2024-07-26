@@ -59,7 +59,11 @@ function ConversationsList({
 		const data = await response.json();
 		setIsLoading(false);
 		setNextLink(data.next);
-		setAllChats((prevChats) => [...prevChats, ...data.results]);
+		setAllChats((prevChats) => {
+			const chatIds = new Set(prevChats.map((chat) => chat.id));
+			const newChats = data.results.filter((chat : Chat) => !chatIds.has(chat.id));
+			return [...prevChats, ...newChats];
+		});
 	}
 
 	function handleScroll() {
@@ -75,7 +79,6 @@ function ConversationsList({
 			}
 		}
 	}
-
 
 	if (isChatsLoading || isChatsFetching)
 		return <Spinner size='large' color='text-main' />;
