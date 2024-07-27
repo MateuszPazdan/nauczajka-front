@@ -29,14 +29,14 @@ async function InstructorsList({ searchParams }: SearchParams) {
 	const data = await getAllInstructorsAction(searchParams);
 
 	return (
-		<div className='w-full h-full mx-auto py-2 flex flex-col '>
-			<div className='flex h-full gap-2 flex-col pb-5'>
+		<div className='w-full mx-auto py-2 flex flex-col '>
+			<div className='flex  gap-2 flex-col pb-5'>
 				{data?.results?.length > 0 ? (
 					data.results?.map((tutor: Tutor) => (
 						<TutorElement tutorInfo={tutor} key={tutor.id} />
 					))
 				) : (
-					<div className='flex w-full h-full flex-col gap-3 justify-center items-center'>
+					<div className='flex w-full flex-col gap-3 justify-center items-center'>
 						<span className='text-2xl'>
 							<CiFileOff />
 						</span>

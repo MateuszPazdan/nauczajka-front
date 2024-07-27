@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer components {
+	html,
+	body {
+		height: 100%;
+		margin: 0;
+	}
+
 	.remove-arrow::-webkit-inner-spin-button,
 	.remove-arrow::-webkit-outer-spin-button {
 		-webkit-appearance: brak;
