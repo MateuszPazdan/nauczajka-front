@@ -1,16 +1,25 @@
-import { FormEvent, KeyboardEvent, useState } from 'react';
+import { FormEvent, KeyboardEvent, useRef, useState } from 'react';
 import { CiFileOn, CiPaperplane } from 'react-icons/ci';
 import Spinner from '../Spinner';
+import { IoIosClose } from 'react-icons/io';
+import { useSendFileMutation } from '@/redux/features/chatsApiSlice';
 
 interface MessageAreaProps {
 	sendJsonMessage: (message: any) => void;
 	userId: string;
 	isLoading: boolean;
+	conversationId: string;
 }
 
-function MessageArea({ sendJsonMessage, userId, isLoading }: MessageAreaProps) {
+function MessageArea({
+	sendJsonMessage,
+	userId,
+	isLoading,
+	conversationId,
+}: MessageAreaProps) {
 	const [message, setMessage] = useState('');
 	const [files, setFiles] = useState<File[]>([]);
+	const [sendFile, { isLoading: isFilesSending }] = useSendFileMutation();
 
 	function handleFileChange(e: FormEvent<HTMLInputElement>) {
 		const inputFiles = e.currentTarget.files;
@@ -18,17 +27,24 @@ function MessageArea({ sendJsonMessage, userId, isLoading }: MessageAreaProps) {
 			setFiles((prevFiles) => [...prevFiles, ...Array.from(inputFiles)]);
 		}
 	}
-	console.log(files);
 
 	const sendMessage = () => {
-		sendJsonMessage({
-			event: 'chat_message',
-			data: {
-				body: message,
-				created_by: userId,
-			},
-		});
-		setMessage('');
+		if (files.length > 0) {
+			sendFile({ file: files[0], conversationId })
+				.unwrap()
+				.then((res) => {
+					setFiles([]);
+				});
+		} else {
+			sendJsonMessage({
+				event: 'chat_message',
+				data: {
+					body: message,
+					created_by: userId,
+				},
+			});
+			setMessage('');
+		}
 	};
 
 	function handleSendMessage(e: KeyboardEvent<HTMLTextAreaElement>) {
@@ -40,54 +56,74 @@ function MessageArea({ sendJsonMessage, userId, isLoading }: MessageAreaProps) {
 	}
 
 	function handleBtnSendMessage() {
-		if (message.trim() !== '') {
+		if (message.trim() !== '' || files.length > 0) {
 			sendMessage();
 		}
 	}
 
 	return (
-		<form
-			onSubmit={handleBtnSendMessage}
-			className='flex flex-row h-[10%] p-2 shadow-whiteHover shadow-md '
-		>
-			<textarea
-				placeholder='Napisz wiadomość'
-				id='usermsg'
-				value={message}
-				onChange={(e) => setMessage(e.target.value)}
-				onKeyDown={(e) => handleSendMessage(e)}
-				className='resize-none bg-whiteHover rounded-md w-full min-h-full max-h-full p-2 focus:outline-none focus:ring-0 border-2 border-transparent focus:border-main '
-			></textarea>
+		<form onSubmit={handleBtnSendMessage}>
+			{files?.length > 0 && (
+				<div className='flex p-2 mx-2 gap-1 overflow-scroll'>
+					{files.map((file, index) => (
+						<button
+							key={index}
+							className='flex items-center p-2 bg-whiteHover rounded-md gap-1'
+							onClick={(e) => {
+								e.preventDefault();
+								setFiles((prevFiles) =>
+									prevFiles.filter((_, i) => i !== index)
+								);
+							}}
+						>
+							<span className='text-sm  line-clamp-1'>{file.name}</span>
+							<span className='text-md'>
+								<IoIosClose />
+							</span>
+						</button>
+					))}
+				</div>
+			)}
+			<div className='flex flex-row p-2 shadow-whiteHover shadow-md'>
+				<textarea
+					placeholder='Napisz wiadomość'
+					id='usermsg'
+					value={message}
+					onChange={(e) => setMessage(e.target.value)}
+					onKeyDown={(e) => handleSendMessage(e)}
+					className='resize-none bg-whiteHover rounded-md w-full min-h-full max-h-full p-2 focus:outline-none focus:ring-0 border-2 border-transparent focus:border-main '
+				></textarea>
 
-			<label
-				htmlFor='filePicker'
-				className='flex items-center justify-center p-2 '
-			>
-				<input
-					id='filePicker'
-					type='file'
-					className='sr-only'
-					onChange={handleFileChange}
-					multiple
-				/>
-				<span className='text-2xl hover:text-main hover:cursor-pointer transition-colors duration-300 '>
-					<CiFileOn />
-				</span>
-			</label>
-			<button
-				type='button'
-				onClick={handleBtnSendMessage}
-				disabled={isLoading}
-				className='flex items-center p-2 focus:outline-none focus:ring-0 border-2 border-transparent rounded-md focus:text-main'
-			>
-				{!isLoading ? (
-					<span className='text-2xl hover:text-main hover:cursor-pointer transition-colors duration-300'>
-						<CiPaperplane />
+				<label
+					htmlFor='filePicker'
+					className='flex items-center justify-center p-2 '
+				>
+					<input
+						id='filePicker'
+						type='file'
+						className='sr-only'
+						onChange={handleFileChange}
+						multiple
+					/>
+					<span className='text-2xl hover:text-main hover:cursor-pointer transition-colors duration-300 '>
+						<CiFileOn />
 					</span>
-				) : (
-					<Spinner size='small' />
-				)}
-			</button>
+				</label>
+				<button
+					type='button'
+					onClick={handleBtnSendMessage}
+					disabled={isLoading || isFilesSending}
+					className='flex items-center p-2 focus:outline-none focus:ring-0 border-2 border-transparent rounded-md focus:text-main'
+				>
+					{!isLoading || !isFilesSending ? (
+						<span className='text-2xl hover:text-main hover:cursor-pointer transition-colors duration-300'>
+							<CiPaperplane />
+						</span>
+					) : (
+						<Spinner size='small' />
+					)}
+				</button>
+			</div>
 		</form>
 	);
 }

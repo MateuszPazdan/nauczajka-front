@@ -45,6 +45,18 @@ const chatsApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		sendFile: builder.mutation({
+			query: ({ file, conversationId }) => {
+				const formData = new FormData();
+				formData.append('file', file);
+				formData.append('conversation', conversationId);
+				return {
+					url: '/chat/conversation/message/upload-file/',
+					method: 'POST',
+					body: formData,
+				};
+			},
+		}),
 	}),
 });
 
@@ -53,4 +65,5 @@ export const {
 	useCreateChatMutation,
 	useGetChatQuery,
 	useGetConversationDetailsQuery,
+	useSendFileMutation,
 } = chatsApiSlice;

@@ -21,11 +21,13 @@
 	::-webkit-scrollbar {
 		background-color: transparent;
 		width: 5px;
+		height: 5px;
 	}
 
 	::-webkit-scrollbar-thumb {
 		background-color: #7c67ff;
 		width: 5px;
+		height: 5px;
 		border-radius: 8px;
 	}
 

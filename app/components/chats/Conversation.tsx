@@ -155,6 +155,7 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 				sendJsonMessage={sendJsonMessage}
 				userId={userId}
 				isLoading={isLoading}
+				conversationId={conversationId}
 			/>
 		</div>
 	);
