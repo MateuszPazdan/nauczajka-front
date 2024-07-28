@@ -17,6 +17,10 @@ function ConversationElement({
 	const isChoosen = chat?.id === choosenChat?.id;
 	const lastMessage = chat?.last_message;
 	const users = chat?.users.slice().filter((user) => user.id !== userData?.id);
+	let message = lastMessage?.body;
+	if (lastMessage?.body?.length > 20) {
+		message = lastMessage.body.slice(0, 20) + '...';
+	}
 
 	return (
 		<button
@@ -40,8 +44,8 @@ function ConversationElement({
 				<span className=' text-gray text-sm line-clamp-1'>
 					{lastMessage
 						? lastMessage?.created_by?.id === userData?.id
-							? `Ty: ${lastMessage?.body}`
-							: `${lastMessage?.body}`
+							? `Ty: ${message}`
+							: `${message}`
 						: 'Napisz wiadomość'}
 				</span>
 			</span>

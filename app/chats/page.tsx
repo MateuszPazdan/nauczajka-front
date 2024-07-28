@@ -33,7 +33,7 @@ function Page({ searchParams }: any) {
 				<div
 					className={`${
 						choosenChat ? 'hidden md:block' : 'block'
-					} sm:min-w-[300px]  w-full  flex-[2] bg-white md:rounded-md  md:shadow-md shadow-whiteHover h-full`}
+					} sm:min-w-[350px]  w-full  flex-[2] bg-white md:rounded-md  md:shadow-md shadow-whiteHover h-full`}
 				>
 					<ConversationsList
 						setChoosenChat={setChoosenChat}
@@ -44,7 +44,7 @@ function Page({ searchParams }: any) {
 				<div
 					className={`${
 						choosenChat ? 'block' : 'hidden md:block'
-					} flex-[3] sm:min-w-[300px]  bg-white md:rounded-md h-full md:shadow-md shadow-whiteHover`}
+					} flex-[3] sm:min-w-[300px]   bg-white md:rounded-md h-full md:shadow-md shadow-whiteHover`}
 				>
 					{choosenChat ? (
 						<Conversation
@@ -56,7 +56,7 @@ function Page({ searchParams }: any) {
 							<span className='text-5xl'>
 								<CiChat1 />
 							</span>
-							<span>Wybierz konwersację, aby ją przeczytać</span>
+							<span className='text-center px-2'>Wybierz konwersację, aby ją przeczytać</span>
 						</div>
 					)}
 				</div>

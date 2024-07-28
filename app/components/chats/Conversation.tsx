@@ -129,7 +129,7 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 			<div
 				ref={messagesContainer}
 				onScroll={handleScroll}
-				className='flex flex-col py-2 overflow-y-scroll h-full'
+				className='flex flex-col py-2 overflow-y-scroll w-full h-full'
 			>
 				{isLoading && (
 					<span className='py-5'>

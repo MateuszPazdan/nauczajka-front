@@ -15,7 +15,7 @@ function ConversationHeader({
 		<div className='flex items-center gap-2 border-b-2 p-2 border-whiteHover'>
 			<button
 				onClick={() => setChoosenChat(null)}
-				className='hover:bg-whiteHover rounded-md'
+				className='hover:bg-whiteHover rounded-md duration-300 transition-colors'
 			>
 				<span className='text-3xl'>
 					<IoIosClose />

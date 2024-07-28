@@ -8,7 +8,7 @@ interface MessageAreaProps {
 	sendJsonMessage: (message: any) => void;
 	userId: string;
 	isLoading: boolean;
-	conversationId: string;
+	conversationId: string | undefined;
 }
 
 function MessageArea({
