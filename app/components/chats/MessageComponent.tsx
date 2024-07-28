@@ -16,10 +16,6 @@ function MessageComponent({ userData, message }: MessageComponentProps) {
 		return /\.(jpg|jpeg|png|gif|bmp|webp|svg)$/i.test(file);
 	};
 
-	const download = () => {
-		saveAs(message?.file, message?.body);
-	};
-
 	return (
 		<div
 			className={`p-2 flex gap-2  ${
@@ -55,7 +51,7 @@ function MessageComponent({ userData, message }: MessageComponentProps) {
 						{isImage(message?.file) && (
 							<button
 								className='relative min-w-12 min-h-12 h-full w-full flex justify-center items-center'
-								onClick={(e) => download(e)}
+								onClick={() => saveAs(message?.file, message?.body)}
 							>
 								<HoverableImage />
 								<img alt={message?.body} src={`${message?.file}`} />
