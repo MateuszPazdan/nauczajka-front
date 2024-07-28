@@ -1,10 +1,10 @@
 import { Message } from '@/redux/features/chatsApiSlice';
 import Image from 'next/image';
 import Link from 'next/link';
-import { MouseEvent } from 'react';
+
 import { CiFileOn } from 'react-icons/ci';
 import { GoDownload } from 'react-icons/go';
-
+import { saveAs } from 'file-saver';
 interface MessageComponentProps {
 	userData: any;
 	message: Message;
@@ -17,23 +17,7 @@ function MessageComponent({ userData, message }: MessageComponentProps) {
 	};
 
 	const download = () => {
-		fetch(message?.file, {
-			method: 'GET',
-			headers: {},
-		})
-			.then((response) => {
-				response.arrayBuffer().then(function (buffer) {
-					const url = window.URL.createObjectURL(new Blob([buffer]));
-					const link = document.createElement('a');
-					link.href = url;
-					link.setAttribute('download', message?.body);
-					document.body.appendChild(link);
-					link.click();
-				});
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+		saveAs(message?.file, message?.body);
 	};
 
 	return (
