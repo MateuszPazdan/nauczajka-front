@@ -54,7 +54,7 @@ function EditFormTutor({
 									{...register('description', {
 										required: 'Wprowadź Opis',
 									})}
-									className='w-full p-2 border-2 border-gray/20 rounded-md min-h-48 focus:border-mainPurple active::border-mainPurple ring-0 outline-none max-h-80'
+									className='w-full p-2 border-2 border-gray/20 rounded-md min-h-48 focus:border-main active::border-main ring-0 outline-none max-h-80'
 									defaultValue={description}
 								/>
 								<p className='text-red-400 ml-2'>

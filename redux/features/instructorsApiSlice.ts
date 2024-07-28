@@ -18,7 +18,7 @@ export interface TutorSkills {
 	skills: string[];
 }
 
-const authApiSlice = apiSlice.injectEndpoints({
+const instructorsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		makeOpinion: builder.mutation({
 			query: ({ review, rating, tutor_id }) => ({
@@ -105,4 +105,4 @@ export const {
 	useRetrieveAllTutorSkillsQuery,
 	useRetrieveTutorSkillsQuery,
 	useSetTutorSkillsMutation,
-} = authApiSlice;
+} = instructorsApiSlice;

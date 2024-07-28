@@ -26,13 +26,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='pl'>
-			<body className={robotoMono.className}>
+			<body className={`${robotoMono.className} h-full`}>
 				<CustomProvider>
 					<ToastProvider />
-					<div className='grid grid-rows-[auto_1fr_auto] min-h-screen'>
+					<div className='flex flex-col h-full'>
 						<Navigation />
-						<main className='flex justify-center items-center'>{children}</main>
-						<Footer />
+						<main className='flex-grow min-h-0 overflow-auto'>{children}</main>
 					</div>
 				</CustomProvider>
 			</body>
