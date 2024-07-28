@@ -8,7 +8,7 @@ import NavAvatar from './NavAvatar';
 import useLogout from '@/app/hooks/useLogout';
 import MobileList from './MobileList';
 import MobileListElement from './MobileListElement';
-import { CiLogout, CiSliderVertical } from 'react-icons/ci';
+import { CiChat1, CiLogout, CiSliderVertical } from 'react-icons/ci';
 import { useState } from 'react';
 
 function NavDesktop() {
@@ -53,26 +53,19 @@ function NavDesktop() {
 					>
 						<MobileList>
 							<MobileListElement
+								icon={<CiChat1 />}
+								href='/chats'
+								onClick={handleCloseMenu}
+							>
+								Wiadomości
+							</MobileListElement>
+							<MobileListElement
 								icon={<CiSliderVertical />}
 								href='/account/settings'
 								onClick={handleCloseMenu}
 							>
 								Ustawienia
 							</MobileListElement>
-							{/* <MobileListElement
-								icon={<CiGlobe />}
-								href='/aboutus'
-								onClick={handleCloseMenu}
-							>
-								O nas
-							</MobileListElement>
-							<MobileListElement
-								icon={<CiBoxList />}
-								href='/rules'
-								onClick={handleCloseMenu}
-							>
-								Regulamin
-							</MobileListElement> */}
 
 							<MobileListElement icon={<CiLogout />} onClick={handleLogoutBtn}>
 								Wyloguj się

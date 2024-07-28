@@ -7,7 +7,7 @@ import { useAppSelector } from '@/redux/hooks';
 import NavAvatar from './NavAvatar';
 import NavLink from './NavLink';
 import MobileList from './MobileList';
-import { CiBoxList, CiGlobe, CiLogout, CiUser } from 'react-icons/ci';
+import { CiBoxList, CiChat1, CiLogout, CiUser } from 'react-icons/ci';
 import MobileListElement from './MobileListElement';
 import useLogout from '@/app/hooks/useLogout';
 
@@ -64,11 +64,11 @@ function NavMobile() {
 						Korepetytorzy
 					</MobileListElement>
 					<MobileListElement
-						icon={<CiGlobe />}
-						href='/aboutus'
+						icon={<CiChat1 />}
+						href='/chats'
 						onClick={handleCloseMenu}
 					>
-						O nas
+						Wiadomości
 					</MobileListElement>
 					<MobileListElement
 						icon={<CiBoxList />}
