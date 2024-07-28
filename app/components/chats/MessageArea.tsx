@@ -20,9 +20,11 @@ function MessageArea({
 	const [message, setMessage] = useState('');
 	const [files, setFiles] = useState<File[]>([]);
 	const [sendFile, { isLoading: isFilesSending }] = useSendFileMutation();
+	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	function handleFileChange(e: FormEvent<HTMLInputElement>) {
 		const inputFiles = e.currentTarget.files;
+
 		if (inputFiles) {
 			setFiles((prevFiles) => [...prevFiles, ...Array.from(inputFiles)]);
 		}
@@ -74,6 +76,9 @@ function MessageArea({
 								setFiles((prevFiles) =>
 									prevFiles.filter((_, i) => i !== index)
 								);
+								if (fileInputRef.current) {
+									fileInputRef.current.value = '';
+								}
 							}}
 						>
 							<span className='text-sm  line-clamp-1'>{file.name}</span>
@@ -103,6 +108,7 @@ function MessageArea({
 						type='file'
 						className='sr-only'
 						onChange={handleFileChange}
+						ref={fileInputRef}
 						multiple
 					/>
 					<span className='text-2xl hover:text-main hover:cursor-pointer transition-colors duration-300 '>

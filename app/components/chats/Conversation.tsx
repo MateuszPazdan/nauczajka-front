@@ -46,7 +46,8 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 		sendJsonMessage,
 		lastJsonMessage,
 	}: { sendJsonMessage: any; lastJsonMessage: Message } = useWebSocket(
-		`ws://localhost:8000/ws/chat/${conversationId}/`
+		`ws://localhost:8000/ws/chat/${conversationId}/`,
+		{ shouldReconnect: () => true, reconnectInterval: 1000 }
 	);
 
 	useEffect(() => {
@@ -87,6 +88,9 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 				handleLoadMoreMessages();
 				messagesContainer.current.scrollTop = 10;
 			}
+			if (scrollTop === 0 && isLoading) {
+				messagesContainer.current.scrollTop = 10;
+			}
 		}
 	}
 
@@ -112,7 +116,6 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 			if (isScrolledToBottom) {
 				scrollToBottom();
 			}
-		
 		}
 	}, [allMessages, isLoading]);
 

@@ -31,8 +31,13 @@ function ConversationsList({
 	const [isLoading, setIsLoading] = useState(false);
 	const conversationsContaner = useRef<HTMLDivElement>(null);
 
-	const { lastJsonMessage }: { lastJsonMessage: Chat | null; readyState: any } =
-		useWebSocket('ws://localhost:8000/ws/chat/list/');
+	const {
+		lastJsonMessage,
+		readyState,
+	}: { lastJsonMessage: Chat | null; readyState: any } = useWebSocket(
+		'ws://localhost:8000/ws/chat/list/',
+		{ shouldReconnect: () => true, reconnectInterval: 1000 }
+	);
 
 	useEffect(() => {
 		if (isSuccess && chats?.results) {
@@ -61,7 +66,9 @@ function ConversationsList({
 		setNextLink(data.next);
 		setAllChats((prevChats) => {
 			const chatIds = new Set(prevChats.map((chat) => chat.id));
-			const newChats = data.results.filter((chat : Chat) => !chatIds.has(chat.id));
+			const newChats = data.results.filter(
+				(chat: Chat) => !chatIds.has(chat.id)
+			);
 			return [...prevChats, ...newChats];
 		});
 	}
@@ -74,6 +81,10 @@ function ConversationsList({
 
 			if (scrollFromBottom < 5 && !isLoading) {
 				handleLoadMoreChats();
+				conversationsContaner.current.scrollTop =
+					scrollHeight - clientHeight - 10;
+			}
+			if (scrollFromBottom < 5 && isLoading) {
 				conversationsContaner.current.scrollTop =
 					scrollHeight - clientHeight - 10;
 			}
