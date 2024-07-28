@@ -32,11 +32,13 @@ function MessageArea({
 
 	const sendMessage = () => {
 		if (files.length > 0) {
-			sendFile({ file: files[0], conversationId })
-				.unwrap()
-				.then((res) => {
-					setFiles([]);
-				});
+			files.map((file, index) => {
+				sendFile({ file: files[index], conversationId });
+			});
+			setFiles([]);
+			if (fileInputRef.current) {
+				fileInputRef.current.value = '';
+			}
 		} else {
 			sendJsonMessage({
 				event: 'chat_message',
@@ -121,7 +123,7 @@ function MessageArea({
 					disabled={isLoading || isFilesSending}
 					className='flex items-center p-2 focus:outline-none focus:ring-0 border-2 border-transparent rounded-md focus:text-main'
 				>
-					{!isLoading || !isFilesSending ? (
+					{!isLoading && !isFilesSending ? (
 						<span className='text-2xl hover:text-main hover:cursor-pointer transition-colors duration-300'>
 							<CiPaperplane />
 						</span>
