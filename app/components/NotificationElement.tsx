@@ -32,7 +32,11 @@ function NotificationElement({ notification }: { notification: Notification }) {
 
 	return (
 		<button
-			onClick={() => makeNotificationRead(notification.id)}
+			onClick={() => {
+				if (!isRead) {
+					makeNotificationRead(notification.id);
+				}
+			}}
 			key={notification.id}
 		>
 			<span className='p-2 text-left flex justify-between items-center hover:bg-whiteHover rounded-[4px] '>

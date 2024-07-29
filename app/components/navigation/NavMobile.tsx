@@ -64,6 +64,13 @@ function NavMobile() {
 						Korepetytorzy
 					</MobileListElement>
 					<MobileListElement
+						icon={<CiUser />}
+						href='/instructors'
+						onClick={handleCloseMenu}
+					>
+						Powiadomienia
+					</MobileListElement>
+					<MobileListElement
 						icon={<CiChat1 />}
 						href='/chats'
 						onClick={handleCloseMenu}

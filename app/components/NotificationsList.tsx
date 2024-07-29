@@ -16,10 +16,13 @@ function NotificationsList() {
 		data: notificationsResponse,
 		isLoading: isNotificationsLoading,
 		isSuccess,
-	} = useGetNotificationsQuery({
-		p: 1,
-		page_size: 8,
-	});
+	} = useGetNotificationsQuery(
+		{
+			p: 1,
+			page_size: 8,
+		},
+		{ refetchOnMountOrArgChange: true }
+	);
 	const notifications = notificationsResponse?.results;
 	const { lastJsonMessage }: { lastJsonMessage: Notification } = useWebSocket(
 		'ws://localhost:8000/ws/notification/user/',
