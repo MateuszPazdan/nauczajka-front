@@ -14,11 +14,7 @@ import NotificationComponent from './NotificationComponent';
 import Image from 'next/image';
 import { API_KEY } from '@/app/api/apiAuth';
 
-function NavDesktop({
-	countOfNotifications,
-}: {
-	countOfNotifications: number | null;
-}) {
+function NavDesktop() {
 	const [isMenuOpen, setIsMenuOpen] = useState<null | string>(null);
 	const { handleLogout } = useLogout();
 	const { data: user } = useRetrieveUserQuery();
@@ -51,7 +47,7 @@ function NavDesktop({
 						<NotificationComponent
 							isMenuOpen={isMenuOpen}
 							setIsMenuOpen={setIsMenuOpen}
-							countOfNotifications={countOfNotifications}
+							
 						/>
 						<NavAvatar
 							user={user}

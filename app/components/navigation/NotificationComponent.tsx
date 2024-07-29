@@ -1,16 +1,39 @@
 import { CiBellOn } from 'react-icons/ci';
 import NotificationsList from './NotificationsList';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import useWebSocket from 'react-use-websocket';
 
 function NotificationComponent({
 	isMenuOpen,
 	setIsMenuOpen,
-	countOfNotifications,
 }: {
 	isMenuOpen: string | null;
 	setIsMenuOpen: Dispatch<SetStateAction<string | null>>;
-	countOfNotifications?: number | null;
 }) {
+	const [countOfNotifications, setCountOfNotifications] = useState<
+		number | null
+	>(null);
+	const {
+		lastJsonMessage,
+		sendJsonMessage,
+	}: {
+		lastJsonMessage: { unread_notification_count: number };
+		sendJsonMessage: any;
+	} = useWebSocket('ws://localhost:8000/ws/notification/user/', {
+		shouldReconnect: () => true,
+		reconnectInterval: 3000,
+	});
+	useEffect(() => {
+		if (lastJsonMessage?.unread_notification_count)
+			setCountOfNotifications(lastJsonMessage.unread_notification_count);
+		if (lastJsonMessage?.unread_notification_count === 0)
+			setCountOfNotifications(null);
+	}, [lastJsonMessage]);
+
+	useEffect(() => {
+		sendJsonMessage({ data: { send_back_unread_notification_count: true } });
+	}, [sendJsonMessage]);
+
 	return (
 		<div className='relative flex h-full aspect-square justify-center items-center icon group'>
 			<button
