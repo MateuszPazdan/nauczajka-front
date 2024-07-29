@@ -38,7 +38,7 @@ export default function useNotifications() {
 	}, [isSuccess, notificationsResponse, notifications]);
 
 	useEffect(() => {
-		if (lastJsonMessage) {
+		if (lastJsonMessage && lastJsonMessage.id) {
 			setAllNotifications((prevNotifications) => {
 				const filteredNotifications = prevNotifications.filter(
 					(notification) => notification.id !== lastJsonMessage.id

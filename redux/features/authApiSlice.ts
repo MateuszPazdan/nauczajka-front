@@ -17,6 +17,10 @@ export interface Notification {
 	created_at: string;
 }
 
+export interface NotificationsCount {
+	unread_notification_count: number;
+}
+
 export interface NotificationsRepsonse {
 	count: number;
 	next: string;
