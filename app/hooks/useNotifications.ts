@@ -4,10 +4,8 @@ import {
 } from '@/redux/features/authApiSlice';
 import { useEffect, useRef, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
-import Spinner from './Spinner';
-import NotificationElement from './NotificationElement';
 
-function NotificationsList() {
+export default function useNotifications() {
 	const notificationsContaner = useRef<HTMLDivElement>(null);
 	const [allNotifications, setAllNotifications] = useState<Notification[]>([]);
 	const [nextLink, setNextLink] = useState<string | null>(null);
@@ -19,7 +17,7 @@ function NotificationsList() {
 	} = useGetNotificationsQuery(
 		{
 			p: 1,
-			page_size: 8,
+			page_size: 16,
 		},
 		{ refetchOnMountOrArgChange: true }
 	);
@@ -59,7 +57,7 @@ function NotificationsList() {
 		setNextLink(data.next);
 		setAllNotifications((prevNotifications) => {
 			const notificationsIds = new Set(
-				prevNotifications.map((chat) => chat.id)
+				prevNotifications.map((notification) => notification.id)
 			);
 			const newNotifications = data.results.filter(
 				(notification: Notification) => !notificationsIds.has(notification.id)
@@ -86,31 +84,11 @@ function NotificationsList() {
 		}
 	}
 
-	return (
-		<div
-			ref={notificationsContaner}
-			onScroll={handleScroll}
-			className='flex  flex-col gap-1 p-1 absolute top-20 mb-0 bg-white rounded-md shadow-md shadow-whiteHover border-[1px] border-whiteHover w-60 2xl:w-80 overflow-y-scroll max-h-96'
-		>
-			{allNotifications.length > 0 ? (
-				allNotifications?.map((notification) => (
-					<NotificationElement
-						key={notification.id}
-						notification={notification}
-					/>
-				))
-			) : !isNotificationsLoading ? (
-				<span className='text-center p-2'>Brak powiadomień</span>
-			) : (
-				<Spinner size='small' />
-			)}
-			{isLoading && (
-				<span className='py-2'>
-					<Spinner size='small' color='text-main' />
-				</span>
-			)}
-		</div>
-	);
+	return {
+		allNotifications,
+		notificationsContaner,
+		handleScroll,
+		isLoading,
+		isNotificationsLoading,
+	};
 }
-
-export default NotificationsList;

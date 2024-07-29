@@ -1,5 +1,9 @@
+'use client';
+
+import NotificationListComponent from '../components/notifications/NotificationListComponent';
+
 function Page() {
-	return <div></div>;
+	return <NotificationListComponent />;
 }
 
 export default Page;

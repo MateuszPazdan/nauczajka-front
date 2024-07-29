@@ -47,7 +47,9 @@ function NotificationElement({ notification }: { notification: Notification }) {
 							? `${days} dni`
 							: hours > 0
 							? `${hours} godz.`
-							: `${minutes} min.`}
+							: minutes > 0
+							? `${minutes} min.`
+							: 'Teraz'}
 					</span>
 				</span>
 				<span className='text-main text-sm'>

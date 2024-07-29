@@ -1,5 +1,5 @@
 import { CiBellOn } from 'react-icons/ci';
-import NotificationsList from '../NotificationsList';
+import NotificationsList from './NotificationsList';
 import { Dispatch, SetStateAction } from 'react';
 
 function NotificationComponent({
