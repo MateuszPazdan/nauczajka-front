@@ -5,19 +5,21 @@ interface MobileListElementProps {
 	children: React.ReactNode;
 	onClick?: () => void;
 	href?: string;
+	className?: string;
 }
 
-function 	MobileListElement({
+function MobileListElement({
 	icon,
 	children,
 	onClick,
 	href,
+	className,
 }: MobileListElementProps) {
 	return (
-		<li>
+		<li className={`${className}`}>
 			{href && (
 				<Link
-					className='flex items-center gap-5 w-full hover:bg-whiteHover p-2 rounded-md'
+					className='flex items-center gap-5 w-full hover:bg-whiteHover p-2 rounded-md transition-colors duration-300'
 					href={href}
 					onClick={onClick}
 				>
@@ -27,7 +29,7 @@ function 	MobileListElement({
 			)}
 			{onClick && !href && (
 				<button
-					className='flex items-center gap-5 w-full hover:bg-whiteHover p-2 rounded-md'
+					className='flex items-center gap-5 w-full hover:bg-whiteHover p-2 rounded-md transition-colors duration-300'
 					onClick={onClick}
 				>
 					<span className='text-2xl'>{icon}</span>

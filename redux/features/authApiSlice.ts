@@ -10,6 +10,20 @@ export interface User {
 	created_at: string;
 }
 
+export interface Notification {
+	id: number;
+	notification: { message: string };
+	is_read: boolean;
+	created_at: string;
+}
+
+export interface NotificationsRepsonse {
+	count: number;
+	next: string;
+	previous: string;
+	results: Notification[];
+}
+
 const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		retrieveUser: builder.query<User, void>({
@@ -99,6 +113,12 @@ const authApiSlice = apiSlice.injectEndpoints({
 		deleteAccount: builder.mutation({
 			query: () => ({ url: '/user/delete/', method: 'DELETE' }),
 		}),
+		getNotifications: builder.query<NotificationsRepsonse, any>({
+			query: ({ p, page_size }) => ({
+				url: `/notification/list/?p=${p}&page_size=${page_size}`,
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
@@ -116,4 +136,5 @@ export const {
 	useConfirmPasswordMutation,
 	useLogoutMutation,
 	useDeleteAccountMutation,
+	useGetNotificationsQuery,
 } = authApiSlice;

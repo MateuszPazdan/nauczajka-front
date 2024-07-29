@@ -33,13 +33,9 @@ function NavAvatar({ user, size = 'large', href, onClick }: NavAvatarProps) {
 				/>
 			</div>
 
-			<span
-				className={`${size === 'small' && ''} ${
-					size === 'large' && 'text-xl'
-				}  text-gray`}
-			>
-				{user?.first_name}
-			</span>
+			{size === 'large' && (
+				<span className={`text-xl  text-gray`}>{user?.first_name}</span>
+			)}
 		</div>
 	);
 	return (
