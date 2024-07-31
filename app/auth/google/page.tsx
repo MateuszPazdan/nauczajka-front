@@ -8,7 +8,7 @@ function Page() {
 	const [socialAuthenticate] = useSocialAuthenticateMutation();
 	useSocialAuth(socialAuthenticate, 'google-oauth2');
 	return (
-		<div>
+		<div className='h-full'>
 			<Spinner size='large' />
 		</div>
 	);
