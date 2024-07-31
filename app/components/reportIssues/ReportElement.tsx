@@ -1,8 +1,7 @@
 import { Report } from '@/redux/features/authApiSlice';
 
 function ReportElement({ report }: { report: Report }) {
-	const { category, created_at, description, id, status, title, updated_at } =
-		report;
+	const { category, created_at, description, status, title } = report;
 	return (
 		<div className='flex flex-col gap-5 hover:bg-whiteHover p-2 rounded-md transition-colors duration-300'>
 			<div className='flex flex-col md800:flex-row flex-wrap md800:justify-between gap-2'>

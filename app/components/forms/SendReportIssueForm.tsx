@@ -2,11 +2,15 @@
 
 import { useForm } from 'react-hook-form';
 import Button from '../Button';
-import { useReportIssueMutation } from '@/redux/features/authApiSlice';
+import {
+	useGetReportsQuery,
+	useReportIssueMutation,
+} from '@/redux/features/authApiSlice';
 import { toast } from 'react-toastify';
 
 function SendReportIssueForm() {
 	const [reportIssue, { isLoading }] = useReportIssueMutation();
+	const { refetch } = useGetReportsQuery();
 	const {
 		register,
 		handleSubmit,
@@ -20,6 +24,7 @@ function SendReportIssueForm() {
 			.then(() => {
 				reset();
 				toast.success('Zgłoszenie zostało wysłane');
+				refetch();
 			});
 	};
 
@@ -48,9 +53,9 @@ function SendReportIssueForm() {
 							: 'border-shadowBlack focus:border-main'
 					}`}
 				>
-					<option value='naruszenie_regulaminu'>Naruszenie regulaminu</option>
-					<option value='problem_techniczny'>Problem techniczny</option>
-					<option value='prosba_o_pomoc'>Prośba o pomoc</option>
+					<option value='violation'>Naruszenie regulaminu</option>
+					<option value='technical_issue'>Problem techniczny</option>
+					<option value='help_request'>Prośba o pomoc</option>
 				</select>
 				<span className='text-mainSalmon'>
 					{errors?.category?.message?.toString()}
