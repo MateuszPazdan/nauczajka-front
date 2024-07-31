@@ -2,7 +2,7 @@ import {
 	Notification,
 	useGetNotificationsQuery,
 } from '@/redux/features/authApiSlice';
-import { useEffect, useRef, useState } from 'react';
+import { use, useCallback, useEffect, useRef, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
 
 export default function useNotifications() {
@@ -17,7 +17,7 @@ export default function useNotifications() {
 	} = useGetNotificationsQuery(
 		{
 			p: 1,
-			page_size: 16,
+			page_size: 8,
 		},
 		{ refetchOnMountOrArgChange: true }
 	);
@@ -37,18 +37,7 @@ export default function useNotifications() {
 		}
 	}, [isSuccess, notificationsResponse, notifications]);
 
-	useEffect(() => {
-		if (lastJsonMessage && lastJsonMessage.id) {
-			setAllNotifications((prevNotifications) => {
-				const filteredNotifications = prevNotifications.filter(
-					(notification) => notification.id !== lastJsonMessage.id
-				);
-				return [lastJsonMessage, ...filteredNotifications];
-			});
-		}
-	}, [lastJsonMessage]);
-
-	async function handleLoadMoreNotifications() {
+	const handleLoadMoreNotifications = useCallback(async () => {
 		if (!nextLink) return;
 		setIsLoading(true);
 		const response = await fetch(nextLink, { credentials: 'include' });
@@ -64,7 +53,29 @@ export default function useNotifications() {
 			);
 			return [...prevNotifications, ...newNotifications];
 		});
-	}
+	}, [nextLink]);
+
+	useEffect(() => {
+		if (notificationsContaner.current) {
+			if (
+				notificationsContaner.current.scrollHeight <=
+				notificationsContaner.current.clientHeight
+			) {
+				handleLoadMoreNotifications();
+			}
+		}
+	}, [handleLoadMoreNotifications]);
+
+	useEffect(() => {
+		if (lastJsonMessage && lastJsonMessage.id) {
+			setAllNotifications((prevNotifications) => {
+				const filteredNotifications = prevNotifications.filter(
+					(notification) => notification.id !== lastJsonMessage.id
+				);
+				return [lastJsonMessage, ...filteredNotifications];
+			});
+		}
+	}, [lastJsonMessage]);
 
 	function handleScroll() {
 		if (notificationsContaner.current) {

@@ -6,7 +6,7 @@ import RequireAuth from '../components/utils/RequireAuth';
 function Page() {
 	return (
 		<RequireAuth>
-			<NotificationListComponent />;
+			<NotificationListComponent />
 		</RequireAuth>
 	);
 }
