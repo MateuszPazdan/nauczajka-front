@@ -1,9 +1,14 @@
 'use client';
 
 import NotificationListComponent from '../components/notifications/NotificationListComponent';
+import RequireAuth from '../components/utils/RequireAuth';
 
 function Page() {
-	return <NotificationListComponent />;
+	return (
+		<RequireAuth>
+			<NotificationListComponent />;
+		</RequireAuth>
+	);
 }
 
 export default Page;
