@@ -43,37 +43,54 @@ function SendReportIssueForm() {
 				</label>
 				<select
 					{...register('category')}
-					name='category'
 					required
-					className='w-full p-2 border-2 focus:outline-none focus:ring-0 rounded-xl border-shadowBlack focus:border-main transition-colors duration-300'
+					name='category'
+					className={`w-full p-2 border-2 focus:outline-none focus:ring-0 rounded-xl  transition-colors duration-300 ${
+						errors?.category?.message
+							? 'border-mainSalmon'
+							: 'border-shadowBlack focus:border-main'
+					}`}
 				>
 					<option value='naruszenie_regulaminu'>Naruszenie regulaminu</option>
 					<option value='problem_techniczny'>Problem techniczny</option>
 					<option value='prosba_o_pomoc'>Prośba o pomoc</option>
 				</select>
+				<span className='text-mainSalmon'>
+					{errors?.category?.message?.toString()}
+				</span>
 			</span>
 			<span className='flex flex-col gap-2'>
 				<label htmlFor='title'>Tytuł</label>
 				<input
 					{...register('title', { required: 'Podaj tytuł' })}
-					required
 					type='text'
 					name='title'
-					className='w-full p-2 border-2 focus:outline-none focus:ring-0 rounded-xl border-shadowBlack focus:border-main transition-colors duration-300'
+					className={`w-full p-2 border-2 focus:outline-none focus:ring-0 rounded-xl transition-colors duration-300 ${
+						errors?.title?.message
+							? 'border-mainSalmon'
+							: 'border-shadowBlack focus:border-main'
+					}`}
 				/>
+				<span className='text-mainSalmon'>
+					{errors?.title?.message?.toString()}
+				</span>
 			</span>
 			<span className='flex flex-col gap-2'>
 				<label htmlFor='description'>Opis</label>
 				<textarea
 					{...register('description', { required: 'Podaj opis' })}
-					required
 					name='description'
-					className='w-full max-h-36 min-h-28 p-2 border-2 focus:outline-none focus:ring-0 rounded-xl border-shadowBlack focus:border-main transition-colors duration-300'
+					className={`w-full max-h-36 min-h-28 p-2 border-2 focus:outline-none focus:ring-0 rounded-xl transition-colors duration-300 ${
+						errors?.description?.message
+							? 'border-mainSalmon'
+							: 'border-shadowBlack focus:border-main'
+					}`}
 				></textarea>
+				<span className='text-mainSalmon'>
+					{errors?.description?.message?.toString()}
+				</span>
 			</span>
-			<span className='text-mainSalmon'>
-				{Object.values(errors)[0]?.message?.toString()}
-			</span>
+
 			<Button type={'button'} isLoading={isLoading}>
 				Wyślij
 			</Button>

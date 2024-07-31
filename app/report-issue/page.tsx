@@ -6,7 +6,7 @@ export const metadata = {
 
 async function Page() {
 	return (
-		<div className='flex justify-center pt-10 min-h-full w-full max-w-96 mx-auto px-2'>
+		<div className='flex justify-center pt-10 min-h-full w-full max-w-[500px] mx-auto px-2'>
 			<SendReportIssueForm />
 		</div>
 	);
