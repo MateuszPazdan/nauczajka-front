@@ -81,7 +81,6 @@ function ConversationsList({
 	}, [nextLink]);
 
 	useEffect(() => {
-		console.log('effect');
 		if (conversationsContaner.current) {
 			if (
 				conversationsContaner.current.scrollHeight <=

@@ -5,7 +5,14 @@ import {
 	Message,
 	useGetConversationDetailsQuery,
 } from '@/redux/features/chatsApiSlice';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import {
+	Dispatch,
+	SetStateAction,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 import useWebSocket from 'react-use-websocket';
 import ConversationHeader from './ConversationHeader';
 import MessageArea from './MessageArea';
@@ -32,7 +39,7 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 		{
 			id: conversationId,
 			p: 1,
-			page_size: 20,
+			page_size: 8,
 		},
 		{
 			refetchOnMountOrArgChange: true,
@@ -67,18 +74,29 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 		}
 	}, [lastJsonMessage]);
 
-	async function handleLoadMoreMessages() {
+	const handleLoadMoreMessages = useCallback(async () => {
 		if (!nextLink) return;
 		setIsLoading(true);
 		const response = await fetch(nextLink, { credentials: 'include' });
 		const data = await response.json();
 		setNextLink(data.next);
-		setAllmessages((prevMesages) => [
+		setAllmessages((prevMessages) => [
 			...data.results.slice().reverse(),
-			...prevMesages,
+			...prevMessages,
 		]);
 		setIsLoading(false);
-	}
+	}, [nextLink]);
+
+	useEffect(() => {
+		if (messagesContainer.current) {
+			if (
+				messagesContainer.current.scrollHeight <=
+				messagesContainer.current.clientHeight
+			) {
+				handleLoadMoreMessages();
+			}
+		}
+	}, [handleLoadMoreMessages]);
 
 	function handleScroll() {
 		if (messagesContainer.current) {
