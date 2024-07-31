@@ -26,7 +26,7 @@ function SendReportIssueForm() {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className='flex flex-col gap-5 w-full'
+			className='flex flex-col gap-5 w-full max-w-[500px]'
 		>
 			<div className='flex flex-col'>
 				<span className='text-xl text-center pt-5 text-main'>
