@@ -1,7 +1,14 @@
 'use client';
 
 import { Chat, useGetChatsQuery } from '@/redux/features/chatsApiSlice';
-import { useEffect, useState, Dispatch, SetStateAction, useRef } from 'react';
+import {
+	useEffect,
+	useState,
+	Dispatch,
+	SetStateAction,
+	useRef,
+	useCallback,
+} from 'react';
 import useWebSocket from 'react-use-websocket';
 import Spinner from '../Spinner';
 import ConversationElement from './ConversationElement';
@@ -57,7 +64,7 @@ function ConversationsList({
 		}
 	}, [lastJsonMessage]);
 
-	async function handleLoadMoreChats() {
+	const handleLoadMoreChats = useCallback(async () => {
 		if (!nextLink) return;
 		setIsLoading(true);
 		const response = await fetch(nextLink, { credentials: 'include' });
@@ -71,7 +78,19 @@ function ConversationsList({
 			);
 			return [...prevChats, ...newChats];
 		});
-	}
+	}, [nextLink]);
+
+	useEffect(() => {
+		console.log('effect');
+		if (conversationsContaner.current) {
+			if (
+				conversationsContaner.current.scrollHeight <=
+				conversationsContaner.current.clientHeight
+			) {
+				handleLoadMoreChats();
+			}
+		}
+	}, [handleLoadMoreChats]);
 
 	function handleScroll() {
 		if (conversationsContaner.current) {
