@@ -2,8 +2,15 @@
 
 import { API_KEY } from './apiAuth';
 
-export async function sendReportIssueAction(formData: FormData) {
-	console.log(typeof formData.get('category'));
+export async function sendReportIssue({
+	category,
+	title,
+	description,
+}: {
+	category: string;
+	title: string;
+	description: string;
+}) {
 	try {
 		const response = await fetch(`${API_KEY}/api/reporting/issue/create/`, {
 			credentials: 'include',
@@ -13,9 +20,9 @@ export async function sendReportIssueAction(formData: FormData) {
 				Accept: 'application/json',
 			},
 			body: JSON.stringify({
-				category: 'naruszenie_regulaminu',
-				title: 'string',
-				description: 'string',
+				category: category,
+				title: title,
+				description: description,
 			}),
 		});
 

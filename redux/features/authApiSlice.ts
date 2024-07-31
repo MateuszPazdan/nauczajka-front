@@ -123,6 +123,13 @@ const authApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		reportIssue: builder.mutation({
+			query: ({ category, title, description }) => ({
+				url: '/reporting/issue/create/',
+				method: 'POST',
+				body: { category, title, description },
+			}),
+		}),
 	}),
 });
 
@@ -141,4 +148,5 @@ export const {
 	useLogoutMutation,
 	useDeleteAccountMutation,
 	useGetNotificationsQuery,
+	useReportIssueMutation,
 } = authApiSlice;

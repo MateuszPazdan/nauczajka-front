@@ -17,7 +17,7 @@ function NotificationListComponent() {
 			className='overflow-y-scroll h-full'
 		>
 			<div className='flex flex-col gap-1  min-w-60 max-w-[500px] px-2 py-5 mx-auto rounded-md border-whiteHover'>
-				<span className='text-xl text-center pt-5'>Powiadomienia</span>
+				<span className='text-xl text-center pt-5 text-main'>Powiadomienia</span>
 				<div className='w-full h-px rounded-md my-5 bg-whiteHover '></div>
 				{allNotifications.length > 0 ? (
 					allNotifications?.map((notification) => (
