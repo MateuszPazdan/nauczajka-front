@@ -8,7 +8,7 @@ import NavAvatar from './NavAvatar';
 import useLogout from '@/app/hooks/useLogout';
 import MobileList from './MobileList';
 import MobileListElement from './MobileListElement';
-import { CiChat1, CiLogout, CiSliderVertical } from 'react-icons/ci';
+import { CiChat1, CiFaceMeh, CiLogout, CiSliderVertical } from 'react-icons/ci';
 import { useState } from 'react';
 import NotificationComponent from './NotificationComponent';
 import Image from 'next/image';
@@ -47,7 +47,6 @@ function NavDesktop() {
 						<NotificationComponent
 							isMenuOpen={isMenuOpen}
 							setIsMenuOpen={setIsMenuOpen}
-							
 						/>
 						<NavAvatar
 							user={user}
@@ -99,6 +98,13 @@ function NavDesktop() {
 								onClick={handleCloseMenu}
 							>
 								Ustawienia
+							</MobileListElement>
+							<MobileListElement
+								icon={<CiFaceMeh />}
+								href='/report-issue'
+								onClick={handleCloseMenu}
+							>
+								Zgłoś problem
 							</MobileListElement>
 							<MobileListElement icon={<CiLogout />} onClick={handleLogoutBtn}>
 								Wyloguj się

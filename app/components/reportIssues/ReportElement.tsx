@@ -18,7 +18,7 @@ function ReportElement({ report }: { report: Report }) {
 							month: 'long',
 						})}
 					</p>
-					<p className='md800:w-full w-fit rounded-md text-white p-1 bg-main text-center'>
+					<p className='w-fit px-4 py-1 rounded-md text-white bg-main text-center'>
 						{status}
 					</p>
 				</div>
