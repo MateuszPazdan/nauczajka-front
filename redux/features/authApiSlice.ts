@@ -28,6 +28,16 @@ export interface NotificationsRepsonse {
 	results: Notification[];
 }
 
+export interface Report {
+	id: number;
+	category: string;
+	title: string;
+	description: string;
+	created_at: string;
+	updated_at: string;
+	status: string;
+}
+
 const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		retrieveUser: builder.query<User, void>({
@@ -130,6 +140,9 @@ const authApiSlice = apiSlice.injectEndpoints({
 				body: { category, title, description },
 			}),
 		}),
+		getReports: builder.query<Report[], void>({
+			query: () => ({ url: '/reporting/issue/list/', method: 'GET' }),
+		}),
 	}),
 });
 
@@ -149,4 +162,5 @@ export const {
 	useDeleteAccountMutation,
 	useGetNotificationsQuery,
 	useReportIssueMutation,
+	useGetReportsQuery,
 } = authApiSlice;

@@ -4,10 +4,8 @@ import { useForm } from 'react-hook-form';
 import Button from '../Button';
 import { useReportIssueMutation } from '@/redux/features/authApiSlice';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/navigation';
 
 function SendReportIssueForm() {
-	const router = useRouter();
 	const [reportIssue, { isLoading }] = useReportIssueMutation();
 	const {
 		register,
@@ -22,7 +20,6 @@ function SendReportIssueForm() {
 			.then(() => {
 				reset();
 				toast.success('Zgłoszenie zostało wysłane');
-				router.push('/');
 			});
 	};
 
