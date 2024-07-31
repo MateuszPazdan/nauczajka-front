@@ -27,9 +27,6 @@ function Page() {
 						required
 						className='w-full p-2 border-2 focus:outline-none focus:ring-0 rounded-xl border-shadowBlack focus:border-main transition-colors duration-300'
 					>
-						<option value='' disabled>
-							Wybierz
-						</option>
 						<option value='naruszenie_regulaminu'>Naruszenie regulaminu</option>
 						<option value='problem_techniczny'>Problem techniczny</option>
 						<option value='prosba_o_pomoc'>Prośba o pomoc</option>
@@ -38,6 +35,7 @@ function Page() {
 				<span className='flex flex-col gap-2'>
 					<label htmlFor='title'>Title</label>
 					<input
+						required
 						type='text'
 						name='title'
 						className='w-full p-2 border-2 focus:outline-none focus:ring-0 rounded-xl border-shadowBlack focus:border-main transition-colors duration-300'
@@ -46,6 +44,7 @@ function Page() {
 				<span className='flex flex-col gap-2'>
 					<label htmlFor='description'>Description</label>
 					<textarea
+						required
 						name='description'
 						className='w-full max-h-36 min-h-28 p-2 border-2 focus:outline-none focus:ring-0 rounded-xl border-shadowBlack focus:border-main transition-colors duration-300'
 					></textarea>
