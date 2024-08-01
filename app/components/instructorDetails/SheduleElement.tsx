@@ -5,17 +5,19 @@ import { SheduleObject } from './CalendarForm';
 
 function SheduleElement({ sheduleObject }: { sheduleObject: SheduleObject }) {
 	const [isOpen, setIsOpen] = useState(false);
+	const [isReserved, setIsReserved] = useState(sheduleObject?.is_reserved);
 
 	const handleClick = () => {
 		setIsOpen((isOpen) => !isOpen);
 	};
-    console.log(sheduleObject);
+	console.log(sheduleObject);
 
 	return (
 		<>
 			<button
+				disabled={isReserved}
 				onClick={handleClick}
-				className='px-5 py-2 bg-white shadow-md shadow-whiteHover rounded-sm hover:cursor-pointer hover:bg-main hover:text-white transition-colors duration-300'
+				className='px-5 py-2 bg-white shadow-md shadow-whiteHover rounded-sm hover:cursor-pointer hover:bg-main hover:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-black'
 			>
 				{new Date(sheduleObject?.start_time).getHours()}:
 				{String(new Date(sheduleObject?.start_time).getMinutes()).padStart(
@@ -34,6 +36,7 @@ function SheduleElement({ sheduleObject }: { sheduleObject: SheduleObject }) {
 					<MakeReservationForm
 						sheduleObject={sheduleObject}
 						handleClick={handleClick}
+                        setIsReserved={setIsReserved}
 					/>
 				</Modal>
 			)}

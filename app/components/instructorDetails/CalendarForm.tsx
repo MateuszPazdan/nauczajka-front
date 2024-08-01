@@ -8,6 +8,7 @@ export interface SheduleObject {
 	id: number;
 	start_time: string;
 	end_time: string;
+	is_reserved: boolean;
 }
 
 function CalendarForm({ shedule }: { shedule: SheduleObject[] }) {
@@ -18,11 +19,9 @@ function CalendarForm({ shedule }: { shedule: SheduleObject[] }) {
 			selected?.toDateString()
 		);
 	});
-	const highlightedDates: Date[] = shedule.map(
-		(sheduleObject: SheduleObject) => {
-			return new Date(sheduleObject?.start_time);
-		}
-	);
+	const highlightedDates: Date[] = shedule
+		.filter((sheduleObject: SheduleObject) => !sheduleObject.is_reserved)
+		.map((sheduleObject: SheduleObject) => new Date(sheduleObject?.start_time));
 
 	return (
 		<div className='flex flex-col items-center justify-between md:flex-row gap-5'>

@@ -7,9 +7,11 @@ import { useMakeReservationMutation } from '@/redux/features/instructorsApiSlice
 function MakeReservationForm({
 	sheduleObject,
 	handleClick,
+	setIsReserved,
 }: {
 	sheduleObject: SheduleObject;
 	handleClick: () => void;
+	setIsReserved: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
 	const [makeReservation, { isLoading: isMakeReservationLoading }] =
 		useMakeReservationMutation();
@@ -22,6 +24,7 @@ function MakeReservationForm({
 			.unwrap()
 			.then(() => {
 				handleClick();
+				setIsReserved(true);
 				toast.success('Termin został zarezerwowany');
 			})
 			.catch((err) => {
