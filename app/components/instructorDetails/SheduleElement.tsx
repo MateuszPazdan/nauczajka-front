@@ -10,7 +10,6 @@ function SheduleElement({ sheduleObject }: { sheduleObject: SheduleObject }) {
 	const handleClick = () => {
 		setIsOpen((isOpen) => !isOpen);
 	};
-	console.log(sheduleObject);
 
 	return (
 		<>
@@ -36,7 +35,7 @@ function SheduleElement({ sheduleObject }: { sheduleObject: SheduleObject }) {
 					<MakeReservationForm
 						sheduleObject={sheduleObject}
 						handleClick={handleClick}
-                        setIsReserved={setIsReserved}
+						setIsReserved={setIsReserved}
 					/>
 				</Modal>
 			)}
