@@ -7,6 +7,7 @@ import TutorRatings from './TutorRatings';
 import { useRetrieveOpinionsQuery } from '@/redux/features/instructorsApiSlice';
 import { useState } from 'react';
 import OpinionsPagination from './OpinionsPagination';
+import Spinner from '../Spinner';
 
 const OPINIONS_PAGE_SIZE = 15;
 
@@ -18,17 +19,19 @@ function InstructorOpinionsContainer({
 	instructorId,
 }: InstructorOpinionsComponentProps) {
 	const [page, setPage] = useState<number>(1);
-	const { data: opinions, refetch: refetchOpinions } = useRetrieveOpinionsQuery(
-		{
-			tutor_id: instructorId,
-			page: page,
-			page_size: OPINIONS_PAGE_SIZE,
-		}
-	);
+	const {
+		data: opinions,
+		refetch: refetchOpinions,
+		isLoading: isOpinionsLoading,
+	} = useRetrieveOpinionsQuery({
+		tutor_id: instructorId,
+		page: page,
+		page_size: OPINIONS_PAGE_SIZE,
+	});
 
 	return (
-		<div>
-			<div className='flex flex-wrap gap-4 items-center justify-between'>
+		<div className='mb-20'>
+			<div className='flex flex-wrap gap-4 items-center justify-between '>
 				<TutorInfoHeader
 					icon={<CiStar />}
 					label={`Opinie (${opinions?.count || 0})`}
@@ -47,13 +50,19 @@ function InstructorOpinionsContainer({
 				refetchOpinions={refetchOpinions}
 				setPage={() => setPage(1)}
 			/>
-			<TutorRatings opinions={opinions} />
-			<OpinionsPagination
-				currentPage={page}
-				pagesCount={Math.ceil(opinions?.count / OPINIONS_PAGE_SIZE) || 1}
-				nextPage={() => setPage((page) => page + 1)}
-				prevPage={() => setPage((page) => page - 1)}
-			/>
+			{!isOpinionsLoading ? (
+				<>
+					<TutorRatings opinions={opinions} />
+					<OpinionsPagination
+						currentPage={page}
+						pagesCount={Math.ceil(opinions?.count / OPINIONS_PAGE_SIZE) || 1}
+						nextPage={() => setPage((page) => page + 1)}
+						prevPage={() => setPage((page) => page - 1)}
+					/>
+				</>
+			) : (
+				<Spinner size='medium' />
+			)}
 		</div>
 	);
 }

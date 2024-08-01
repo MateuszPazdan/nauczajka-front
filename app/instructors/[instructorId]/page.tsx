@@ -33,7 +33,7 @@ async function Page({ params }: Params) {
 	);
 
 	return (
-		<div className='py-10 h-full max-w-7xl mx-auto w-full'>
+		<div className='py-10 h-full max-w-7xl mx-auto w-full '>
 			<div className='mb-14'>
 				<TutorInfoPageHeader tutorInfo={intructorDetails} />
 			</div>
