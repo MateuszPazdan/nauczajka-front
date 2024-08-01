@@ -22,7 +22,7 @@ function MakeReservationForm({
 			.unwrap()
 			.then(() => {
 				handleClick();
-                toast.success('Termin został zarezerwowany');
+				toast.success('Termin został zarezerwowany');
 			})
 			.catch((err) => {
 				toast.error(err.data.detail ?? 'Coś poszło nie tak');
@@ -48,7 +48,12 @@ function MakeReservationForm({
 				<Button type={'button'} onClick={handleClick} className='w-1/2'>
 					Anuluj
 				</Button>
-				<Button type={'submit'} className='w-1/2'>
+				<Button
+					type={'submit'}
+					className='w-1/2'
+					disabled={isMakeReservationLoading}
+					isLoading={isMakeReservationLoading}
+				>
 					Rezerwuj
 				</Button>
 			</div>
