@@ -2,7 +2,7 @@ import { getAllSkillsAction } from '../api/apiInstructors';
 import Spinner from '../components/Spinner';
 import Filters from '../components/instructors/Filters';
 import InstructorsList from '../components/instructors/InstructorsList';
-import {  Suspense } from 'react';
+import { Suspense } from 'react';
 
 export const metadata = {
 	title: 'Korepetytorzy',
@@ -21,7 +21,7 @@ async function page({ searchParams }: SearchParams) {
 				fallback={<Spinner size='large' />}
 				key={JSON.stringify(searchParams)}
 			>
-				<InstructorsList searchParams={searchParams} />;
+				<InstructorsList searchParams={searchParams} />
 			</Suspense>
 		</div>
 	);
