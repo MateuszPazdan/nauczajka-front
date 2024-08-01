@@ -7,7 +7,7 @@ import Button from '../Button';
 function VerifyEmailForm() {
 	const { isLoading, handleButton } = useVerifyEmail();
 	return (
-		<div className='flex justify-center items-center max-w-7xl mx-auto '>
+		<div className='flex min-h-full justify-center items-center max-w-7xl mx-auto '>
 			<div className='w-full md:w-1/2 rounded-md overflow-hidden md:shadow-myShadow'>
 				<div className='flex items-center justify-center w-full h-1/5 md:bg-main py-8'>
 					<span className='text-5xl md:text-white '>

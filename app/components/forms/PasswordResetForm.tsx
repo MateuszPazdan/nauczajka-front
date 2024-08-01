@@ -12,7 +12,7 @@ function PasswordResetForm() {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className='relative flex justify-center items-center '
+			className='relative min-h-full flex justify-center items-center '
 		>
 			<div className='sm:w-[400px] md:w-[500px] w-5/6 sm400:w-2/3 sm:px-10 py-10 pb-16 bg-white sm:shadow-myShadow shadow-shadowBlack rounded-xl gap-8 flex flex-col items-center'>
 				<div className='relative'>
