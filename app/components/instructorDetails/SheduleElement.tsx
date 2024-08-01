@@ -9,6 +9,7 @@ function SheduleElement({ sheduleObject }: { sheduleObject: SheduleObject }) {
 	const handleClick = () => {
 		setIsOpen((isOpen) => !isOpen);
 	};
+    console.log(sheduleObject);
 
 	return (
 		<>

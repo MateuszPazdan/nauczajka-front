@@ -55,7 +55,7 @@ function AddSheduleForm({
 				>
 					Anuluj
 				</Button>
-				<Button type='button' disabled={isLoading}>
+				<Button type='submit' disabled={isLoading}>
 					{isLoading ? <Spinner size='small' /> : 'Dodaj'}
 				</Button>
 			</div>
