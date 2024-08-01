@@ -8,7 +8,7 @@ interface BaseProps {
 }
 
 interface ButtonProps extends BaseProps {
-	type: 'button';
+	type: 'button' | 'submit';
 	href?: never;
 	disabled?: boolean;
 	onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
@@ -34,13 +34,16 @@ function Button({
 	isLoading,
 	className,
 }: Props) {
+	const isButton = type === 'button' || type === 'submit';
+
 	return (
 		<>
-			{type === 'button' && (
+			{isButton && (
 				<button
 					className={`px-6 py-2 rounded-xl text-white bg-main hover:bg-mainHover transition-colors duration-300 hover:cursor-pointer ${className}`}
 					disabled={disabled || isLoading}
 					onClick={onClick}
+					type={type}
 				>
 					{isLoading ? (
 						<span className='flex justify-center items-center'>

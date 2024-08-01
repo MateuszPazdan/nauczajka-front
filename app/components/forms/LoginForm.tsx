@@ -60,7 +60,7 @@ function LoginForm() {
 					</div>
 
 					<div className='mt-6'>
-						<Button type={'button'} isLoading={isLoading}>
+						<Button type={'submit'} isLoading={isLoading}>
 							<span>Zaloguj się</span>
 						</Button>
 					</div>

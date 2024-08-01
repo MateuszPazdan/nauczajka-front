@@ -93,7 +93,7 @@ function SendReportIssueForm() {
 				</span>
 			</span>
 
-			<Button type={'button'} isLoading={isLoading}>
+			<Button type={'submit'} isLoading={isLoading}>
 				Wyślij
 			</Button>
 		</form>

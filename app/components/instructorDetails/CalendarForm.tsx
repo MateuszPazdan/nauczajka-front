@@ -2,8 +2,9 @@
 
 import { useState } from 'react';
 import CalendarContainer from '../CalendarContainer';
+import SheduleList from './SheduleList';
 
-interface SheduleObject {
+export interface SheduleObject {
 	id: number;
 	start_time: string;
 	end_time: string;
@@ -32,30 +33,7 @@ function CalendarForm({ shedule }: { shedule: SheduleObject[] }) {
 			/>
 			{selected ? (
 				<div className='w-full'>
-					<div className='flex flex-wrap gap-2 justify-center overflow-auto py-2'>
-						{currentDay?.length > 0 ? (
-							currentDay?.map((sheduleObject: SheduleObject) => {
-								return (
-									<span
-										key={sheduleObject.id}
-										className='px-5 py-2 bg-white shadow-md shadow-whiteHover rounded-sm hover:cursor-pointer hover:bg-main hover:text-white transition-colors duration-300'
-									>
-										{new Date(sheduleObject?.start_time).getHours()}:
-										{String(
-											new Date(sheduleObject?.start_time).getMinutes()
-										).padStart(2, '0')}
-										{' - '}
-										{new Date(sheduleObject?.end_time).getHours()}:
-										{String(
-											new Date(sheduleObject?.end_time).getMinutes()
-										).padStart(2, '0')}{' '}
-									</span>
-								);
-							})
-						) : (
-							<span>Brak wolnych terminów w tym dniu</span>
-						)}
-					</div>
+					<SheduleList currentDay={currentDay} />
 				</div>
 			) : (
 				<span className='text-center w-1/2'>Wybierz dzień</span>

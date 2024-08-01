@@ -90,6 +90,13 @@ const instructorsApiSlice = apiSlice.injectEndpoints({
 				body: { skills: skills },
 			}),
 		}),
+		makeReservation: builder.mutation({
+			query: ({ sheduleId }) => ({
+				url: `/reservation/reservation/`,
+				method: 'POST',
+				body: { schedule_item: sheduleId },
+			}),
+		}),
 	}),
 });
 
@@ -105,4 +112,5 @@ export const {
 	useRetrieveAllTutorSkillsQuery,
 	useRetrieveTutorSkillsQuery,
 	useSetTutorSkillsMutation,
+	useMakeReservationMutation,
 } = instructorsApiSlice;

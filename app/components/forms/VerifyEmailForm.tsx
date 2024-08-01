@@ -20,7 +20,7 @@ function VerifyEmailForm() {
 						i znajdź odpowiedniego dla Ciebie korepetytora!
 					</p>
 
-					<Button type='button' isLoading={isLoading} onClick={handleButton}>
+					<Button type='submit' isLoading={isLoading} onClick={handleButton}>
 						Potwierdź
 					</Button>
 				</div>

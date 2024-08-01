@@ -113,7 +113,7 @@ function RegisterForm() {
 					/>
 
 					<div className='mt-5'>
-						<Button type={'button'} isLoading={isLoading}>
+						<Button type={'submit'} isLoading={isLoading}>
 							<span>Zarejestruj się</span>
 						</Button>
 					</div>

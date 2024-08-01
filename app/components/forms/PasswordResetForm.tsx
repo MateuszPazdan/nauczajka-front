@@ -34,7 +34,7 @@ function PasswordResetForm() {
 					<button type='submit' disabled={isLoading}>
 						{isLoading ? <Spinner size='small' /> : ''}
 					</button>
-					<Button type='button' isLoading={isLoading}>
+					<Button type='submit' isLoading={isLoading}>
 						Wyślij
 					</Button>
 				</div>

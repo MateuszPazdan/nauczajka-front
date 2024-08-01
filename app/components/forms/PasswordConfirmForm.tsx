@@ -52,7 +52,7 @@ function PasswordConfirmForm() {
 				/>
 
 				<div className='mt-6'>
-					<Button isLoading={isLoading} type='button'>
+					<Button isLoading={isLoading} type='submit'>
 						Resetuj
 					</Button>
 				</div>
