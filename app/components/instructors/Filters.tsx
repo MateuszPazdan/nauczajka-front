@@ -24,8 +24,7 @@ function Filters({ availableSkils }: { availableSkils: Skill[] }) {
 		useInstructorsFilters();
 
 	return (
-		<div className='w-full sm400:w-3/4 md800:max-w-[700px] px-2 mx-auto py-5 flex flex-col gap-2'>
-			<button ></button>
+		<div className='w-full sm400:w-3/4 md800:max-w-[700px] px-2 mx-auto py-5 flex flex-col gap-2 h-fit'>
 			<SearchInput
 				onClick={handleSearchFilter}
 				value={search}

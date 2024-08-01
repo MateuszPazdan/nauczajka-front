@@ -15,7 +15,7 @@ interface SearchParams {
 async function page({ searchParams }: SearchParams) {
 	const availableSkils = await getAllSkillsAction();
 	return (
-		<div className='flex flex-col w-full h-full max-w-7xl pt-8 mx-auto'>
+		<div className='flex flex-col w-full max-w-7xl pt-8 mx-auto mb-10'>
 			<Filters availableSkils={availableSkils} />
 			<Suspense
 				fallback={<Spinner size='large' />}

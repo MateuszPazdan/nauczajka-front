@@ -22,7 +22,7 @@ function Pagination({ data }: { data: any }) {
 
 	return (
 		<div>
-			<div className='flex justify-center gap-2'>
+			<div className='flex justify-center gap-2 self-end'>
 				<ArrowButton
 					disabled={Number(currentPage) <= 1}
 					onClick={() => handleChangePage(Number(currentPage) - 1)}
