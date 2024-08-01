@@ -7,7 +7,7 @@ import { useAppSelector } from '@/redux/hooks';
 import NavAvatar from './NavAvatar';
 import NavLink from './NavLink';
 import MobileList from './MobileList';
-import { CiBellOn,  CiChat1,  CiFaceMeh, CiLogout, CiUser } from 'react-icons/ci';
+import { CiBellOn, CiChat1, CiFaceMeh, CiLogout, CiUser } from 'react-icons/ci';
 import MobileListElement from './MobileListElement';
 import useLogout from '@/app/hooks/useLogout';
 
@@ -33,12 +33,12 @@ function NavMobile() {
 				isMenuOpen={isMenuOpen}
 			/>
 			<div
-				className={`-z-50 fixed top-24 right-0 bg-white w-full h-full transition-all max-w-[300px] sm300:w-[280px] border-l-2 border-whiteHover duration-300 ${
+				className={`-z-50 fixed top-24 right-0 bg-white w-full h-[calc(100%-96px)] overflow-scroll transition-all max-w-[300px] sm300:w-[280px] border-l-2 border-whiteHover duration-300 ${
 					!isMenuOpen ? 'translate-x-[100%]' : 'translate-x-0'
 				}`}
 			>
 				{isAuthenticated ? (
-					<div className='w-full bg-whiteHover'>
+					<div className='w-full bg-whiteHover h-fit'>
 						<NavAvatar
 							user={user}
 							href='/account/settings'
