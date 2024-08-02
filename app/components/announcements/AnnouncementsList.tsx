@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import AnnouncementElement from './AnnouncementElement';
 import Spinner from '../Spinner';
 
@@ -12,7 +12,7 @@ function AnnouncementsList({ data }: any) {
 	const announcementsContainer = useRef<HTMLDivElement>(null);
 	const [nextLink, setNextLink] = useState(data?.next);
 
-	async function handleLoadMoreAnnoucements() {
+	const handleLoadMoreAnnouncements = useCallback(async () => {
 		if (!nextLink) return;
 		setIsLoading(true);
 		const response = await fetch(nextLink, { credentials: 'include' });
@@ -23,18 +23,18 @@ function AnnouncementsList({ data }: any) {
 			...prevAnnouncements,
 			...data.results,
 		]);
-	}
+	}, [nextLink]);
 
-	// useEffect(() => {
-	// 	if (announcementsContainer.current) {
-	// 		if (
-	// 			announcementsContainer.current.scrollHeight <=
-	// 			announcementsContainer.current.clientHeight
-	// 		) {
-	// 			handleLoadMoreAnnoucements();
-	// 		}
-	// 	}
-	// }, [handleLoadMoreAnnoucements]);
+	useEffect(() => {
+		if (announcementsContainer.current) {
+			if (
+				announcementsContainer.current.scrollHeight <=
+				announcementsContainer.current.clientHeight
+			) {
+				handleLoadMoreAnnouncements();
+			}
+		}
+	}, [handleLoadMoreAnnouncements]);
 
 	function handleScroll() {
 		if (announcementsContainer.current) {
@@ -43,7 +43,7 @@ function AnnouncementsList({ data }: any) {
 			const scrollFromBottom = scrollHeight - scrollTop - clientHeight;
 
 			if (scrollFromBottom < 5 && !isLoading) {
-				handleLoadMoreAnnoucements();
+				handleLoadMoreAnnouncements();
 				announcementsContainer.current.scrollTop =
 					scrollHeight - clientHeight - 10;
 			}
