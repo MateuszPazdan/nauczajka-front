@@ -18,6 +18,34 @@ export interface TutorSkills {
 	skills: string[];
 }
 
+export interface Reservation {
+	id: number;
+	schedule_item: {
+		id: number;
+		start_time: string;
+		end_time: string;
+		is_reserved: boolean;
+	};
+	is_confirmed: boolean;
+	created_at: string;
+	tutor:
+		| {
+				id: string;
+				first_name: string;
+				last_name: string;
+				profile_image: string;
+		  }
+		| number;
+	user:
+		| {
+				id: string;
+				first_name: string;
+				last_name: string;
+				profile_image: string;
+		  }
+		| string;
+}
+
 const instructorsApiSlice = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
 		makeOpinion: builder.mutation({
@@ -97,6 +125,12 @@ const instructorsApiSlice = apiSlice.injectEndpoints({
 				body: { schedule_item: sheduleId },
 			}),
 		}),
+		getUserReservations: builder.query<Reservation[], { role: string }>({
+			query: ({ role }) => ({
+				url: `/reservation/reservation/${role}/me/`,
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
@@ -113,4 +147,5 @@ export const {
 	useRetrieveTutorSkillsQuery,
 	useSetTutorSkillsMutation,
 	useMakeReservationMutation,
+	useGetUserReservationsQuery,
 } = instructorsApiSlice;

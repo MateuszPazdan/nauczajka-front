@@ -4,15 +4,15 @@ function SelectRole({
 	role,
 	setRole,
 }: {
-	role: 'tutor' | 'student';
-	setRole: Dispatch<React.SetStateAction<'tutor' | 'student'>>;
+	role: 'tutor' | 'user';
+	setRole: Dispatch<React.SetStateAction<'tutor' | 'user'>>;
 }) {
 	return (
 		<div className='w-full flex rounded-md border-[1px] border-whiteHover overflow-hidden'>
 			<button
-				onClick={() => setRole('student')}
+				onClick={() => setRole('user')}
 				className={`w-1/2 text-center p-1 transition-colors duration-300  ${
-					role === 'student'
+					role === 'user'
 						? 'bg-main text-white hover:bg-mainHover hover:text-white'
 						: 'hover:bg-whiteHover'
 				}`}
