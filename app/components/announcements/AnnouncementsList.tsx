@@ -19,10 +19,15 @@ function AnnouncementsList({ data }: any) {
 		const data = await response.json();
 		setIsLoading(false);
 		setNextLink(data?.next ?? null);
-		setAllAnnouncements((prevAnnouncements) => [
-			...prevAnnouncements,
-			...data.results,
-		]);
+		setAllAnnouncements((prevAnnouncements) => {
+			const announcementsIds = new Set(
+				prevAnnouncements.map((announcement) => announcement.id)
+			);
+			const newAnnouncements = data.results.filter(
+				(announcement: any) => !announcementsIds.has(announcement.id)
+			);
+			return [...prevAnnouncements, ...newAnnouncements];
+		});
 	}, [nextLink]);
 
 	useEffect(() => {
