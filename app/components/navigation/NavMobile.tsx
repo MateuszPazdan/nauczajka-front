@@ -10,6 +10,7 @@ import MobileList from './MobileList';
 import {
 	CiBellOn,
 	CiBookmark,
+	CiBullhorn,
 	CiChat1,
 	CiFaceMeh,
 	CiLogout,
@@ -69,6 +70,13 @@ function NavMobile() {
 						onClick={handleCloseMenu}
 					>
 						Korepetytorzy
+					</MobileListElement>
+					<MobileListElement
+						icon={<CiBullhorn />}
+						href='/announcements'
+						onClick={handleCloseMenu}
+					>
+						Ogłoszenia
 					</MobileListElement>
 					<MobileListElement
 						icon={<CiBellOn />}
