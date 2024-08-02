@@ -34,7 +34,7 @@ function SendReportIssueForm() {
 			className='flex flex-col gap-5 w-full max-w-[500px]'
 		>
 			<div className='flex flex-col'>
-				<span className='text-xl text-center pt-5 text-main'>
+				<span className='text-2xl text-center pt-5 text-main'>
 					Formularz zgłoszeniowy
 				</span>
 				<div className='w-full h-px rounded-md my-5 bg-whiteHover '></div>

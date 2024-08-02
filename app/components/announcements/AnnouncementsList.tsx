@@ -55,7 +55,7 @@ function AnnouncementsList({ data }: any) {
 	}
 	return (
 		<div
-			className='px-2 pb-3 w-full flex flex-col gap-2 overflow-y-scroll'
+			className='px-2 pt-5 pb-5 w-full flex flex-col gap-2 overflow-y-scroll'
 			onScroll={handleScroll}
 			ref={announcementsContainer}
 		>

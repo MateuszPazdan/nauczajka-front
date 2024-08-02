@@ -10,7 +10,7 @@ function YourReportsList() {
 	return (
 		<div className='flex flex-col w-full gap-5 max-w-[800px] pb-10'>
 			<div className='flex flex-col max-w-[500px] mx-auto w-full'>
-				<span className='text-xl text-center pt-5 text-main'>
+				<span className='text-2xl text-center pt-5 text-main'>
 					Twoje zgłoszenia
 				</span>
 				<div className='w-full h-px rounded-md my-5 bg-whiteHover '></div>
