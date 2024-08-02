@@ -8,7 +8,13 @@ import NavAvatar from './NavAvatar';
 import useLogout from '@/app/hooks/useLogout';
 import MobileList from './MobileList';
 import MobileListElement from './MobileListElement';
-import { CiChat1, CiFaceMeh, CiLogout, CiSliderVertical } from 'react-icons/ci';
+import {
+	CiBookmark,
+	CiChat1,
+	CiFaceMeh,
+	CiLogout,
+	CiSliderVertical,
+} from 'react-icons/ci';
 import { useState } from 'react';
 import NotificationComponent from './NotificationComponent';
 import Image from 'next/image';
@@ -91,6 +97,13 @@ function NavDesktop() {
 								onClick={handleCloseMenu}
 							>
 								Wiadomości
+							</MobileListElement>
+							<MobileListElement
+								icon={<CiBookmark />}
+								href='/account/reservations'
+								onClick={handleCloseMenu}
+							>
+								Rezerwacje
 							</MobileListElement>
 							<MobileListElement
 								icon={<CiSliderVertical />}

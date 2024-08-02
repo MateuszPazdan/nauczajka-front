@@ -7,7 +7,14 @@ import { useAppSelector } from '@/redux/hooks';
 import NavAvatar from './NavAvatar';
 import NavLink from './NavLink';
 import MobileList from './MobileList';
-import { CiBellOn, CiChat1, CiFaceMeh, CiLogout, CiUser } from 'react-icons/ci';
+import {
+	CiBellOn,
+	CiBookmark,
+	CiChat1,
+	CiFaceMeh,
+	CiLogout,
+	CiUser,
+} from 'react-icons/ci';
 import MobileListElement from './MobileListElement';
 import useLogout from '@/app/hooks/useLogout';
 
@@ -77,6 +84,14 @@ function NavMobile() {
 					>
 						Wiadomości
 					</MobileListElement>
+					<MobileListElement
+						icon={<CiBookmark />}
+						href='/account/reservations'
+						onClick={handleCloseMenu}
+					>
+						Rezerwacje
+					</MobileListElement>
+
 					<MobileListElement
 						icon={<CiFaceMeh />}
 						href='/report-issue'
