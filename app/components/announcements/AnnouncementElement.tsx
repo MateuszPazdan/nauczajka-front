@@ -6,10 +6,12 @@ import { IoIosArrowDown } from 'react-icons/io';
 function AnnouncementElement({ announcement }: any) {
 	const [isExpanded, setIsExpanded] = useState(false);
 	const tutor = announcement?.tutor;
-	
+
 	return (
 		<button
-			className='w-full flex flex-col  p-4 rounded-md hover:bg-whiteHover border-[2px] border-whiteHover transition-colors duration-300 '
+			className={`w-full flex flex-col p-4 rounded-md hover:bg-whiteHover group announcement ${
+				isExpanded && 'bg-whiteHover hover:bgwhite'
+			} border-[2px] border-whiteHover transition-colors duration-300 `}
 			onClick={() => setIsExpanded(!isExpanded)}
 		>
 			<div className='w-full flex flex-row justify-between items-center'>
@@ -25,7 +27,7 @@ function AnnouncementElement({ announcement }: any) {
 					</span>
 				</div>
 				<span
-					className={`text-2xl transition-all duration-300 ${
+					className={`text-2xl transition-all duration-300 group-[.announcement]:group-hover:text-main ${
 						isExpanded && 'rotate-180 '
 					}`}
 				>
