@@ -148,7 +148,12 @@ function AddAnnouncementForm({
 				>
 					Anuluj
 				</Button>
-				<Button type='submit' className=' min-w-28'>
+				<Button
+					type='submit'
+					className=' min-w-28'
+					disabled={isAnnouncementIsLoading}
+					isLoading={isAnnouncementIsLoading}
+				>
 					Dodaj
 				</Button>
 			</div>
