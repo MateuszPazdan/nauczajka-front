@@ -1,12 +1,26 @@
+'use client';
+
+import { useState } from 'react';
+import Modal from '../Modal';
+import AddAnnouncementForm from '../forms/AddAnnouncementForm';
+
 function AddAnnouncementComponent() {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
 	return (
-		<div className='w-full flex rounded-md border-[1px] border-whiteHover'>
+		<>
 			<button
-				className={`rounded-md w-full text-center hover:bg-mainHover bg-main text-white p-1 transition-colors duration-300 `}
+				className={`rounded-md w-full text-center hover:bg-mainHover bg-main text-white p-2 transition-colors duration-300`}
+				onClick={() => setIsModalOpen(true)}
 			>
 				Dodaj ogłoszenie
 			</button>
-		</div>
+			{isModalOpen && (
+				<Modal>
+					<AddAnnouncementForm setIsModalOpen={setIsModalOpen} />
+				</Modal>
+			)}
+		</>
 	);
 }
 

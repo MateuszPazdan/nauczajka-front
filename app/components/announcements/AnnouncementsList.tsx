@@ -3,8 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import AnnouncementElement from './AnnouncementElement';
 import Spinner from '../Spinner';
+import AddAnnouncementComponent from './AddAnnouncementComponent';
+import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 
 function AnnouncementsList({ data }: any) {
+	const { data: user, isLoading: isUserLoading } = useRetrieveUserQuery();
 	const [allAnnouncements, setAllAnnouncements] = useState<any[]>(
 		data?.results ?? []
 	);
@@ -58,24 +61,37 @@ function AnnouncementsList({ data }: any) {
 			}
 		}
 	}
+
+	if (isUserLoading) return <Spinner size='large' />;
+
 	return (
-		<div
-			className='px-2 pt-5 pb-5 w-full flex flex-col gap-2 overflow-y-scroll'
-			onScroll={handleScroll}
-			ref={announcementsContainer}
-		>
-			{allAnnouncements.length > 0 ? (
-				allAnnouncements.map((announcement: any) => (
-					<AnnouncementElement
-						announcement={announcement}
-						key={announcement.id}
-					/>
-				))
-			) : (
-				<span>Brak ogłoszeń</span>
+		<>
+			<span className='text-2xl text-center pt-5 text-main'>Ogłoszenia</span>
+			<div className='w-full h-px rounded-md my-5 bg-whiteHover '></div>
+			{user?.is_tutor && (
+				<div className='w-full mx-auto px-2'>
+					<AddAnnouncementComponent />
+					<div className='w-full h-px rounded-md mt-5 bg-whiteHover '></div>
+				</div>
 			)}
-			{isLoading && <Spinner size='small' />}
-		</div>
+			<div
+				className='px-2 pt-5 pb-5 w-full flex flex-col gap-2 overflow-y-scroll'
+				onScroll={handleScroll}
+				ref={announcementsContainer}
+			>
+				{allAnnouncements.length > 0 ? (
+					allAnnouncements.map((announcement: any) => (
+						<AnnouncementElement
+							announcement={announcement}
+							key={announcement.id}
+						/>
+					))
+				) : (
+					<span>Brak ogłoszeń</span>
+				)}
+				{isLoading && <Spinner size='small' />}
+			</div>
+		</>
 	);
 }
 
