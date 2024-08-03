@@ -40,12 +40,7 @@ function AnnouncementElement({ announcement }: any) {
 				}`}
 			>
 				<p className='text-left font-bold pt-5'>Opis:</p>
-				<p className='py-2 text-sm text-left'>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi dolores
-					fugiat quaerat, a explicabo, id repudiandae amet ratione molestiae
-					eius repellendus magni iure eaque assumenda? Saepe inventore ipsum
-					explicabo assumenda esse placeat itaque totam voluptatem vero officiis
-				</p>
+				<p className='py-2 text-sm text-left'>{announcement?.description}</p>
 				<p className='text-left font-bold pt-5 pb-2'>Prowadzący:</p>
 				<div className='flex items-center gap-5'>
 					<Image

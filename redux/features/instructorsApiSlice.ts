@@ -131,6 +131,19 @@ const instructorsApiSlice = apiSlice.injectEndpoints({
 				method: 'GET',
 			}),
 		}),
+		getAnnouncements: builder.query<any, void>({
+			query: () => ({
+				url: '/announcement/announcements/',
+				method: 'GET',
+			}),
+		}),
+		addAnnouncement: builder.mutation({
+			query: ({ tags, title, description }) => ({
+				url: '/announcement/announcement/',
+				method: 'POST',
+				body: { tags, title, description },
+			}),
+		}),
 	}),
 });
 
@@ -148,4 +161,6 @@ export const {
 	useSetTutorSkillsMutation,
 	useMakeReservationMutation,
 	useGetUserReservationsQuery,
+	useGetAnnouncementsQuery,
+	useAddAnnouncementMutation,
 } = instructorsApiSlice;

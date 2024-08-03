@@ -5,9 +5,15 @@ import AnnouncementElement from './AnnouncementElement';
 import Spinner from '../Spinner';
 import AddAnnouncementComponent from './AddAnnouncementComponent';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
+import { useGetAnnouncementsQuery } from '@/redux/features/instructorsApiSlice';
 
-function AnnouncementsList({ data }: any) {
+function AnnouncementsList() {
 	const { data: user, isLoading: isUserLoading } = useRetrieveUserQuery();
+	const {
+		data,
+		isLoading: isAnnouncementsLoading,
+		isSuccess,
+	} = useGetAnnouncementsQuery();
 	const [allAnnouncements, setAllAnnouncements] = useState<any[]>(
 		data?.results ?? []
 	);
@@ -62,7 +68,14 @@ function AnnouncementsList({ data }: any) {
 		}
 	}
 
-	if (isUserLoading) return <Spinner size='large' />;
+	useEffect(() => {
+		if (isSuccess) {
+			setAllAnnouncements(data?.results ?? []);
+			setNextLink(data?.next);
+		}
+	}, [data, isSuccess]);
+
+	if (isUserLoading || isAnnouncementsLoading) return <Spinner size='large' />;
 
 	return (
 		<>

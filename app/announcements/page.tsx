@@ -9,13 +9,9 @@ export const metadata = {
 export const revalidate = 0;
 
 async function Page() {
-	const data = await getAnnouncements();
-
 	return (
 		<div className='flex flex-col items-center min-h-full w-full mx-auto max-w-[600px] pt-10 h-full'>
-			<Suspense key={data}>
-				<AnnouncementsList data={data} />
-			</Suspense>
+			<AnnouncementsList />
 		</div>
 	);
 }
