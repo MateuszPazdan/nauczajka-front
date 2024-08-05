@@ -1,7 +1,9 @@
+import Header from './components/homepage/Header';
+
 export default async function Page() {
 	return (
-		<main className=''>
-			<p className=''>Tu narazie jest ściernisko, ale bedzie San Francisco</p>
-		</main>
+		<div className='min-h-full px-2'>
+			<Header />
+		</div>
 	);
 }
