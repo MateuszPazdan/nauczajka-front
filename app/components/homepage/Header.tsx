@@ -2,13 +2,13 @@ import Link from 'next/link';
 
 function Header() {
 	return (
-		<div className='max-w-7xl lg:h-[calc(100vh-96px)] max-h-[700px] py-10 md:px-5 px-2 flex md:items-center mx-auto'>
-			<div className='w-full mx-auto xl:pr-10 flex flex-col gap-10'>
-				<p className='font-bold text-5xl sm:text-6xl leading-[1.2]'>
+		<div className='max-w-7xl lg:h-[calc(100vh-96px)] max-h-[700px] py-10 sm500:px-5 px-2 flex md:items-center mx-auto'>
+			<div className='w-full items-center sm500:items-start text-center sm500:text-start mx-auto xl:pr-10 flex flex-col gap-10'>
+				<p className='font-bold text-[2.5rem] sm:text-6xl leading-[1.2]'>
 					Ucz się i nauczaj z pasją dzięki{' '}
 					<span className='text-mainSalmon'>Nauczajce</span>!
 				</p>
-				<p className='text-md'>
+				<p className=' text-sm sm:text-md'>
 					Innowacyjna platforma łącząca korepetytorów z uczniami. Znajdź swojego
 					nauczyciela lub zacznij zarabiać na swojej pasji już dziś!
 				</p>

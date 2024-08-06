@@ -8,16 +8,33 @@
 		height: 100%;
 		margin: 0;
 	}
-
-	.embla {
-		overflow: hidden;
+	.half-a-border-on-right {
+		border-right: 3px dashed black;
+		position: relative;
 	}
-	.embla__container {
-		display: flex;
+	.half-a-border-on-left {
+		border-left: 3px dashed black;
+		position: relative;
 	}
-	.embla__slide {
-		flex: 0 0 30%;
-		min-width: 0;
+	.half-a-border-on-left:after,
+	.half-a-border-on-right:after {
+		padding: 0;
+		margin: 0;
+		display: block; /* probably not really needed? */
+		content: '';
+		background-color: white;
+		position: absolute;
+		bottom: 0;
+	}
+	.half-a-border-on-right:after {
+		right: -3px;
+		width: 3.1px;
+		height: 50%;
+	}
+	.half-a-border-on-left:after {
+		left: -3px;
+		width: 3.1px;
+		height: 50%;
 	}
 
 	.remove-arrow::-webkit-inner-spin-button,

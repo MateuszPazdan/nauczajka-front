@@ -10,7 +10,7 @@ function HowToStartSteps() {
 				Czy wiesz, że...?
 			</SectionTitle>
 
-			<span className='mx-auto w-4/5 border-t-[3px] border-black border-dashed mt-5'></span>
+			<span className='mx-auto w-4/5 border-t-[3px] border-gray border-dashed mt-5'></span>
 
 			<div className='flex flex-wrap justify-around py-16 gap-5'>
 				<IconCard icon={<PiBookLight />} text='Wybierz przedmiot' />

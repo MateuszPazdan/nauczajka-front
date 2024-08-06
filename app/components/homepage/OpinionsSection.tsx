@@ -65,7 +65,7 @@ function OpinionsSection() {
 	}, [emblaApi]);
 
 	return (
-		<div className='bg-main pt-20 pb-32 mb-20'>
+		<div className='bg-main pt-20 pb-32'>
 			<div className='max-w-7xl mx-auto px-2 flex flex-col gap-14'>
 				<p className='text-4xl sm:text-5xl mb-5S text-white font-semibold text-center'>
 					Kilka słów od was
