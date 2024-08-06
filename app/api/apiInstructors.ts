@@ -74,7 +74,7 @@ export async function getAllSkillsAction() {
 		const data = await response.json();
 		return data;
 	} catch (error) {
-		throw new Error('Nie udało się pobrać listy umiejętności');
+		console.log('Nie udało się pobrać listy umiejętności');
 	}
 }
 
