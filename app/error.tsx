@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 
-export default function Error({ error, reset }: any) {
+export default function Error({ error }: any) {
 	return (
 		<main className='flex justify-center items-center flex-col gap-6 min-h-full text-center'>
 			<div className='flex gap-5 items-center flex-col w-[300px] '>
