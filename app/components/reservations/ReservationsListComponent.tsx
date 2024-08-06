@@ -14,6 +14,12 @@ function ReservationsListComponent() {
 
 	const { data: reservations, isLoading: isReservationsLoading } =
 		useGetUserReservationsQuery({ role });
+	const sortedReservations = reservations?.slice()?.sort((a, b) => {
+		return (
+			new Date(a.schedule_item.start_time).getTime() -
+			new Date(b.schedule_item.start_time).getTime()
+		);
+	});
 
 	return (
 		<div className='mx-auto max-w-7xl '>
@@ -35,7 +41,7 @@ function ReservationsListComponent() {
 					<Spinner size='medium' />
 				) : (
 					<div className='mb-20'>
-						{reservations?.map((reservation) => (
+						{sortedReservations?.map((reservation) => (
 							<ReservationElement
 								key={reservation.id}
 								reservation={reservation}

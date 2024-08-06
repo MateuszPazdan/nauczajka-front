@@ -119,17 +119,21 @@ function ConversationsList({
 				onScroll={handleScroll}
 				className='flex flex-col gap-2 w-full h-full p-2 overflow-y-scroll'
 			>
-				{allChats?.map((chat) => (
-					<ConversationElement
-						choosenChat={choosenChat}
-						chat={chat}
-						key={chat.id}
-						onClick={() => {
-							setChoosenChat(chat);
-						}}
-						userData={userData}
-					/>
-				))}
+				{allChats.length > 0 ? (
+					allChats?.map((chat) => (
+						<ConversationElement
+							choosenChat={choosenChat}
+							chat={chat}
+							key={chat.id}
+							onClick={() => {
+								setChoosenChat(chat);
+							}}
+							userData={userData}
+						/>
+					))
+				) : (
+					<span className='text-center text-md py-10'>Brak konwersacji</span>
+				)}
 				{isLoading && <Spinner size='small' color='text-main' />}
 			</div>
 		</div>

@@ -100,7 +100,7 @@ function AnnouncementsList() {
 						/>
 					))
 				) : (
-					<span>Brak ogłoszeń</span>
+					<span className='text-center'>Brak ogłoszeń</span>
 				)}
 				{isLoading && <Spinner size='small' />}
 			</div>

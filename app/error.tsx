@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Error({ error }: any) {
@@ -8,7 +9,13 @@ export default function Error({ error }: any) {
 			<div className='flex gap-5 items-center flex-col w-[300px] '>
 				<h1 className='text-5xl font-semibold'>Oops!</h1>
 				<p className='text-lg font-bold text-mainSalmon'>{error.message}</p>
-				<img src='/error.png' alt='Error image' className='w-[200px] ' />
+				<Image
+					src='/error.png'
+					alt='obrazek błędu'
+					height={0}
+					className='w-[200px] aspect-auto'
+					width={200}
+				/>
 			</div>
 			<Link
 				href='/'
