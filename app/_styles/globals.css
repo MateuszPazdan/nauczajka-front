@@ -9,6 +9,17 @@
 		margin: 0;
 	}
 
+	.embla {
+		overflow: hidden;
+	}
+	.embla__container {
+		display: flex;
+	}
+	.embla__slide {
+		flex: 0 0 30%;
+		min-width: 0;
+	}
+
 	.remove-arrow::-webkit-inner-spin-button,
 	.remove-arrow::-webkit-outer-spin-button {
 		-webkit-appearance: brak;
