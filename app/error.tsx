@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Error({ error }: any) {
 	return (
-		<main className='flex justify-center items-center flex-col gap-6 min-h-full text-center'>
+		<div className='flex justify-center items-center flex-col gap-6 min-h-full text-center'>
 			<div className='flex gap-5 items-center flex-col w-[300px] '>
 				<h1 className='text-5xl font-semibold'>Oops!</h1>
 				<p className='text-lg font-bold text-mainSalmon'>{error.message}</p>
@@ -23,6 +23,6 @@ export default function Error({ error }: any) {
 			>
 				Wróć na stronę główną
 			</Link>
-		</main>
+		</div>
 	);
 }

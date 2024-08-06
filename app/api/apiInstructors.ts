@@ -99,3 +99,17 @@ export async function getInstructorDetailsAction(instructorId: number) {
 		throw new Error('Nie udało się pobrać danych korepetytora');
 	}
 }
+
+export async function getBestRatings(numberOfRatings: number) {
+	const response = await fetch(
+		`${API_KEY}/api/user/ratings/best/?number_of_ratings=${numberOfRatings}`,
+		{
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		}
+	);
+	const data = await response.json();
+	return data;
+}
