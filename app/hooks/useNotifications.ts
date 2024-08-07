@@ -4,6 +4,7 @@ import {
 } from '@/redux/features/authApiSlice';
 import { use, useCallback, useEffect, useRef, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
+import { WS_KEY } from '../api/apiAuth';
 
 export default function useNotifications() {
 	const notificationsContaner = useRef<HTMLDivElement>(null);
@@ -23,7 +24,7 @@ export default function useNotifications() {
 	);
 	const notifications = notificationsResponse?.results;
 	const { lastJsonMessage }: { lastJsonMessage: Notification } = useWebSocket(
-		'ws://localhost:8000/ws/notification/user/',
+		`${WS_KEY}/ws/notification/user/`,
 		{
 			shouldReconnect: () => true,
 			reconnectInterval: 1000,

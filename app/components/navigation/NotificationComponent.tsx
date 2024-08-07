@@ -2,6 +2,7 @@ import { CiBellOn } from 'react-icons/ci';
 import NotificationsList from './NotificationsList';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import useWebSocket from 'react-use-websocket';
+import { WS_KEY } from '@/app/api/apiAuth';
 
 function NotificationComponent({
 	isMenuOpen,
@@ -19,7 +20,7 @@ function NotificationComponent({
 	}: {
 		lastJsonMessage: { unread_notification_count: number };
 		sendJsonMessage: any;
-	} = useWebSocket('ws://localhost:8000/ws/notification/user/', {
+	} = useWebSocket(`${WS_KEY}/ws/notification/user/`, {
 		shouldReconnect: () => true,
 		reconnectInterval: 3000,
 	});

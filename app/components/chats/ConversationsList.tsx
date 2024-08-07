@@ -13,6 +13,7 @@ import useWebSocket from 'react-use-websocket';
 import Spinner from '../Spinner';
 import ConversationElement from './ConversationElement';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
+import { WS_KEY } from '@/app/api/apiAuth';
 
 interface ConversationsListProps {
 	setChoosenChat: Dispatch<SetStateAction<Chat | null>>;
@@ -42,7 +43,7 @@ function ConversationsList({
 		lastJsonMessage,
 		readyState,
 	}: { lastJsonMessage: Chat | null; readyState: any } = useWebSocket(
-		'ws://localhost:8000/ws/chat/list/',
+		`${WS_KEY}/ws/chat/list/`,
 		{ shouldReconnect: () => true, reconnectInterval: 1000 }
 	);
 

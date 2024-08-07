@@ -19,6 +19,7 @@ import MessageArea from './MessageArea';
 import Spinner from '../Spinner';
 import MessageComponent from './MessageComponent';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
+import { WS_KEY } from '@/app/api/apiAuth';
 
 interface ConversationProps {
 	setChoosenChat: Dispatch<SetStateAction<Chat | null>>;
@@ -53,7 +54,7 @@ function Conversation({ setChoosenChat, choosenChat }: ConversationProps) {
 		sendJsonMessage,
 		lastJsonMessage,
 	}: { sendJsonMessage: any; lastJsonMessage: Message } = useWebSocket(
-		`ws://localhost:8000/ws/chat/${conversationId}/`,
+		`${WS_KEY}/ws/chat/${conversationId}/`,
 		{ shouldReconnect: () => true, reconnectInterval: 1000 }
 	);
 
