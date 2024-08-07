@@ -3,10 +3,10 @@ import Link from 'next/link';
 export default function NotFound() {
 	return (
 		<div className='flex justify-center items-center flex-col gap-6 min-h-full text-center'>
-			<div className='flex gap-5 items-center flex-col w-[300px] '>
-				<p className='text-[6rem] font-light'>404</p>
-				{/* <p className='text-5xl font-semibold'>Nie znaleziono!</p> */}
-				<p className='text-lg font-bold text-mainSalmon'>
+			<div className='flex gap-2 items-center flex-col w-[300px] '>
+				<p className='text-[6rem] font-light leading-none '>404</p>
+
+				<p className='text-lg font-bold text-mainSalmon pb-2'>
 					Nie udało się odnaleźć takiej strony
 				</p>
 				<Image

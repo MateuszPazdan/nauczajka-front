@@ -39,8 +39,3 @@ function Opinion({
 }
 
 export default Opinion;
-// w-1/3 flex flex-col justify-around gap-5 p-5 bg-white rounded-md max-w-[500px] ${
-// 	size === 'xl'
-// 		? 'flex-[5] scale-110'
-// 		: 'flex-[4] shadow-sm shadow-whiteHover'
-// }
