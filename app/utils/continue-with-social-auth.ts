@@ -9,7 +9,7 @@ export default async function continueWithSocialAuth(
 		const url = `${API_KEY}/api/o/${provider}/?redirect_uri=${
 			process.env.NODE_ENV === 'production'
 				? process.env.NEXT_PUBLIC_REDIRECT_URL
-				: 'http://localhost:3000'
+				: 'https://nauczajka.vercel.app'
 		}/auth/${redirect}`;
 		const response = await fetch(url, {
 			method: 'GET',
