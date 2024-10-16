@@ -1,4 +1,3 @@
-
 import { CiLocationOn } from 'react-icons/ci';
 import { Tutor } from './InstructorsList';
 import Image from 'next/image';
