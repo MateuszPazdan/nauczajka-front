@@ -25,7 +25,6 @@ function OpinionsSection({ ratings }: { ratings: Rating[] }) {
 		},
 		[Autoplay()]
 	);
-	console.log(ratings);
 
 	return (
 		<div className='bg-main pt-20 pb-32'>
