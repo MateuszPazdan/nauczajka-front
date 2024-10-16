@@ -65,5 +65,5 @@ export const {
 	useCreateChatMutation,
 	useGetChatQuery,
 	useGetConversationDetailsQuery,
-	useSendFileMutation,
+useSendFileMutation,	
 } = chatsApiSlice;

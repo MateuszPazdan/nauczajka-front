@@ -21,7 +21,7 @@ function Pagination({ data }: { data: any }) {
 	if (pagesCount < 1) return null;
 
 	return (
-		<div>
+		<div className=''>
 			<div className='flex justify-center gap-2 self-end'>
 				<ArrowButton
 					disabled={Number(currentPage) <= 1}
