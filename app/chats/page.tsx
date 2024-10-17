@@ -6,17 +6,19 @@ import ConversationsList from '../components/chats/ConversationsList';
 import { Chat } from '@/redux/features/chatsApiSlice';
 import { CiChat1 } from 'react-icons/ci';
 import { API_KEY } from '../api/apiAuth';
+import { useSearchParams } from 'next/navigation';
 
-function Page({ searchParams }: any) {
+function Page() {
 	const [choosenChat, setChoosenChat] = useState<Chat | null>(null);
+	const params = useSearchParams();
 
 	useEffect(() => {
-		if (searchParams?.conversation_id) {
+		if (params.get('conversation_id')) {
 			handleOpenChat();
 		}
 		async function handleOpenChat() {
 			const response = await fetch(
-				`${API_KEY}/api/chat/conversation/${searchParams.conversation_id}/`,
+				`${API_KEY}/api/chat/conversation/${params.get('conversation_id')}/`,
 				{ credentials: 'include' }
 			);
 			if (!response.ok) {
@@ -25,7 +27,7 @@ function Page({ searchParams }: any) {
 			const data = await response.json();
 			setChoosenChat(data);
 		}
-	}, [searchParams?.conversation_id]);
+	}, [params]);
 
 	return (
 		<div className='bg-whiteHover w-full mx-auto flex h-full justify-center items-center'>
@@ -56,7 +58,9 @@ function Page({ searchParams }: any) {
 							<span className='text-5xl'>
 								<CiChat1 />
 							</span>
-							<span className='text-center px-2'>Wybierz konwersację, aby ją przeczytać</span>
+							<span className='text-center px-2'>
+								Wybierz konwersację, aby ją przeczytać
+							</span>
 						</div>
 					)}
 				</div>
