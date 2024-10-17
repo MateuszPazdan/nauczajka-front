@@ -12,6 +12,8 @@ interface SearchParams {
 	searchParams: { query?: string; page?: string; [key: string]: any };
 }
 
+export const revalidate = 60;
+
 async function page({ searchParams }: SearchParams) {
 	const availableSkils = await getAllSkillsAction();
 	return (
