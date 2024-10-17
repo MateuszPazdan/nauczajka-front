@@ -25,12 +25,12 @@ function MessageComponent({ userData, message }: MessageComponentProps) {
 			}`}
 		>
 			{createdBy?.id !== userData?.id && (
-				<span className='relative w-10 h-10'>
+				<span className='relative w-10 h-10 min-w-10'>
 					<Image
 						src={`${createdBy?.profile_image}`}
 						alt='Avatar'
 						fill
-						className=' rounded-full'
+						className='aspect-square rounded-full'
 					/>
 				</span>
 			)}
