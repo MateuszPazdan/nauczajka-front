@@ -9,11 +9,21 @@ import Link from 'next/link';
 import Button from '../Button';
 import { FcGoogle } from 'react-icons/fc';
 import { continueWithGoogle } from '@/app/utils';
+import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
+import Spinner from '../Spinner';
 
 function LoginForm() {
 	const width = useUserWidth();
 	const { errors, formRegister, getValues, isLoading, onSubmit, handleSubmit } =
 		useLogin();
+	const { isAuthenticated, isLoading: isAuthenticating } = useAppSelector(
+		(state) => state.auth
+	);
+	const router = useRouter();
+	if (isAuthenticating) return <Spinner size='large' />;
+
+	if (isAuthenticated) router.push('/');
 
 	return (
 		<>

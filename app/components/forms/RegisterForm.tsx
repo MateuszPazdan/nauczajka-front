@@ -12,6 +12,9 @@ import SelectInput from '@/app/components/SelectInput';
 import useRegister from '@/app/hooks/useRegister';
 import { useUserWidth } from '@/app/hooks/useUserWidth';
 import Button from '../Button';
+import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/redux/hooks';
+import Spinner from '../Spinner';
 
 function RegisterForm() {
 	const width = useUserWidth();
@@ -25,6 +28,15 @@ function RegisterForm() {
 		handleRadioInputChange,
 		onSubmit,
 	} = useRegister();
+	const { isAuthenticated, isLoading: isAuthenticating } = useAppSelector(
+		(state) => state.auth
+	);
+	const router = useRouter();
+
+	if (isAuthenticating) return <Spinner size='large' />;
+
+	if (isAuthenticated) router.push('/');
+
 	return (
 		<>
 			{width >= 640 && <BackgroundContainer />}
