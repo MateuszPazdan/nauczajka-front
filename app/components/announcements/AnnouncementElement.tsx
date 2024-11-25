@@ -17,7 +17,7 @@ function AnnouncementElement({ announcement }: any) {
 			<div className='w-full flex flex-row justify-between items-center'>
 				<div className='flex flex-col items-start'>
 					<span className='text-xl'>{announcement.title}</span>
-					<span>
+					<span className='flex flex-wrap'>
 						{announcement.tags.map((tag: any, index: number) => (
 							<span key={index} className='text-sm'>
 								{tag.name}
