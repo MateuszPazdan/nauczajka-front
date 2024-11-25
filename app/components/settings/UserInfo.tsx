@@ -29,7 +29,7 @@ function UserInfo({ user }: { user: User | undefined }) {
 								alt='User Avatar'
 								width={80}
 								height={80}
-								className='w-20 border-white bg-white shadow-myShadow rounded-full'
+								className='w-20 border-white bg-white shadow-myShadow rounded-full aspect-square object-cover'
 							/>
 						</div>
 						<div className='absolute opacity-0 top-0 left-0 rounded-full h-full w-full hover:opacity-100 transition-all hover:bg-mainBlue/90 hover:cursor-pointer flex justify-center items-center'>
