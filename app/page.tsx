@@ -7,6 +7,7 @@ import HowToStartSteps from './components/homepage/HowToStartSteps';
 import OpinionsSection from './components/homepage/OpinionsSection';
 import Spinner from './components/Spinner';
 
+export const revalidate = 600;
 export default async function Page() {
 	const ratings = await getBestRatings(9);
 	return (
