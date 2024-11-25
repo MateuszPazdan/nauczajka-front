@@ -15,7 +15,7 @@ function TutorHeader({ tutorInfo, showLocation }: TutorHeaderProps) {
 				alt='awatar użytkownika'
 				width={96}
 				height={96}
-				className='rounded-full border-whiteHover group-hover/tutorEl:border-mainHover shadow-md shadow-shadowBlack border-2 transition-colors duration-300'
+				className='rounded-full border-whiteHover group-hover/tutorEl:border-mainHover shadow-md shadow-shadowBlack border-2 transition-colors duration-300 aspect-square object-cover'
 			/>
 
 			<div className='flex flex-col items-center md:items-baseline'>
