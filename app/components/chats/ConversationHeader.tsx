@@ -1,3 +1,4 @@
+import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { Chat } from '@/redux/features/chatsApiSlice';
 import { Dispatch, SetStateAction } from 'react';
 import { IoIosClose } from 'react-icons/io';
@@ -11,6 +12,11 @@ function ConversationHeader({
 	setChoosenChat,
 	choosenChat,
 }: ConversationHeaderProps) {
+	const { data: user } = useRetrieveUserQuery();
+	const choosenUser =
+		choosenChat?.users[0].id === user?.id
+			? choosenChat?.users[1]
+			: choosenChat?.users[0];
 	return (
 		<div className='flex items-center gap-2 border-b-2 p-2 border-whiteHover'>
 			<button
@@ -23,7 +29,7 @@ function ConversationHeader({
 			</button>
 			<div>
 				<span className='text-md '>
-					{choosenChat?.users[1].first_name} {choosenChat?.users[1].last_name}
+					{choosenUser?.first_name} {choosenUser?.last_name}
 				</span>
 			</div>
 		</div>
