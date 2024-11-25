@@ -29,7 +29,7 @@ function NavAvatar({ user, size = 'large', href, onClick }: NavAvatarProps) {
 					src={`${user?.profile_image}`}
 					fill
 					alt='User profile image'
-					className='rounded-full shadow-md group-[.logo]:group-hover:border-main border-2 transition-colors duration-300'
+					className='rounded-full shadow-md group-[.logo]:group-hover:border-main border-2 transition-colors duration-300 aspect-square object-cover'
 				/>
 			</div>
 
