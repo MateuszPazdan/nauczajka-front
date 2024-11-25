@@ -16,9 +16,9 @@ function Opinion({
 }) {
 	return (
 		<div
-			className={`basis-full md:basis-1/2 lg:basis-1/3 flex-grow flex-shrink-0 px-3   `}
+			className={`flex w-full basis-full md:basis-1/2 lg:basis-1/3 flex-grow flex-shrink-0 px-3   `}
 		>
-			<div className='flex flex-col justify-around p-3 gap-5 bg-white rounded-md shadow-sm shadow-whiteHover'>
+			<div className='flex flex-col w-full justify-around p-3 gap-5 bg-white rounded-md shadow-sm shadow-whiteHover'>
 				<StarRating currRating={rating} readOnly={true} size='xl' />
 				<p className='text-sm font-medium'>
 					{children.length > 100 ? children.slice(0, 100) + '...' : children}
