@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<p align="center">
+  <img src="public/book.svg" alt="Logo ReadIt" width="100"/>
+</p>
 
-First, run the development server:
+#  Nauczajka
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Nauczajka – a responsive web application connecting tutors with students. It enables account creation, tutor search, rating, in-app chat communication, and full profile and lesson offer management.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Table of contents
 
-## Learn More
+- Description
+- Features
+- Requirements
+- Installation
+- Launching
+- Screenshots of the App
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 📝 Description
 
-## Deploy on Vercel
+Nauczajka is a web application that connects tutors with students, offering a complete system for managing tutoring services online. Users can register either as students or tutors, and depending on their role, gain access to different features.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Students can search for tutors using advanced filters such as subject, teaching method, location, rating, and price. They can view detailed tutor profiles, including availability, teaching style, and subjects offered. Once they find a match, students can contact tutors through a built-in chat system, book lessons, and leave reviews with a star rating and comments. Each student also has a personal profile with basic settings like profile photo, password management, and account deletion.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Tutors can fully manage their public profiles by editing descriptions, updating skills, adding subjects, and setting available time slots. They can communicate with students via chat and receive feedback through the rating system visible to other users.
+
+Registration is required to interact with tutors, but the search engine is available to all users, even without logging in. This ensures that anyone can explore available tutoring offers quickly and efficiently.
+
+
+
+## 🚀 Features
+
+- ✅ User registration and login
+- ✅ Create profile as Student or Tutor
+- ✅ Browse tutors with filters
+- ✅ Rating and review system
+- ✅ Tutor profile pages with info and availability
+- ✅ In-app chat for tutor communication
+- ✅ Availability and profile management (for tutors)
+- ✅ Report technical issues or abuse to admins
+ 
+
+
+## 📦 Requirements
+
+- Node.js >= 18  
+
+
+
+## 🛠 Installation
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/ProOnDesk/nauczajka-front.git
+
+2. Go to folder
+   ```bash
+   cd nauczajka-front
+
+3. Install dependencies
+   ```bash
+   npm install
+
+## 🏃‍♂️ Launching
+
+  ```bash
+    npm run dev
+  ```
+
+
+
+## 📸 Screenshots of the App
+
+### 🔍 Tutor Browser 
+Browse the list of available tutors with key info and sorting options.
+![Tutor Browser Screenshot](images/tutor-browser.png)
+
+### 📘 Tutor Info Page
+View detailed tutor profiles with availability, pricing, and reviews.
+![Tutor Infro Screenshot](images/tutor-info-page.png)
+
+### ⚙️ User & Tutor Settings
+Manage profile settings, update details, and customize your account.
+![User Settings Screenshot](images/tutor-and-user-settings.png)
+
+### 💬 Chat
+Communicate directly with tutors through the built-in chat system.
+![Chat Screenshot](images/chat.png)
+
+### 📅 Reservations
+Book lessons based on tutor availability.
+![Reservations Screenshot](images/reservations.png)
+
+### 📢 Announcements
+See tutor announcements about group classes, workshops, or extra sessions.
+![Announcements Screenshot](images/announcements.png)
+
+### Report Issue
+Report technical issues or inappropriate behavior to administrators.
+![Report Issue Screenshot](images/report-issue.png)
+
+
+ 
+
+
+
+
